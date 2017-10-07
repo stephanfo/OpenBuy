@@ -1,0 +1,54 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row justify-content-center">
+    <div class="col-sm-4">
+        <div class="card bg-light">
+            <div class="card-header">
+                <div class="float-left">
+                    {{ 'Log in' | trans }}
+                </div>
+                <div class="float-right">
+                    {% if app.request.locale != 'fr' %}
+                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale': 'fr'})) }}">
+                            {% image '%kernel.root_dir%/Resources/public/images/flags/fr.png' %}
+                                <img src="{{ asset_url }}" alt="Example" class="image-flag-login"/>
+                            {% endimage %}
+                        </a>
+                    {%  endif %}
+                    {% if app.request.locale != 'en' %}
+                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale': 'en'})) }}">
+                            {% image '%kernel.root_dir%/Resources/public/images/flags/en.png' %}
+                                <img src="{{ asset_url }}" alt="Example" class="image-flag-login"/>
+                            {% endimage %}
+                        </a>
+                    {%  endif %}
+                </div>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="{{ 'security.login.username'|trans }}" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="_password" class="form-control" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                            </label>
+                        </div>
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% endif %}
+                        <input type="submit" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

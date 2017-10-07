@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@AppBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -10,7 +12,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -37,6 +39,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - bootstrap_3_layout.html.twig
 
 # Doctrine Configuration
 doctrine:
@@ -67,3 +71,45 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+stof_doctrine_extensions:
+    default_locale: '%locale%'
+    orm:
+        default:
+            timestampable: true
+
+stfalcon_tinymce:
+    language: '%locale%'
+    theme:
+        # Simple theme: same as default theme
+        simple:
+            height: 500
+            plugins:
+                - "advlist autolink autosave lists link image charmap print preview hr"
+                - "searchreplace wordcount visualblocks visualchars code"
+                - "insertdatetime media save table contextmenu directionality"
+                - "emoticons paste textcolor"
+            toolbar1: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media emoticons | print preview"
+            autosave_interval: "20s"
+            autosave_ask_before_unload: true
+            autosave_restore_when_empty: true
+            autosave_retention: "20m"
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: UserBundle\Entity\User
+    from_email:
+        address: '%sender_email%'
+        sender_name: '%sender_name%'
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    node:           /usr/local/bin/node
+    filters:
+        cssrewrite: ~
+        uglifyjs2:
+            bin:    /usr/local/bin/uglifyjs
+        uglifycss:
+            bin:    /usr/local/bin/uglifycss
