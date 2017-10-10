@@ -3,7 +3,6 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@AppBundle/Resources/config/services.yml" }
-    - { resource: "@UserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -98,7 +97,7 @@ stfalcon_tinymce:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: UserBundle\Entity\User
+    user_class: AppBundle\Entity\User
     from_email:
         address: '%sender_email%'
         sender_name: '%sender_name%'
@@ -113,3 +112,10 @@ assetic:
             bin:    /usr/local/bin/uglifyjs
         uglifycss:
             bin:    /usr/local/bin/uglifycss
+
+jms_translation: # you can use the cli to update lang files: php bin/console translation:extract en --config=app
+    configs:
+        app:
+            dirs: ["%kernel.root_dir%", "%kernel.root_dir%/../src"]
+            output_dir: "%kernel.root_dir%/Resources/translations"
+            output_format: "xlf"

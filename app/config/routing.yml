@@ -2,13 +2,13 @@ homeredirect:
     path: /
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: homepage
+        route: home
         permanent: true
 
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
-    prefix:   /{_locale}/admin/app
+    prefix:   /{_locale}
     requirements:
         _locale: en|fr
 
