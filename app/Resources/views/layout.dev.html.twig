@@ -1,7 +1,7 @@
 {% extends "::master.html.twig" %}
 
 {% block title %}
-    {{ 'title.bom' | trans }} - {{ parent() }}
+    {{ 'title.dev' | trans }} - {{ parent() }}
 {% endblock %}
 
 {% block container %}
@@ -10,13 +10,7 @@
             <h5>{{ 'leftmenu.title.quick_links' | trans }}</h5>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">{{ 'leftmenu.create_bom' | trans }}</a>
-                </li>
-            </ul>
-            <h5 class="app-nav-sidebar-header">{{ 'leftmenu.title.boms' | trans }}</h5>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">{{ 'leftmenu.boms' | trans }}</a>
+                    <a class="nav-link" href="#">{{ 'leftmenu.dev.api_digikey' | trans }}</a>
                 </li>
             </ul>
         </div>

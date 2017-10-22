@@ -1,0 +1,96 @@
+{% extends '::layout.srm.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'suppliers.index.title' | trans }}</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'supplier.label.name' | trans }}</th>
+            <th>{{ 'supplier.label.city' | trans }}</th>
+            <th>{{ 'supplier.label.country' | trans }}</th>
+            <th>{{ 'table.header.action' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for supplier in listSuppliers %}
+            <tr>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.city }}</td>
+                <td>{{ supplier.country }}</td>
+                <td class="index-action">
+                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#supplier_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
+                    {% if is_granted('ROLE_SUPPLIER_ADMIN') %}
+                        {% if supplier.interface is not empty %}
+                            <a href="{{ path('interface_' ~ supplier.interface ~ '_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit.parameters' | trans }}"><i class="fa fa-cogs"></i></button></a>
+                            <a href="{{ path('interface_' ~ supplier.interface ~ '_console', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.test' | trans }}"><i class="fa fa-terminal"></i></button></a>
+                        {% else %}
+                            <button type="button" class="btn btn-sm btn-warning disabled"><i class="fa fa-cogs"></i></button>
+                            <button type="button" class="btn btn-sm btn-warning disabled"><i class="fa fa-terminal"></i></button>
+                        {%  endif %}
+                        <a href="{{ path('srm_suppliers_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
+                        <a href="{{ path('srm_suppliers_delete', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+    {% if nbPages > 1 %}
+        <nav class="float-right">
+            <ul class="pagination">
+                <li class="page-item{% if page < 2 %} disabled{% endif %}">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                {% for i in 1..nbPages %}
+                    {% if i == page %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path('crm_supplier_index', { 'page': i }) }}">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                <li class="page-item{% if page >= nbPages %} disabled"{% endif %}">
+                <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    {% endif %}
+    {% for supplier in listSuppliers %}
+        <div class="modal fade" id="supplier_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="supplier_{{ loop.index }}_Label">{{ supplier.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="row">
+                            <dt class="col-md-4">{{ 'supplier.label.name' | trans }}: </dt>
+                            <dd class="col-md-8">{{ supplier.name }}</dd>
+                            <dt class="col-md-4">{{ 'supplier.label.address' | trans }}: </dt>
+                            <dd class="col-md-8">
+                                {{ supplier.addressLine1 }}<br/>
+                                {{ supplier.addressLine2 }}<br/>
+                                {{ supplier.addressLine3 }}<br/>
+                                {{ supplier.postCode }}<br/>
+                                {{ supplier.city }}<br/>
+                                {{ supplier.state }}<br/>
+                                {{ supplier.country }}<br/>
+                            </dd>
+                            <dt class="col-md-4">{{ 'supplier.label.interface' | trans }}: </dt>
+                            <dd class="col-md-8">{{ supplier.interface }}</dd>
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'modal.button.close' | trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

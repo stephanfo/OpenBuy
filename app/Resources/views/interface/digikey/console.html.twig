@@ -1,0 +1,54 @@
+{% extends '::layout.srm.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'console.title' | trans({}, 'interface') }}</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>{{ 'console.parameters' | trans({}, 'interface') }}</h2>
+            <p>
+                <strong>{{ 'digikey.label.code' | trans({}, 'interface') }}:</strong> {{ supplier.parameters.code }}<br/>
+                <strong>{{ 'digikey.label.token' | trans({}, 'interface') }}:</strong> {{ supplier.parameters.token }}<br/>
+                <strong>{{ 'digikey.label.expiration' | trans({}, 'interface') }}:</strong> {% if supplier.parameters.expiration is not null %}{{ supplier.parameters.expiration | date("Y/m/d H:i:s") }}{% endif %}<br/>
+                <strong>{{ 'digikey.label.refresh_token' | trans({}, 'interface') }}:</strong> {{ supplier.parameters.refreshToken }}<br/>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h2>{{ 'console.actions' | trans({}, 'interface') }}</h2>
+            <p>
+                <a href="{{ path('interface_digikey_revoke', {'id': supplier.id}) }}"><button class="btn btn-primary">{{ 'digikey.button.revoke' | trans({}, 'interface') }}</button></a>
+                {{ 'digikey.button.revoke.description' | trans({}, 'interface') }}
+            </p>
+            <p>
+                <a href="{{ path('interface_digikey_redirect', {'id': supplier.id}) }}"><button class="btn btn-primary">{{ 'digikey.button.code' | trans({}, 'interface') }}</button></a>
+                {{ 'digikey.button.code.description' | trans({}, 'interface') }}
+            </p>
+            <p>
+                <a href="{{ path('interface_digikey_token', {'id': supplier.id}) }}"><button class="btn btn-primary">{{ 'digikey.button.token' | trans({}, 'interface') }}</button></a>
+                {{ 'digikey.button.token.description' | trans({}, 'interface') }}
+            </p>
+            <p>
+                <a href="{{ path('interface_digikey_refresh', {'id': supplier.id}) }}"><button class="btn btn-primary">{{ 'digikey.button.refresh' | trans({}, 'interface') }}</button></a>
+                {{ 'digikey.button.refresh.description' | trans({}, 'interface') }}
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>{{ 'console.simulation.form' | trans({}, 'interface') }}</h2>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="{{ 'form.button.send' | trans({}, 'interface') }}" class="btn btn-primary" />
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-8">
+            <h2>{{ 'console.simulation.answer' | trans({}, 'interface') }}</h2>
+            {% if response is not null %}
+                <pre>
+                    {{ response }}
+                </pre>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new APIDigikeyBundle\APIDigikeyBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

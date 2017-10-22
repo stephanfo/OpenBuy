@@ -5,37 +5,35 @@
 {% endblock %}
 
 {% block container %}
-    <div class="container-fluid app-container">
-        <div class="row">
-            <div class="col-xl-2 col-md-3 col-sm-4">
-                <h5>{{ 'leftmenu.title.quick_links' | trans }}</h5>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ 'leftmenu.create_customer' | trans }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ 'leftmenu.create_contact' | trans }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ 'leftmenu.create_project' | trans }}</a>
-                    </li>
-                </ul>
-                <h5 class="app-nav-sidebar-header">{{ 'leftmenu.title.customers' | trans }}</h5>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ 'leftmenu.customers_list' | trans }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ 'leftmenu.contacts_list' | trans }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ 'leftmenu.projects_list' | trans }}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-xl-10 col-md-9 col-sm-8">
-                {% block content %}{% endblock %}
-            </div>
+    <div class="row">
+        <div class="col-xl-2 col-md-3 col-sm-4">
+            <h5>{{ 'leftmenu.title.quick_links' | trans }}</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ 'leftmenu.create_customer' | trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ 'leftmenu.create_contact' | trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ 'leftmenu.create_project' | trans }}</a>
+                </li>
+            </ul>
+            <h5 class="app-nav-sidebar-header">{{ 'leftmenu.title.customers' | trans }}</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ 'leftmenu.customers_list' | trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ 'leftmenu.contacts_list' | trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ 'leftmenu.projects_list' | trans }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xl-10 col-md-9 col-sm-8">
+            {% block content %}{% endblock %}
         </div>
     </div>
 {% endblock %}

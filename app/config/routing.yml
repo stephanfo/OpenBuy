@@ -12,6 +12,11 @@ app:
     requirements:
         _locale: en|fr
 
+api_digikey:
+    resource: "@APIDigikeyBundle/Controller/"
+    type:     annotation
+    prefix:   /api/digikey
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
     prefix:   /{_locale}
