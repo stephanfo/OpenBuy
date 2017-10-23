@@ -63,6 +63,10 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        filters:
+            softdeleteable:
+                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                enabled: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -114,10 +118,3 @@ assetic:
             bin:    /usr/local/bin/uglifyjs
         uglifycss:
             bin:    /usr/local/bin/uglifycss
-
-jms_translation: # you can use the cli to update lang files: php bin/console translation:extract en --config=app
-    configs:
-        app:
-            dirs: ["%kernel.root_dir%", "%kernel.root_dir%/../src"]
-            output_dir: "%kernel.root_dir%/Resources/translations"
-            output_format: "xlf"

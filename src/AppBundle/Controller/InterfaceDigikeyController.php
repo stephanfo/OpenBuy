@@ -75,7 +75,7 @@ class InterfaceDigikeyController extends Controller
 
         return $this->render('interface/digikey/console.html.twig', array(
             'supplier' => $supplier,
-            'response' => print_r(json_decode($response), true),
+            'response' => print_r($response, true),
             'form' => $form->createView(),
         ));
     }

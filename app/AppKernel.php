@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new APIDigikeyBundle\APIDigikeyBundle(),
+            new JMS\TranslationBundle\JMSTranslationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -32,8 +33,7 @@ class AppKernel extends Kernel
             if ('dev' === $this->getEnvironment()) {
                 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
                 $bundles[] = new Symfony\Bundle\WebServerBundle\WebServerBundle();
-                $bundles[] = new JMS\TranslationBundle\JMSTranslationBundle();
-                //$bundles[] = new JMS\DiExtraBundle\JMSDiExtraBundle();
+                $bundles[] = new JMS\DiExtraBundle\JMSDiExtraBundle();
                 $bundles[] = new JMS\AopBundle\JMSAopBundle();
             }
         }

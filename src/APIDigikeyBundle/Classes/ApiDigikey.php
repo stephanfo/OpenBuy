@@ -203,8 +203,27 @@ class ApiDigikey
         return $this->getConfig();
     }
 
+    private function isTokenValid() {
+        $now = new \DateTime();
+
+        if ($this->expiration < $now)
+            return false;
+
+        return true;
+    }
+
+    private function handleConnection($userAgent)
+    {
+        if(!$this->isTokenValid())
+            $this->refreshToken($userAgent);
+
+        return true;
+    }
+
     public function keywordSearch($userAgent, $keyword, $recordCount = 20)
     {
+        $this->handleConnection($userAgent);
+
         $clientHttp = new Client(
             array(
                 'verify' => false,
@@ -238,11 +257,13 @@ class ApiDigikey
             return Psr7\str($e->getResponse());
         }
 
-        return $response->getBody()->getContents();
+        return json_decode($response->getBody()->getContents());
     }
 
     public function partDetailSearch($userAgent, $keyword)
     {
+        $this->handleConnection($userAgent);
+
         $clientHttp = new Client(
             array(
                 'verify' => false,
@@ -274,7 +295,7 @@ class ApiDigikey
             return Psr7\str($e->getResponse());
         }
 
-        return $response->getBody()->getContents();
+        return json_decode($response->getBody()->getContents());
     }
 
     public function getClassName()

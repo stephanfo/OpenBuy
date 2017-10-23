@@ -13,6 +13,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="supplier")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SupplierRepository")
  *
+ * @Gedmo\SoftDeleteable(fieldName="deleted", timeAware=false)
+ *
  * @UniqueEntity("name")
  */
 class Supplier
@@ -98,6 +100,11 @@ class Supplier
      * @ORM\Column(name="parameters", type="array", nullable=true)
      */
     private $parameters;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="supplier", cascade={"persist", "remove"})
+     */
+    private $articles;
 
     /**
      * @var \DateTime $created
@@ -442,5 +449,46 @@ class Supplier
     public function getInterface()
     {
         return $this->interface;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add article
+     *
+     * @param \AppBundle\Entity\Article $article
+     *
+     * @return Supplier
+     */
+    public function addArticle(\AppBundle\Entity\Article $article)
+    {
+        $this->articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \AppBundle\Entity\Article $article
+     */
+    public function removeArticle(\AppBundle\Entity\Article $article)
+    {
+        $this->articles->removeElement($article);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

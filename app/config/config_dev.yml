@@ -39,3 +39,10 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+
+jms_translation: # you can use the cli to update lang files: php bin/console translation:extract en --config=app
+    configs:
+        app:
+            dirs: ["%kernel.root_dir%", "%kernel.root_dir%/../src"]
+            output_dir: "%kernel.root_dir%/Resources/translations"
+            output_format: "xlf"
