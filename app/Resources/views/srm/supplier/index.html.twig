@@ -20,6 +20,7 @@
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#supplier_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
                     {% if is_granted('ROLE_SUPPLIER_ADMIN') %}
+                        <a href="{{ path('srm_suppliers_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
                         {% if supplier.interface is not empty %}
                             <a href="{{ path('interface_' ~ supplier.interface ~ '_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit.parameters' | trans }}"><i class="fa fa-cogs"></i></button></a>
                             <a href="{{ path('interface_' ~ supplier.interface ~ '_console', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.test' | trans }}"><i class="fa fa-terminal"></i></button></a>
@@ -27,7 +28,6 @@
                             <button type="button" class="btn btn-sm btn-warning disabled"><i class="fa fa-cogs"></i></button>
                             <button type="button" class="btn btn-sm btn-warning disabled"><i class="fa fa-terminal"></i></button>
                         {%  endif %}
-                        <a href="{{ path('srm_suppliers_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
                         <a href="{{ path('srm_suppliers_delete', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
                     {% endif %}
                 </td>
@@ -53,7 +53,7 @@
                     {% endif %}
                 {% endfor %}
                 <li class="page-item{% if page >= nbPages %} disabled"{% endif %}">
-                <a class="page-link" href="#">Next</a>
+                    <a class="page-link" href="#">Next</a>
                 </li>
             </ul>
         </nav>
