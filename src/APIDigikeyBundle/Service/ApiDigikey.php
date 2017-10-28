@@ -1,6 +1,6 @@
 <?php
 
-namespace APIDigikeyBundle\Classes;
+namespace APIDigikeyBundle\Service;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -26,12 +26,16 @@ class ApiDigikey
     private $localShipToCountry;
     private $partnerId;
 
+    public $configUpdated;
+
     function __construct($config = null)
     {
         if (is_null($config)) {
             $this->setConfig($this->getDefaultConfig());
+            $this->configUpdated = true;
         } else {
             $this->setConfig($config);
+            $this->configUpdated = false;
         }
     }
 
@@ -100,6 +104,8 @@ class ApiDigikey
         $this->localCurrency = $config['localCurrency'];
         $this->localShipToCountry = $config['localShipToCountry'];
         $this->partnerId = $config['partnerId'];
+
+        $this->configUpdated = true;
     }
 
     public function linkLoginPage()
@@ -120,12 +126,15 @@ class ApiDigikey
         $this->expiration = null;
         $this->refreshToken = null;
 
+        $this->configUpdated = true;
+
         return $this->getConfig();
     }
 
     public function setCode($code)
     {
         $this->code = $code;
+        $this->configUpdated = true;
 
         return $this->getConfig();
     }
@@ -164,6 +173,8 @@ class ApiDigikey
         $this->expiration = new \DateTime('+ ' . $content["expires_in"] . ' seconds');
         $this->refreshToken = $content["refresh_token"];
 
+        $this->configUpdated = true;
+
         return $this->getConfig();
     }
 
@@ -199,6 +210,8 @@ class ApiDigikey
         $this->token = $content["access_token"];
         $this->expiration = new \DateTime('+ ' . $content["expires_in"] . ' seconds');
         $this->refreshToken = $content["refresh_token"];
+
+        $this->configUpdated = true;
 
         return $this->getConfig();
     }

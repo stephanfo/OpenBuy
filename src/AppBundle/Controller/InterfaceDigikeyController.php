@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use APIDigikeyBundle\Classes\ApiDigikey;
+use APIDigikeyBundle\Service\InterfaceDigikey;
 use AppBundle\Entity\Supplier;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,14 +18,9 @@ class InterfaceDigikeyController extends Controller
     /**
      * @Route("/interface/digikey/edit/{id}", requirements={"id": "\d+"}, name="interface_digikey_edit")
      */
-    public function editAction(Supplier $supplier, Request $request)
+    public function editAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
     {
-        if (is_null($supplier->getParameters())) {
-            $api = new ApiDigikey();
-            $config = $api->getDefaultConfig();
-        } else {
-            $config = $supplier->getParameters();
-        }
+        $config = $interface->getConfig($supplier->getId());
 
         $form = $this->getForm();
         $form->setData($config);
@@ -33,9 +28,7 @@ class InterfaceDigikeyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $supplier->setParameters($form->getData());
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
+            $interface->setConfig($form->getData());
 
             $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.edit.success", array('%supplier%' => $supplier->getName())), "interface");
 
@@ -50,21 +43,26 @@ class InterfaceDigikeyController extends Controller
     /**
      * @Route("/interface/digikey/console/{id}", requirements={"id": "\d+"}, name="interface_digikey_console")
      */
-    public function consoleAction(Supplier $supplier, Request $request)
+    public function consoleAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
     {
+        if (is_null($supplier->getParameters()))
+        {
+            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.console.empty_config", array('%supplier%' => $supplier->getName()), "interface"));
+            return $this->redirectToRoute('srm_suppliers_index');
+        }
+
         $form = $this->getConsoleForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $api = new ApiDigikey($supplier->getParameters());
             $data = $form->getData();
             switch ($data['path']) {
                 case 'keywordSearch':
-                    $response = $api->keywordSearch($request->headers->get('User-Agent'), $data['keyword']);
+                    $response = $interface->keywordSearch($request->headers->get('User-Agent'), $data['keyword'], $supplier->getId());
                     break;
                 case 'partDetails':
-                    $response = $api->partDetailSearch($request->headers->get('User-Agent'), $data['keyword']);
+                    $response = $interface->partDetailSearch($request->headers->get('User-Agent'), $data['keyword'], $supplier->getId());
                     break;
                 default:
                     $response = null;
@@ -83,12 +81,9 @@ class InterfaceDigikeyController extends Controller
     /**
      * @Route("/interface/digikey/revoke/{id}", requirements={"id": "\d+"}, name="interface_digikey_revoke")
      */
-    public function revokeAction(Supplier $supplier, Request $request)
+    public function revokeAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
     {
-        $api = new ApiDigikey($supplier->getParameters());
-        $supplier->setParameters($api->revoke());
-
-        $this->getDoctrine()->getManager()->flush();
+        $interface->revoke($supplier->getId());
 
         $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.revoke.success", array('%supplier%' => $supplier->getName())), "interface");
 
@@ -98,38 +93,28 @@ class InterfaceDigikeyController extends Controller
     /**
      * @Route("/interface/digikey/redirect/{id}", requirements={"id": "\d+"}, name="interface_digikey_redirect")
      */
-    public function redirectAction(Supplier $supplier, Request $request)
+    public function redirectAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
     {
-        $api = new ApiDigikey($supplier->getParameters());
-
         $request->getSession()->set("interface_digikey_code_id", array(
             'id' => $supplier->getId(),
             'local' => $request->getLocale(),
         ));
 
-        return $this->redirect($api->linkLoginPage());
+        return $this->redirect($interface->linkLoginPage($supplier->getId()));
     }
 
     /**
      * @Route("/interface/digikey/token/{id}", requirements={"id": "\d+"}, name="interface_digikey_token")
      */
-    public function tokenAction(Supplier $supplier, Request $request)
+    public function tokenAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
     {
-        $api = new ApiDigikey($supplier->getParameters());
+        $valid = $interface->retrieveToken($request->headers->get('User-Agent'), $supplier->getId());
 
-        $response = $api->retrieveToken($request->headers->get('User-Agent'));
-
-        if (!is_array($response)) {
-            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.token.error", array('%supplier%' => $supplier->getName(), 'error' => $response), "interface"));
-
-            return $this->redirectToRoute('interface_digikey_console', array('id' => $supplier->getId()));
+        if ($valid === true) {
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.token.success", array('%supplier%' => $supplier->getName())), "interface");
+        } else {
+            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.token.error", array('%supplier%' => $supplier->getName(), 'error' => $valid), "interface"));
         }
-
-        $supplier->setParameters($response);
-
-        $this->getDoctrine()->getManager()->flush();
-
-        $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.token.success", array('%supplier%' => $supplier->getName())), "interface");
 
         return $this->redirectToRoute('interface_digikey_console', array('id' => $supplier->getId()));
     }
@@ -137,23 +122,15 @@ class InterfaceDigikeyController extends Controller
     /**
      * @Route("/interface/digikey/refresh/{id}", requirements={"id": "\d+"}, name="interface_digikey_refresh")
      */
-    public function refreshAction(Supplier $supplier, Request $request)
+    public function refreshAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
     {
-        $api = new ApiDigikey($supplier->getParameters());
+        $valid = $interface->refreshToken($request->headers->get('User-Agent'), $supplier->getId());
 
-        $response = $api->refreshToken($request->headers->get('User-Agent'));
-
-        if (!is_array($response)) {
-            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.refresh.error", array('%supplier%' => $supplier->getName(), 'error' => $response), "interface"));
-
-            return $this->redirectToRoute('interface_digikey_console', array('id' => $supplier->getId()));
+        if ($valid === true) {
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.token.success", array('%supplier%' => $supplier->getName())), "interface");
+        } else {
+            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.token.error", array('%supplier%' => $supplier->getName(), 'error' => $response), "interface"));
         }
-
-        $supplier->setParameters($response);
-
-        $this->getDoctrine()->getManager()->flush();
-
-        $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.refresh.success", array('%supplier%' => $supplier->getName())), "interface");
 
         return $this->redirectToRoute('interface_digikey_console', array('id' => $supplier->getId()));
     }

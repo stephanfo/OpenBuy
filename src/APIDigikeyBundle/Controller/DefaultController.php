@@ -5,9 +5,9 @@ namespace APIDigikeyBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Entity\Supplier;
-use APIDigikeyBundle\Classes\ApiDigikey;
+use APIDigikeyBundle\Service\ApiDigikey;
 
 class DefaultController extends Controller
 {
