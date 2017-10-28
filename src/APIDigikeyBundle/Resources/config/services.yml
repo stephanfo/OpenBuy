@@ -1,3 +1,5 @@
 services:
-    api_digikey:
-        class: APIDigikeyBundle\Classes\ApiDigikey
+
+    APIDigikeyBundle\Service\InterfaceDigikey:
+        autowire: true
+        public: true
