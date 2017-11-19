@@ -40,7 +40,7 @@ class DefaultController extends Controller
 
         $this->getDoctrine()->getManager()->flush();
 
-        $session->getFlashBag()->add('success', $this->get('translator')->trans("flash.interface.code.success", array('%supplier%' => $supplier->getName())), "api_digikey");
+        $session->getFlashBag()->add('success', $this->get('translator')->trans("flash.interface.code.success", array('%supplier%' => $supplier->getName()), "api_digikey"));
 
         return $this->redirectToRoute('interface_digikey_console', array(
             'id' => $supplier->getId(),

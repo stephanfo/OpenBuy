@@ -1,28 +1,25 @@
-{% extends '::layout.bom.html.twig' %}
+{% extends '::layout.crm.html.twig' %}
 
 {% block content %}
-    <h1>{{ 'bom.index.title' | trans }}</h1>
+    <h1>{{ 'ecu.index.title' | trans }}</h1>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>{{ 'bom.label.name' | trans }}</th>
-            <th>{{ 'bom.label.ecu' | trans }}</th>
-            <th>{{ 'bom.label.createdAt' | trans }}</th>
+            <th>{{ 'ecu.label.name' | trans }}</th>
+            <th>{{ 'ecu.label.country' | trans }}</th>
             <th>{{ 'table.header.action' | trans }}</th>
         </tr>
         </thead>
         <tbody>
-        {% for bom in list %}
+        {% for ecu in list %}
             <tr>
-                <td>{{ bom.name }}</td>
-                <td>{{ bom.ecu.name }}</td>
-                <td>{{ bom.created | date('Y/m/d H:i:s') }}</td>
+                <td>{{ ecu.name }}</td>
+                <td>{{ ecu.country }}</td>
                 <td class="index-action">
-                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#bom_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
-                    <a href="{{ path('bom_manage', { 'id': bom.id}) }}"><button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#bom_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.manage' | trans }}"><i class="fa fa-file-text"></i></button></a>
+                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#ecu_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
                     {% if is_granted('ROLE_SUPPLIER_ADMIN') %}
-                        <a href="{{ path('bom_edit', { 'id': bom.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
-                        <a href="{{ path('bom_delete', { 'id': bom.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
+                        <a href="{{ path('crm_ecus_edit', { 'id': ecu.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
+                        <a href="{{ path('crm_ecus_delete', { 'id': ecu.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
                     {% endif %}
                 </td>
             </tr>
@@ -42,7 +39,7 @@
                         </li>
                     {% else %}
                         <li class="page-item">
-                            <a class="page-link" href="{{ path('crm_boms_index', { 'page': i }) }}">{{ i }}</a>
+                            <a class="page-link" href="{{ path('crm_ecus_index', { 'page': i }) }}">{{ i }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -52,20 +49,24 @@
             </ul>
         </nav>
     {% endif %}
-    {% for bom in list %}
-        <div class="modal fade" id="bom_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="BomModal{{ loop.index }}" aria-hidden="true">
+    {% for ecu in list %}
+        <div class="modal fade" id="ecu_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="bom_{{ loop.index }}_Label">{{ bom.name }}</h5>
+                        <h5 class="modal-title" id="ecu_{{ loop.index }}_Label">{{ ecu.name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <dl class="row">
-                            <dt class="col-md-4">{{ 'bom.label.name' | trans }}: </dt>
-                            <dd class="col-md-8">{{ bom.name }}</dd>
+                            <dt class="col-md-4">{{ 'ecu.label.name' | trans }}: </dt>
+                            <dd class="col-md-8">{{ ecu.name }}</dd>
+                            <dt class="col-md-4">{{ 'ecu.label.address' | trans }}: </dt>
+                            <dd class="col-md-8">
+                                {{ ecu.country }}<br/>
+                            </dd>
                         </dl>
                     </div>
                     <div class="modal-footer">

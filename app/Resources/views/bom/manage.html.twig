@@ -1,0 +1,159 @@
+{% extends '::layout.bom.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'bom.manage.title' | trans }}</h1>
+    <h2>{{ 'bom.manage.information' | trans }}</h2>
+    <p>
+        {{ 'bom.manage.name' | trans }}: {{ bom.name }}<br/>
+        {{ 'bom.manage.ecu' | trans }}: {{ bom.ecu.name }} ({{ bom.ecu.country }})<br/>
+        {{ 'bom.manage.lines' | trans }}: {{ bom.lines | length }}<br/>
+        {{ 'bom.manage.created' | trans }}: {{ bom.created | date('Y/m/d H:i:s') }}<br/>
+        {{ 'bom.manage.updated' | trans }}: {{ bom.updated | date('Y/m/d H:i:s') }}<br/>
+    </p>
+    <h2>{{ 'bom.manage.lines' | trans }}</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ 'line.label.index' | trans }}</th>
+            <th>{{ 'line.label.ecuPn' | trans }}</th>
+            <th>{{ 'line.label.multiplier' | trans }}</th>
+            <th>{{ 'line.label.bestPrice' | trans }}</th>
+            <th>{{ 'table.header.action' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for line in bom.lines %}
+            <tr class="table-secondary">
+                <td>{{ line.id }}</td>
+                <td>{{ line.ecuPn }}</td>
+                <td>x{{ line.multiplier }}</td>
+                <td>--</td>
+                <td class="index-action">
+                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#alternative_add" data-form-type="AlternativeAdd" data-form-bom-id="{{ bom.id }}" data-form-line-id="{{ line.id }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.add' | trans }}"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#line_edit" data-form-type="LineEdit" data-form-bom-id="{{ bom.id }}" data-form-line-id="{{ line.id }}" data-form-ecuPn="{{ line.ecuPn }}" data-form-multiplier="{{ line.multiplier }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button>
+                    <a href="{{ path('line_delete', { 'id': line.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
+                </td>
+            </tr>
+            {% for alternative in line.alternatives %}
+                <tr>
+                    {% if loop.index == 1 %}
+                        <td rowspan="{{ line.alternatives | length }}" class="bom-alternative">{{ 'line.label.alternatives' | trans }}</td>
+                    {% endif %}
+                    <td class="bom-alternative">{{ alternative.mfrName }}</td>
+                    <td class="bom-alternative">{{ alternative.mfrPn }}</td>
+                    <td class="bom-alternative">--</td>
+                    <td class="index-action">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#alternative_edit" data-form-type="AlternativeEdit" data-form-bom-id="{{ bom.id }}" data-form-alternative-id="{{ alternative.id }}" data-form-mfrName="{{ alternative.mfrName }}" data-form-mfrPn="{{ alternative.mfrPn }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button>
+                        <a href="{{ path('alternative_delete', { 'id': alternative.id }) }}"><button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
+                    </td>
+                </tr>
+            {%  endfor %}
+        {%  endfor %}
+        </tbody>
+    </table>
+    <div class="float-left">
+        <a href="{{ path('line_delete_all', { 'id': bom.id }) }}"><button class="btn btn-secondary">{{ 'bom.button.deleteAll' | trans }}</button></a>
+    </div>
+    <div class="float-right">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#line_add">{{ 'bom.button.addLineSingle' | trans }}</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#line_add_excel">{{ 'bom.button.addLineExcel' | trans }}</button>
+    </div>
+    <div class="modal fade" id="line_add" tabindex="-1" role="dialog" aria-labelledby="AddModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.line.add.title' | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ render(controller('AppBundle:Line:addForm', { 'bomId': bom.id })) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="line_add_excel" tabindex="-1" role="dialog" aria-labelledby="AddExcelModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.line.excel.title' | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ render(controller('AppBundle:Line:excelForm', { 'bomId': bom.id })) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="line_edit" tabindex="-1" role="dialog" aria-labelledby="EditLineModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.line.edit.title' | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ render(controller('AppBundle:Line:editForm')) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="alternative_edit" tabindex="-1" role="dialog" aria-labelledby="EditAlternativeModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.alternative.edit.title' | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ render(controller('AppBundle:Alternative:editForm')) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="alternative_add" tabindex="-1" role="dialog" aria-labelledby="AddAlternativeModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.alternative.add.title' | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ render(controller('AppBundle:Alternative:addForm')) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(":button[data-form-type='LineEdit']").click(function () {
+            $("#line_edit_bomId").val($(this).attr('data-form-bom-id'));
+            $("#line_edit_lineId").val($(this).attr('data-form-line-id'));
+            $("#line_edit_ecuPn").val($(this).attr('data-form-ecuPn'));
+            $("#line_edit_multiplier").val($(this).attr('data-form-multiplier'));
+        });
+        $(":button[data-form-type='AlternativeEdit']").click(function () {
+            $("#alternative_edit_bomId").val($(this).attr('data-form-bom-id'));
+            $("#alternative_edit_alternativeId").val($(this).attr('data-form-alternative-id'));
+            $("#alternative_edit_mfrName").val($(this).attr('data-form-mfrName'));
+            $("#alternative_edit_mfrPn").val($(this).attr('data-form-mfrPn'));
+        });
+        $(":button[data-form-type='AlternativeAdd']").click(function () {
+            $("#alternative_add_bomId").val($(this).attr('data-form-bom-id'));
+            $("#alternative_add_lineId").val($(this).attr('data-form-line-id'));
+        });
+    </script>
+{% endblock %}

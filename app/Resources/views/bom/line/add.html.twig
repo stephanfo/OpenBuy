@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+<h6>{{ 'line.add.detail.title' | trans }}</h6>
+<p>
+    {{ form_row(form.ecuPn) }}
+    {{ form_row(form.multiplier) }}
+</p>
+<h6>{{ 'line.add.alternatives.title' | trans }}</h6>
+<p>
+    {{ form_rest(form) }}
+</p>
+<div class="pull-right">
+    <input type="submit" value="{{ 'form.button.add' | trans }}" class="btn btn-primary" />
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'modal.button.close' | trans }}</button>
+</div>
+{{ form_end(form) }}

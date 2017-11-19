@@ -12,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for supplier in listSuppliers %}
+        {% for supplier in list %}
             <tr>
                 <td>{{ supplier.name }}</td>
                 <td>{{ supplier.city }}</td>
@@ -52,13 +52,13 @@
                         </li>
                     {% endif %}
                 {% endfor %}
-                <li class="page-item{% if page >= nbPages %} disabled"{% endif %}">
+                <li class="page-item{% if page >= nbPages %} disabled{% endif %}">
                     <a class="page-link" href="#">Next</a>
                 </li>
             </ul>
         </nav>
     {% endif %}
-    {% for supplier in listSuppliers %}
+    {% for supplier in list %}
         <div class="modal fade" id="supplier_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

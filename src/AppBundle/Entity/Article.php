@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\Variable;
 
 /**
  * Article
@@ -442,6 +443,28 @@ class Article
     public function removeVariable(\AppBundle\Entity\Variable $variable)
     {
         $this->variables->removeElement($variable);
+    }
+
+    /**
+     * Create variable
+     *
+     * @return Article
+     */
+    public function createVariable(?int $leadtime = null, ?int $stock = null, ?int $delivery = null, \DateTime $validity = null, ?string $comment = null, array $prices = array())
+    {
+        $variable = new Variable();
+        $variable->setArticle($this);
+
+        $variable->setLeadtime($leadtime);
+        $variable->setStock($stock);
+        $variable->setDelivery($delivery);
+        $variable->setValidity($validity);
+        $variable->setComment($comment);
+        $variable->createPrices($prices);
+
+        $this->variables[] = $variable;
+
+        return $this;
     }
 
     /**

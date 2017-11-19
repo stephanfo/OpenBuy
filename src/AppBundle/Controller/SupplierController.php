@@ -27,8 +27,8 @@ class SupplierController extends Controller
         }
 
         return $this->render('srm/supplier/index.html.twig', [
-            'listSuppliers' => $listSuppliers->getIterator(),
-            'totalSuppliers' => count($listSuppliers),
+            'list' => $listSuppliers->getIterator(),
+            'total' => count($listSuppliers),
             'nbPages' => $nbPages,
             'page' => $page,
         ]);
@@ -51,7 +51,7 @@ class SupplierController extends Controller
             $em->persist($supplier);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.supplier.new.success"), array('%supplier%' => $supplier->getName()));
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.supplier.new.success", array('%supplier%' => $supplier->getName())));
 
             return $this->redirectToRoute('srm_suppliers_index');
         }

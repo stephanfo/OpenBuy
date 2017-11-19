@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use AppBundle\Entity\Price;
+
 /**
  * Variable
  *
@@ -349,6 +351,26 @@ class Variable
     public function removePrice(\AppBundle\Entity\Price $price)
     {
         $this->prices->removeElement($price);
+    }
+
+    /**
+     * Create price
+     *
+     * @return Variable
+     */
+    public function createPrices($prices)
+    {
+        foreach ($prices as $quantity => $unitPrice) {
+            $price = new Price();
+
+            $price->setQuantity($quantity);
+            $price->setPrice($unitPrice);
+            $price->setVariable($this);
+
+            $this->prices[] = $price;
+        }
+
+        return $this;
     }
 
     /**

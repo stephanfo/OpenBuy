@@ -2,68 +2,38 @@
 
 namespace AppBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * User
+ * Ecu
  *
- * @ORM\Table(name="fos_user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Table(name="ecu")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EcuRepository")
+ *
+ * @Gedmo\SoftDeleteable(fieldName="deleted", timeAware=false)
  */
-class User extends BaseUser
+class Ecu
 {
+
+    const NB_PER_PAGE = 20;
+
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Type(type="string")
+     * @ORM\Column(name="Name", type="string", length=255)
      */
-    private $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Type(type="string")
-     */
-    private $lastname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Type(type="string")
-     */
-    private $jobrole;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     * @Assert\Type(type="string")
-     */
-    private $phone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Type(type="string")
-     */
-    private $mobile;
+    private $name;
 
     /**
      * @var string
@@ -129,123 +99,42 @@ class User extends BaseUser
     private $deleted;
 
     /**
-     * Set firstname
-     *
-     * @param string $firstname
-     *
-     * @return User
+     * @ORM\OneToMany(targetEntity="Bom", mappedBy="ecu", cascade={"persist", "remove"})
      */
-    public function setFirstname($firstname)
+    private $boms;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
     {
-        $this->firstname = $firstname;
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Ecu
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get firstname
+     * Get name
      *
      * @return string
      */
-    public function getFirstname()
+    public function getName()
     {
-        return $this->firstname;
-    }
-
-    /**
-     * Set lastname
-     *
-     * @param string $lastname
-     *
-     * @return User
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * Get lastname
-     *
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * Set jobrole
-     *
-     * @param string $jobrole
-     *
-     * @return User
-     */
-    public function setJobrole($jobrole)
-    {
-        $this->jobrole = $jobrole;
-
-        return $this;
-    }
-
-    /**
-     * Get jobrole
-     *
-     * @return string
-     */
-    public function getJobrole()
-    {
-        return $this->jobrole;
-    }
-
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     *
-     * @return User
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Get phone
-     *
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * Set mobile
-     *
-     * @param string $mobile
-     *
-     * @return User
-     */
-    public function setMobile($mobile)
-    {
-        $this->mobile = $mobile;
-
-        return $this;
-    }
-
-    /**
-     * Get mobile
-     *
-     * @return string
-     */
-    public function getMobile()
-    {
-        return $this->mobile;
+        return $this->name;
     }
 
     /**
@@ -253,7 +142,7 @@ class User extends BaseUser
      *
      * @param string $address
      *
-     * @return User
+     * @return Ecu
      */
     public function setAddress($address)
     {
@@ -277,7 +166,7 @@ class User extends BaseUser
      *
      * @param string $location
      *
-     * @return User
+     * @return Ecu
      */
     public function setLocation($location)
     {
@@ -301,7 +190,7 @@ class User extends BaseUser
      *
      * @param string $country
      *
-     * @return User
+     * @return Ecu
      */
     public function setCountry($country)
     {
@@ -325,7 +214,7 @@ class User extends BaseUser
      *
      * @param float $latitude
      *
-     * @return User
+     * @return Ecu
      */
     public function setLatitude($latitude)
     {
@@ -349,7 +238,7 @@ class User extends BaseUser
      *
      * @param float $longitude
      *
-     * @return User
+     * @return Ecu
      */
     public function setLongitude($longitude)
     {
@@ -373,7 +262,7 @@ class User extends BaseUser
      *
      * @param \DateTime $created
      *
-     * @return User
+     * @return Ecu
      */
     public function setCreated($created)
     {
@@ -397,7 +286,7 @@ class User extends BaseUser
      *
      * @param \DateTime $updated
      *
-     * @return User
+     * @return Ecu
      */
     public function setUpdated($updated)
     {
@@ -421,7 +310,7 @@ class User extends BaseUser
      *
      * @param \DateTime $deleted
      *
-     * @return User
+     * @return Ecu
      */
     public function setDeleted($deleted)
     {
@@ -438,5 +327,46 @@ class User extends BaseUser
     public function getDeleted()
     {
         return $this->deleted;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->boms = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add bom
+     *
+     * @param \AppBundle\Entity\Bom $bom
+     *
+     * @return Ecu
+     */
+    public function addBom(\AppBundle\Entity\Bom $bom)
+    {
+        $this->boms[] = $bom;
+
+        return $this;
+    }
+
+    /**
+     * Remove bom
+     *
+     * @param \AppBundle\Entity\Bom $bom
+     */
+    public function removeBom(\AppBundle\Entity\Bom $bom)
+    {
+        $this->boms->removeElement($bom);
+    }
+
+    /**
+     * Get boms
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBoms()
+    {
+        return $this->boms;
     }
 }

@@ -30,7 +30,7 @@ class InterfaceDigikeyController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $interface->setConfig($form->getData());
 
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.edit.success", array('%supplier%' => $supplier->getName())), "interface");
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.edit.success", array('%supplier%' => $supplier->getName()), "interface"));
 
             return $this->redirectToRoute('srm_suppliers_index');
         }
@@ -85,7 +85,7 @@ class InterfaceDigikeyController extends Controller
     {
         $interface->revoke($supplier->getId());
 
-        $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.revoke.success", array('%supplier%' => $supplier->getName())), "interface");
+        $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.revoke.success", array('%supplier%' => $supplier->getName()), "interface"));
 
         return $this->redirectToRoute('interface_digikey_console', array('id' => $supplier->getId()));
     }
@@ -111,7 +111,7 @@ class InterfaceDigikeyController extends Controller
         $valid = $interface->retrieveToken($request->headers->get('User-Agent'), $supplier->getId());
 
         if ($valid === true) {
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.token.success", array('%supplier%' => $supplier->getName())), "interface");
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.token.success", array('%supplier%' => $supplier->getName()), "interface"));
         } else {
             $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.token.error", array('%supplier%' => $supplier->getName(), 'error' => $valid), "interface"));
         }
@@ -127,9 +127,9 @@ class InterfaceDigikeyController extends Controller
         $valid = $interface->refreshToken($request->headers->get('User-Agent'), $supplier->getId());
 
         if ($valid === true) {
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.token.success", array('%supplier%' => $supplier->getName())), "interface");
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.token.success", array('%supplier%' => $supplier->getName()), "interface"));
         } else {
-            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.token.error", array('%supplier%' => $supplier->getName(), 'error' => $response), "interface"));
+            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.token.error", array('%supplier%' => $supplier->getName(), 'error' => $valid), "interface"));
         }
 
         return $this->redirectToRoute('interface_digikey_console', array('id' => $supplier->getId()));

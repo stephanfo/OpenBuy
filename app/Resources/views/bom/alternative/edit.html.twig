@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="pull-right">
+        <input type="submit" value="{{ 'form.button.save' | trans }}" class="btn btn-primary" />
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'modal.button.close' | trans }}</button>
+    </div>
+{{ form_end(form) }}

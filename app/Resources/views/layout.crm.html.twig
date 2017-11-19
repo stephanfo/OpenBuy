@@ -10,7 +10,7 @@
             <h5>{{ 'leftmenu.title.quick_links' | trans }}</h5>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">{{ 'leftmenu.create_customer' | trans }}</a>
+                    <a class="nav-link" href="{{ path('crm_ecus_new') }}">{{ 'leftmenu.create_customer' | trans }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">{{ 'leftmenu.create_contact' | trans }}</a>
@@ -22,7 +22,7 @@
             <h5 class="app-nav-sidebar-header">{{ 'leftmenu.title.customers' | trans }}</h5>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">{{ 'leftmenu.customers_list' | trans }}</a>
+                    <a class="nav-link" href="{{ path('crm_ecus_index') }}">{{ 'leftmenu.customers_list' | trans }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">{{ 'leftmenu.contacts_list' | trans }}</a>
