@@ -94,6 +94,11 @@ class Article
     private $variables;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Alternative", mappedBy="articles")
+     */
+    private $alternatives;
+
+    /**
      * @var \DateTime $created
      *
      * @ORM\Column(type="datetime", nullable=true)
@@ -475,5 +480,39 @@ class Article
     public function getVariables()
     {
         return $this->variables;
+    }
+
+    /**
+     * Add alternative
+     *
+     * @param \AppBundle\Entity\Alternative $alternative
+     *
+     * @return Article
+     */
+    public function addAlternative(\AppBundle\Entity\Alternative $alternative)
+    {
+        $this->alternatives[] = $alternative;
+
+        return $this;
+    }
+
+    /**
+     * Remove alternative
+     *
+     * @param \AppBundle\Entity\Alternative $alternative
+     */
+    public function removeAlternative(\AppBundle\Entity\Alternative $alternative)
+    {
+        $this->alternatives->removeElement($alternative);
+    }
+
+    /**
+     * Get alternatives
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlternatives()
+    {
+        return $this->alternatives;
     }
 }

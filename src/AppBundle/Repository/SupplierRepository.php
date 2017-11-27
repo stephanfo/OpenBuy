@@ -21,4 +21,13 @@ class SupplierRepository extends \Doctrine\ORM\EntityRepository
 
         return new Paginator($query, true);
     }
+
+    public function getSuppliersWithAPI()
+    {
+        $query = $this->createQueryBuilder('supplier');
+        $query->where($query->expr()->isNotNull('supplier.interface'));
+        $query->andWhere('supplier.enabled = :true');
+        $query->setParameter('true', true);
+        return $query->getQuery()->getResult();
+    }
 }

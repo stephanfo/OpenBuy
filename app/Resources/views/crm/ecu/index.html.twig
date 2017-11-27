@@ -17,6 +17,7 @@
                 <td>{{ ecu.country }}</td>
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#ecu_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
+                    <a href="{{ path('bom_new', { 'ecuId': ecu.id }) }}"><button type="button" class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.add' | trans }}"><i class="fa fa-plus"></i></button></a>
                     {% if is_granted('ROLE_SUPPLIER_ADMIN') %}
                         <a href="{{ path('crm_ecus_edit', { 'id': ecu.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
                         <a href="{{ path('crm_ecus_delete', { 'id': ecu.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
@@ -49,6 +50,9 @@
             </ul>
         </nav>
     {% endif %}
+    <div class="float-right">
+        <a href="{{ path('crm_ecus_new') }}"><button class="btn btn-primary">{{ 'ecu.add' | trans }}</li></button></a>
+    </div>
     {% for ecu in list %}
         <div class="modal fade" id="ecu_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

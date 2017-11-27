@@ -35,4 +35,34 @@ class BomRepository extends \Doctrine\ORM\EntityRepository
             ->getSingleResult()
             ;
     }
+    public function getBomFullDetails($id)
+    {
+        return $this->createQueryBuilder('bom')
+            ->leftJoin('bom.lines', 'line')
+            ->addSelect('line')
+            ->leftJoin('line.alternatives', 'alternative')
+            ->addSelect('alternative')
+            ->leftJoin('bom.quantities', 'quantity')
+            ->addSelect('quantity')
+            ->leftJoin('alternative.articles', 'article')
+            ->addSelect('article')
+            ->leftJoin('article.variables', 'variable')
+            ->addSelect('variable')
+            ->leftJoin('variable.prices', 'price')
+            ->addSelect('price')
+            ->leftJoin('article.supplier', 'supplier')
+            ->addSelect('supplier')
+            ->orderBy('quantity.date', 'ASC')
+            ->addOrderBy('line.id', 'ASC')
+            ->addOrderBy('alternative.id', 'ASC')
+            ->addOrderBy('supplier.id', 'ASC')
+            ->addOrderBy('article.id', 'ASC')
+            ->addOrderBy('variable.validity', 'DESC')
+            ->addOrderBy('price.quantity', 'ASC')
+            ->where('bom.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
 }

@@ -2,15 +2,49 @@
 
 {% block content %}
     <h1>{{ 'bom.manage.title' | trans }}</h1>
-    <h2>{{ 'bom.manage.information' | trans }}</h2>
-    <p>
-        {{ 'bom.manage.name' | trans }}: {{ bom.name }}<br/>
-        {{ 'bom.manage.ecu' | trans }}: {{ bom.ecu.name }} ({{ bom.ecu.country }})<br/>
-        {{ 'bom.manage.lines' | trans }}: {{ bom.lines | length }}<br/>
-        {{ 'bom.manage.created' | trans }}: {{ bom.created | date('Y/m/d H:i:s') }}<br/>
-        {{ 'bom.manage.updated' | trans }}: {{ bom.updated | date('Y/m/d H:i:s') }}<br/>
-    </p>
-    <h2>{{ 'bom.manage.lines' | trans }}</h2>
+    <div class="row">
+        <div class="col-xl-6">
+            <h2>{{ 'bom.manage.information.title' | trans }}</h2>
+            <p>
+                {{ 'bom.manage.name' | trans }}: {{ bom.name }}<br/>
+                {{ 'bom.manage.ecu' | trans }}: {{ bom.ecu.name }} ({{ bom.ecu.country }})<br/>
+                {{ 'bom.manage.lines' | trans }}: {{ bom.lines | length }}<br/>
+                {{ 'bom.manage.created' | trans }}: {{ bom.created | date('Y-m-d H:i:s') }}<br/>
+                {{ 'bom.manage.updated' | trans }}: {{ bom.updated | date('Y-m-d H:i:s') }}<br/>
+            </p>
+        </div>
+        <div class="col-xl-6">
+            <h2>{{ 'bom.manage.quantity.title' | trans }}</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'quantity.label.quantity' | trans }}</th>
+                    <th>{{ 'quantity.label.name' | trans }}</th>
+                    <th>{{ 'quantity.label.date' | trans }}</th>
+                    <th>{{ 'quantity.label.action' | trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for quantity in bom.quantities %}
+                    <tr {% if quantityId == quantity.id %} class="table-warning"{% endif %}>
+                        <td>{{ quantity.quantity }}</td>
+                        <td>{{ quantity.name }}</td>
+                        <td>{{ quantity.date | date('Y-m-d') }}</td>
+                        <td>
+                            <a href="{{ path('bom_manage_quantity', { 'id': bom.id, 'quantityId': quantity.id }) }}"><button type="button" class="btn btn-sm btn-outline-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.select' | trans }}"><i class="fa fa-money"></i></button></a>
+                            <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#quantity_edit" data-form-type="QuantityEdit" data-form-quantity-id="{{ quantity.id }}" data-form-name="{{ quantity.name }}" data-form-quantity="{{ quantity.quantity }}"  data-form-date="{{ quantity.date | date('Y-m-d') }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button>
+                            <a href="{{ path('quantity_delete', { 'id': quantity.id }) }}"><button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="float-right">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#quantity_add">{{ 'bom.manage.button.quantity.add' | trans }}</button>
+            </div>
+        </div>
+    </div>
+    <h2>{{ 'bom.manage.lines.title' | trans }}</h2>
     <table class="table">
         <thead>
         <tr>
@@ -27,9 +61,10 @@
                 <td>{{ line.id }}</td>
                 <td>{{ line.ecuPn }}</td>
                 <td>x{{ line.multiplier }}</td>
-                <td>--</td>
+                <td>{{ pricing.line[line.id].lineTotal }}</td>
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#alternative_add" data-form-type="AlternativeAdd" data-form-bom-id="{{ bom.id }}" data-form-line-id="{{ line.id }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.add' | trans }}"><i class="fa fa-plus"></i></button>
+                    <a href="{{ path('scanner_line', { 'id': line.id }) }}"><button type="button" class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.download' | trans }}"><i class="fa fa-cloud-download"></i></button></a>
                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#line_edit" data-form-type="LineEdit" data-form-bom-id="{{ bom.id }}" data-form-line-id="{{ line.id }}" data-form-ecuPn="{{ line.ecuPn }}" data-form-multiplier="{{ line.multiplier }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button>
                     <a href="{{ path('line_delete', { 'id': line.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
                 </td>
@@ -39,11 +74,12 @@
                     {% if loop.index == 1 %}
                         <td rowspan="{{ line.alternatives | length }}" class="bom-alternative">{{ 'line.label.alternatives' | trans }}</td>
                     {% endif %}
-                    <td class="bom-alternative">{{ alternative.mfrName }}</td>
-                    <td class="bom-alternative">{{ alternative.mfrPn }}</td>
-                    <td class="bom-alternative">--</td>
-                    <td class="index-action">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
+                    <td class="bom-alternative{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">{{ alternative.mfrName }}</td>
+                    <td class="bom-alternative{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">{{ alternative.mfrPn }}</td>
+                    <td class="bom-alternative{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">{{ pricing.alternative[alternative.id].unitPrice }}</td>
+                    <td class="index-action{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#alternative_detail_{{ alternative.id }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
+                        <a href="{{ path('scanner_alternative', { 'id': alternative.id }) }}"><button type="button" class="btn btn-sm btn-outline-info" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.download' | trans }}"><i class="fa fa-cloud-download"></i></button></a>
                         <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#alternative_edit" data-form-type="AlternativeEdit" data-form-bom-id="{{ bom.id }}" data-form-alternative-id="{{ alternative.id }}" data-form-mfrName="{{ alternative.mfrName }}" data-form-mfrPn="{{ alternative.mfrPn }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button>
                         <a href="{{ path('alternative_delete', { 'id': alternative.id }) }}"><button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
                     </td>
@@ -53,11 +89,12 @@
         </tbody>
     </table>
     <div class="float-left">
-        <a href="{{ path('line_delete_all', { 'id': bom.id }) }}"><button class="btn btn-secondary">{{ 'bom.button.deleteAll' | trans }}</button></a>
+        <a href="{{ path('line_delete_all', { 'id': bom.id }) }}"><button class="btn btn-secondary"><i class="fa fa-trash"></i> {{ 'bom.manage.button.deleteAll' | trans }}</button></a>
     </div>
     <div class="float-right">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#line_add">{{ 'bom.button.addLineSingle' | trans }}</button>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#line_add_excel">{{ 'bom.button.addLineExcel' | trans }}</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#line_add"><i class="fa fa-plus"></i> {{ 'bom.manage.button.addLineSingle' | trans }}</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#line_add_excel"><i class="fa fa-file-excel-o"></i> {{ 'bom.manage.button.addLineExcel' | trans }}</button>
+        <a href="{{ path('scanner_bom', { 'id': bom.id }) }}"><button class="btn btn-info" data-toggle="modal" data-target="#line_add_excel"><i class="fa fa-cloud-download"></i> {{ 'bom.manage.button.loadAllAPI' | trans }}</button></a>
     </div>
     <div class="modal fade" id="line_add" tabindex="-1" role="dialog" aria-labelledby="AddModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -78,7 +115,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.line.excel.title' | trans }}</h5>
+                    <h5 class="modal-title" id="line_excel_Label">{{ 'bom.manage.line.excel.title' | trans }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -93,7 +130,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.line.edit.title' | trans }}</h5>
+                    <h5 class="modal-title" id="line_edit_Label">{{ 'bom.manage.line.edit.title' | trans }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -108,7 +145,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.alternative.edit.title' | trans }}</h5>
+                    <h5 class="modal-title" id="alternative_add_Label">{{ 'bom.manage.alternative.edit.title' | trans }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -123,7 +160,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="line_add_Label">{{ 'bom.manage.alternative.add.title' | trans }}</h5>
+                    <h5 class="modal-title" id="alternative_add_Label">{{ 'bom.manage.alternative.add.title' | trans }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -134,6 +171,117 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="quantity_edit" tabindex="-1" role="dialog" aria-labelledby="EditQuantityModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quantity_add_Label">{{ 'bom.manage.quantity.edit.title' | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ render(controller('AppBundle:Quantity:editForm')) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="quantity_add" tabindex="-1" role="dialog" aria-labelledby="AddQuantityModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quantity_add_Label">{{ 'bom.manage.quantity.add.title' | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ render(controller('AppBundle:Quantity:addForm', { 'bomId': bom.id })) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for line in bom.lines %}
+        {% for alternative in line.alternatives %}
+            <div class="modal fade" id="alternative_detail_{{ alternative.id }}" tabindex="-1" role="dialog" aria-labelledby="AddViewModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="alternative_detail_{{ loop.index }}_Label">{{ line.ecuPn }} - {{ alternative.mfrPn }} ({{ alternative.mfrName }})</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                {% for article in alternative.articles %}
+                                    {% if loop.first %}
+                                        <div class="card border-dark">
+                                        <div class="card-header">{{ article.supplier.name }}</div>
+                                        <div class="card-body">
+                                    {% elseif supplierId != article.supplier.id %}
+                                        </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="card border-dark">
+                                        <div class="card-header">{{ article.supplier.name }}</div>
+                                        <div class="card-body">
+                                    {% endif %}
+                                    {% set variable = article.variables[0] %}
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div style="text-align: center;">
+                                                <input type="radio" name="alternative_{{ alternative.id }}" value="{{ article.id }}"{% if pricing.alternative[alternative.id].articleId == article.id %} checked{% endif %}><br/>
+                                                <img src="{{ article.picture }}" style="max-width: 80px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p class="dl-horizontal">
+                                                <strong>{{ 'article.label.sku' | trans }}:</strong> <a href="https://www.digikey.com{{ article.link }}" target="_blank">{{ article.sku }}</a><br/>
+                                                <strong>{{ 'article.label.mfrPn' | trans }}:</strong> {{ article.mfrPn }}<br/>
+                                                <strong>{{ 'article.label.mfrName' | trans }}: </strong> {{ article.mfrName }}<br/>
+                                                <strong>{{ 'article.label.package' | trans }}: </strong> {{ article.package }}<br/>
+                                                <strong>{{ 'article.label.stock' | trans }}:</strong> {{ variable.stock }}<br/>
+                                                <strong>{{ 'article.label.leadtime' | trans }}:</strong> {{ variable.leadtime }} days<br/>
+                                                <strong>{{ 'article.label.validity' | trans }}:</strong> {{ variable.validity | date('Y/m/d') }}<br/>
+                                                <i>({{ 'bom.manage.updated' | trans }}: {{ variable.created | date('Y/m/d H:i:s') }})</i>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            {% if variable.prices | length > 0 %}
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th style="text-align: center;">{{ 'price.label.quantity' | trans }}</th>
+                                                        <th style="text-align: center;">{{ 'price.label.price' | trans }}</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for price in variable.prices %}
+                                                        <tr{% if pricing.alternative[alternative.id].priceId == price.id %} class="table-success"{% endif %}">
+                                                            <td style="text-align: right;">{{ price.quantity }}</td>
+                                                            <td style="text-align: right;">{{ price.price }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {%  if not loop.last %}<hr/>{% endif %}
+                                    {% set supplierId = article.supplier.id %}
+                                    {% if loop.last %}
+                                        </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {%  endfor %}
+    {%  endfor %}
 {% endblock %}
 
 {% block javascripts %}
@@ -154,6 +302,12 @@
         $(":button[data-form-type='AlternativeAdd']").click(function () {
             $("#alternative_add_bomId").val($(this).attr('data-form-bom-id'));
             $("#alternative_add_lineId").val($(this).attr('data-form-line-id'));
+        });
+        $(":button[data-form-type='QuantityEdit']").click(function () {
+            $("#quantity_edit_quantityId").val($(this).attr('data-form-quantity-id'));
+            $("#quantity_edit_name").val($(this).attr('data-form-name'));
+            $("#quantity_edit_quantity").val($(this).attr('data-form-quantity'));
+            $("#quantity_edit_date").val($(this).attr('data-form-date'));
         });
     </script>
 {% endblock %}

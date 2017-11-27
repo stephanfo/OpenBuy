@@ -2,6 +2,7 @@
 
 namespace APIDigikeyBundle\Service;
 
+use AppBundle\Entity\Article;
 use Doctrine\ORM\EntityManager;
 use AppBundle\Entity\Supplier;
 
@@ -21,13 +22,13 @@ class InterfaceDigikey
         }
     }
 
-    function loadSupplier($supplierId)
+    private function loadSupplier($supplierId)
     {
         $this->supplier = $this->em->getRepository(Supplier::class)->find($supplierId);
         $this->api->setConfig($this->supplier->getParameters());
     }
 
-    function updateSupplier()
+    private function updateSupplier()
     {
         if ($this->api->configUpdated) {
             $this->supplier->setParameters($this->api->getConfig());
@@ -35,7 +36,7 @@ class InterfaceDigikey
         }
     }
 
-    function getConfig($supplierId) {
+    public function getConfig($supplierId) {
         if (!is_null($supplierId)) {
             $this->loadSupplier($supplierId);
         }
@@ -47,12 +48,12 @@ class InterfaceDigikey
         }
     }
 
-    function setConfig($config) {
+    public function setConfig($config) {
         $this->api->setConfig($config);
         $this->updateSupplier();
     }
 
-    function revoke($supplierId = null)
+    public function revoke($supplierId = null)
     {
         if(!is_null($supplierId))
         {
@@ -64,7 +65,7 @@ class InterfaceDigikey
         $this->updateSupplier();
     }
 
-    function linkLoginPage($supplierId = null)
+    public function linkLoginPage($supplierId = null)
     {
         if(!is_null($supplierId))
         {
@@ -74,7 +75,7 @@ class InterfaceDigikey
         return $this->api->linkLoginPage();
     }
 
-    function retrieveToken($userAgent, $supplierId = null)
+    public function retrieveToken($userAgent, $supplierId = null)
     {
         if(!is_null($supplierId))
         {
@@ -91,7 +92,7 @@ class InterfaceDigikey
         }
     }
 
-    function refreshToken($userAgent, $supplierId = null)
+    public function refreshToken($userAgent, $supplierId = null)
     {
         if(!is_null($supplierId))
         {
@@ -108,7 +109,7 @@ class InterfaceDigikey
         }
     }
 
-    function keywordSearch($userAgent, $keyword, $supplierId = null) {
+    public function keywordSearch($userAgent, $keyword, $supplierId = null) {
         if(!is_null($supplierId))
         {
             $this->loadSupplier($supplierId);
@@ -121,7 +122,7 @@ class InterfaceDigikey
         return $response;
     }
 
-    function partDetailSearch($userAgent, $keyword, $supplierId = null) {
+    public function partDetailSearch($userAgent, $keyword, $supplierId = null) {
         if(!is_null($supplierId))
         {
             $this->loadSupplier($supplierId);
@@ -132,6 +133,88 @@ class InterfaceDigikey
         $this->updateSupplier();
 
         return $response;
+    }
+
+    public function search($userAgent, $keyword, $supplierId = null) {
+        $keywordResults = $this->keywordSearch($userAgent, $keyword, $supplierId);
+
+        if(is_string($keywordResults))
+            return $keywordResults;
+
+        $detailResults = array();
+        foreach ($keywordResults["Parts"] as $result) {
+            $detailResult = $this->partDetailSearch($userAgent, $result["DigiKeyPartNumber"]);
+
+            if(is_string($detailResult))
+                return $detailResult;
+
+            $detailResults[] = $detailResult;
+        }
+
+        return $this->convertInArticles($detailResults);
+    }
+
+    private function convertInArticles($resultArray) {
+
+        $articleArray = array();
+        foreach ($resultArray as $result) {
+            $part = $result['PartDetails'];
+
+            $article = $this->em->getRepository('AppBundle:Article')->findOneBy(array(
+                'supplier' => array($this->supplier),
+                'sku' => array($part['DigiKeyPartNumber']),
+            ));
+
+            if(is_null($article)) {
+                $article = new Article();
+                $article->setSku($part['DigiKeyPartNumber']);
+                $article->setSupplier($this->supplier);
+            }
+
+            $article->setMfrName($part["ManufacturerName"]["Text"]);
+            $article->setMfrPn($part["ManufacturerPartNumber"]);
+            $article->setPackage($part["Packaging"]["Value"]);
+            $article->setLink($part["PartUrl"]);
+            $article->setDescription($part["ProductDescription"]);
+            $article->setPicture($part["PrimaryPhoto"]);
+
+            $pricingArray = array();
+            foreach ($part["StandardPricing"] as $price) {
+                $pricingArray[$price["BreakQuantity"]] = $price["UnitPrice"];
+            }
+            foreach ( $part["MyPricing"] as $price) {
+                $pricingArray[$price["BreakQuantity"]] = $price["UnitPrice"];
+            }
+            ksort($pricingArray);
+
+            $previousPrice = null;
+            foreach ($pricingArray as $quantity => $price) {
+                if(!is_null($previousPrice))
+                {
+                    if($previousPrice < $price)
+                    {
+                        unset($pricingArray[$quantity]);
+                    }
+                    else if ($price < $previousPrice)
+                    {
+                        $previousPrice = $price;
+                    }
+                }
+                else
+                {
+                    $previousPrice = $price;
+                }
+            }
+
+            $article->createVariable((int)$part["ManufacturerLeadWeeks"] * 7, $part["QuantityOnHand"], 2, new \DateTime("now + 1 month"), null, $pricingArray);
+
+            $this->em->persist($article);
+            $this->em->flush();
+
+            $articleArray[] = $article;
+        }
+
+        return $articleArray;
     }
 
     public function getClassName()

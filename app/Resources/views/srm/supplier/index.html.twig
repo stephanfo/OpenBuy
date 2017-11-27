@@ -20,7 +20,13 @@
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#supplier_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
                     {% if is_granted('ROLE_SUPPLIER_ADMIN') %}
+                        {% if supplier.enabled %}
+                            <a href="{{ path('srm_suppliers_enable', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.disable' | trans }}"><i class="fa fa-eye"></i></button></a>
+                        {% else %}
+                            <a href="{{ path('srm_suppliers_enable', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-outlined-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.enable' | trans }}"><i class="fa fa-eye-slash"></i></button></a>
+                        {% endif %}
                         <a href="{{ path('srm_suppliers_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
+                        <a href="{{ path('srm_suppliers_copy', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.copy' | trans }}"><i class="fa fa-clone"></i></button></a>
                         {% if supplier.interface is not empty %}
                             <a href="{{ path('interface_' ~ supplier.interface ~ '_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit.parameters' | trans }}"><i class="fa fa-cogs"></i></button></a>
                             <a href="{{ path('interface_' ~ supplier.interface ~ '_console', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.test' | trans }}"><i class="fa fa-terminal"></i></button></a>

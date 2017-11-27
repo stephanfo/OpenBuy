@@ -22,13 +22,11 @@ class LineController extends Controller
     {
         $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.line.delete.success", array('%line%' => $line->getEcuPn())));
 
-        $bomId = $line->getBom()->getId();
-
         $em = $this->getDoctrine()->getManager();
         $em->remove($line);
         $em->flush();
 
-        return $this->redirectToRoute('bom_manage', array('id' => $bomId));
+        return $this->redirectToRoute('bom_manage', array('id' => $line->getBom()->getId()));
     }
 
     /**
@@ -158,26 +156,42 @@ class LineController extends Controller
         {
             $data = $addLineForm->getData();
 
-            $line = new Line();
-            $line->setBom($bom);
-            $line->setEcuPn($data['ecuPn']);
-            $line->setMultiplier($data['multiplier']);
+            $ecuPn = $data["ecuPn"];
+            $multiplier = $data["multiplier"];
 
-            if (is_string($data['mfrName1']) && is_string($data['mfrPn1']))
-                $line->createAlternative($data['mfrName1'], $data['mfrPn1']);
+            if (is_string($ecuPn) && $multiplier > 0) {
+                $line = new Line();
+                $line->setBom($bom);
 
-            if (is_string($data['mfrName2']) && is_string($data['mfrPn2']))
-                $line->createAlternative($data['mfrName2'], $data['mfrPn2']);
+                $line->setEcuPn($data['ecuPn']);
+                $line->setMultiplier($data['multiplier']);
 
-            if (is_string($data['mfrName3']) && is_string($data['mfrPn3']))
-                $line->createAlternative($data['mfrName3'], $data['mfrPn3']);
+                if (is_string($data['mfrName1']) && is_string($data['mfrPn1']))
+                    $line->createAlternative($data['mfrName1'], $data['mfrPn1']);
 
-            if (is_string($data['mfrName4']) && is_string($data['mfrPn4']))
-                $line->createAlternative($data['mfrName4'], $data['mfrPn4']);
+                if (is_string($data['mfrName2']) && is_string($data['mfrPn2']))
+                    $line->createAlternative($data['mfrName2'], $data['mfrPn2']);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($line);
-            $em->flush();
+                if (is_string($data['mfrName3']) && is_string($data['mfrPn3']))
+                    $line->createAlternative($data['mfrName3'], $data['mfrPn3']);
+
+                if (is_string($data['mfrName4']) && is_string($data['mfrPn4']))
+                    $line->createAlternative($data['mfrName4'], $data['mfrPn4']);
+
+                $bom->addLine($line);
+
+                $this->getDoctrine()->getManager()->flush();
+
+                $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.line.add.success", array('%line%' => $line->getEcuPn())));
+            }
+            else
+            {
+                $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.line.add.failed"));
+            }
+        }
+        else
+        {
+            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.line.add.failed"));
         }
 
         return $this->redirectToRoute('bom_manage', array('id' => $bom->getId()));
@@ -361,12 +375,14 @@ class LineController extends Controller
             {
                 $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.line.edit.failed"));
             }
+
+            return $this->redirectToRoute('bom_manage', array('id' => $bomId));
         }
         else
         {
             $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.line.edit.failed"));
         }
 
-        return $this->redirectToRoute('bom_manage', array('id' => $bomId));
+        return $this->redirect($request->headers->get('referer'));
     }
 }

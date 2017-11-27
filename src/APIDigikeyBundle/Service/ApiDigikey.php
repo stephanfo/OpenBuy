@@ -267,10 +267,13 @@ class ApiDigikey
         try {
             $response = $clientHttp->request('POST', $this->keywordSearchUri, ['headers' => $headers, 'json' => $searchRequest]);
         } catch (RequestException $e) {
-            return Psr7\str($e->getResponse());
+            if ($e->hasResponse()) {
+                return Psr7\str($e->getResponse());
+            }
+            return Psr7\str($e->getRequest());
         }
 
-        return json_decode($response->getBody()->getContents());
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     public function partDetailSearch($userAgent, $keyword)
@@ -305,10 +308,13 @@ class ApiDigikey
         try {
             $response = $clientHttp->request('POST', $this->partDetailsUri, ['headers' => $headers, 'json' => $searchRequest]);
         } catch (RequestException $e) {
-            return Psr7\str($e->getResponse());
+            if ($e->hasResponse()) {
+                return Psr7\str($e->getResponse());
+            }
+            return Psr7\str($e->getRequest());
         }
 
-        return json_decode($response->getBody()->getContents());
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     public function getClassName()

@@ -32,12 +32,12 @@ class AlternativeController extends Controller
         return $this->get('form.factory')->createNamedBuilder("alternative_edit")
             ->add("mfrName", TextType::class, array(
                 'required' => true,
-                'label' => 'line.label.mfrName',
+                'label' => 'alternative.label.mfrName',
                 'translation_domain' => 'form',
             ))
             ->add("mfrPn", TextType::class, array(
                 'required' => true,
-                'label' => 'line.label.mfrPn',
+                'label' => 'alternative.label.mfrPn',
                 'translation_domain' => 'form',
             ))
             ->add('alternativeId', HiddenType::class, array(
@@ -93,13 +93,16 @@ class AlternativeController extends Controller
             {
                 $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.alternative.edit.failed"));
             }
+
+            return $this->redirectToRoute('bom_manage', array('id' => $bomId));
         }
         else
         {
             $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.alternative.edit.failed"));
         }
 
-        return $this->redirectToRoute('bom_manage', array('id' => $bomId));
+        return $this->redirect($request->headers->get('referer'));
+
     }
 
     private function getAddBuilder()
@@ -107,66 +110,66 @@ class AlternativeController extends Controller
         return $this->get('form.factory')->createNamedBuilder("alternative_add")
             ->add("mfrName1", TextType::class, array(
                 'required' => true,
-                'label' => 'line.label.mfrName1',
+                'label' => 'alternative.label.mfrName1',
                 'translation_domain' => 'form',
                 'attr' => array(
-                    'placeholder' => "line.placeholder.mfrName1",
+                    'placeholder' => "alternative.placeholder.mfrName1",
                 )
             ))
             ->add("mfrPn1", TextType::class, array(
                 'required' => true,
-                'label' => 'line.label.mfrPn1',
+                'label' => 'alternative.label.mfrPn1',
                 'translation_domain' => 'form',
                 'attr' => array(
-                    'placeholder' => "line.placeholder.mfrPn1",
+                    'placeholder' => "alternative.placeholder.mfrPn1",
                 )
             ))
             ->add("mfrName2", TextType::class, array(
                 'required' => false,
-                'label' => 'line.label.mfrName2',
+                'label' => 'alternative.label.mfrName2',
                 'translation_domain' => 'form',
                 'attr' => array(
-                    'placeholder' => "line.placeholder.mfrName2",
+                    'placeholder' => "alternative.placeholder.mfrName2",
                 )
             ))
             ->add("mfrPn2", TextType::class, array(
                 'required' => false,
-                'label' => 'line.label.mfrPn2',
+                'label' => 'alternative.label.mfrPn2',
                 'translation_domain' => 'form',
                 'attr' => array(
-                    'placeholder' => "line.placeholder.mfrPn2",
+                    'placeholder' => "alternative.placeholder.mfrPn2",
                 )
             ))
             ->add("mfrName3", TextType::class, array(
                 'required' => false,
-                'label' => 'line.label.mfrName3',
+                'label' => 'alternative.label.mfrName3',
                 'translation_domain' => 'form',
                 'attr' => array(
-                    'placeholder' => "line.placeholder.mfrName3",
+                    'placeholder' => "alternative.placeholder.mfrName3",
                 )
             ))
             ->add("mfrPn3", TextType::class, array(
                 'required' => false,
-                'label' => 'line.label.mfrPn3',
+                'label' => 'alternative.label.mfrPn3',
                 'translation_domain' => 'form',
                 'attr' => array(
-                    'placeholder' => "line.placeholder.mfrPn3",
+                    'placeholder' => "alternative.placeholder.mfrPn3",
                 )
             ))
             ->add("mfrName4", TextType::class, array(
                 'required' => false,
-                'label' => 'line.label.mfrName4',
+                'label' => 'alternative.label.mfrName4',
                 'translation_domain' => 'form',
                 'attr' => array(
-                    'placeholder' => "line.placeholder.mfrName4",
+                    'placeholder' => "alternative.placeholder.mfrName4",
                 )
             ))
             ->add("mfrPn4", TextType::class, array(
                 'required' => false,
-                'label' => 'line.label.mfrPn4',
+                'label' => 'alternative.label.mfrPn4',
                 'translation_domain' => 'form',
                 'attr' => array(
-                    'placeholder' => "line.placeholder.mfrPn4",
+                    'placeholder' => "alternative.placeholder.mfrPn4",
                 )
             ))
             ->add('lineId', HiddenType::class, array(
@@ -221,14 +224,16 @@ class AlternativeController extends Controller
 
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.alternative.edit.success", array('%line%' => $line->getEcuPn())));
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.alternative.add.success", array('%line%' => $line->getEcuPn())));
+
+            return $this->redirectToRoute('bom_manage', array('id' => $bomId));
         }
         else
         {
-            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.alternative.edit.failed"));
+            $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans("flash.alternative.add.failed"));
         }
 
-        return $this->redirectToRoute('bom_manage', array('id' => $bomId));
+        return $this->redirect($request->headers->get('referer'));
     }
 
 }

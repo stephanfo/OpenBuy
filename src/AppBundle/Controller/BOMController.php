@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Quantity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,10 +39,16 @@ class BomController extends Controller
 
     /**
      * @Route("/bom/new", name="bom_new")
+     * @Route("/bom/new/{ecuId}", requirements={"ecuId": "\d*"}, name="bom_new")
      */
-    public function newAction(Request $request)
+    public function newAction($ecuId = null, Request $request)
     {
         $bom = new Bom();
+
+        if (!is_null($ecuId))
+        {
+            $bom->setEcu($this->getDoctrine()->getRepository('AppBundle:Ecu')->find($ecuId));
+        }
 
         $form = $this->createForm(BomType::class, $bom);
 
@@ -52,10 +59,10 @@ class BomController extends Controller
             $em->persist($bom);
             $em->flush();
 
-        $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.bom.new.success", array('%bom%' => $bom->getName())));
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.bom.new.success", array('%bom%' => $bom->getName())));
 
-        return $this->redirectToRoute('bom_manage', array('id' => $bom->getId()));
-    }
+            return $this->redirectToRoute('bom_manage', array('id' => $bom->getId()));
+        }
 
         return $this->render('bom/new.html.twig', array(
             'form' => $form->createView(),
@@ -102,13 +109,144 @@ class BomController extends Controller
 
     /**
      * @Route("/bom/manage/{id}", requirements={"id": "\d+"}, name="bom_manage")
+     * @Route("/bom/manage/{id}/quantity/{quantityId}", requirements={"id": "\d+", "quantityId": "\d+"}, name="bom_manage_quantity")
      */
-    public function manageAction($id)
+    public function manageAction($id, $quantityId = null)
     {
-        $bom = $this->getDoctrine()->getRepository('AppBundle:Bom')->getBomLinesAlternatives($id);
+        $em = $this->getDoctrine()->getManager();
+
+        $bom = $em->getRepository('AppBundle:Bom')->getBomFullDetails($id);
+
+        if(is_null($quantityId))
+        {
+            $quantities = $bom->getQuantities();
+
+            if(count($quantities) > 0)
+            {
+                $quantity = $quantities[0]->getQuantity();
+                $quantityId = $quantities[0]->getId();
+            }
+            else
+            {
+                $quantity = 1;
+            }
+        }
+        else
+        {
+            $quantity = $em->getRepository('AppBundle:Quantity')->find($quantityId)->getQuantity();
+        }
+
+        $pricing = $this->bomPricing($bom, $quantity);
 
         return $this->render('bom/manage.html.twig', array(
             'bom' => $bom,
+            'quantityId' => $quantityId,
+            'pricing' => $pricing,
         ));
+    }
+
+    private function bomPricing(Bom $bom, int $quantity)
+    {
+        $pricing = null;
+
+        foreach ($bom->getLines() as $line)
+        {
+            $quantityLine = $line->getMultiplier() * $quantity;
+
+            $bestLinePrice = null;
+            $bestAlternative = null;
+
+            foreach ($line->getAlternatives() as $alternative)
+            {
+                $bestPrice = null;
+
+                foreach ($alternative->getArticles() as $article)
+                {
+                    foreach ($article->getVariables() as $variable)
+                    {
+                        foreach ($variable->getPrices() as $price)
+                        {
+                            if(!is_null($bestPrice))
+                            {
+                                if($quantityLine > $bestPrice->getQuantity())
+                                {
+                                    $bestTotal = $bestPrice->getPrice() * $quantityLine;
+                                }
+                                else
+                                {
+                                    $bestTotal = $bestPrice->getPrice() * $bestPrice->getQuantity();
+                                }
+
+                                if($quantityLine > $price->getQuantity())
+                                {
+                                    $currentTotal = $price->getPrice() * $quantityLine;
+                                }
+                                else
+                                {
+                                    $currentTotal = $price->getPrice() * $price->getQuantity();
+                                }
+
+                                if ($currentTotal < $bestTotal)
+                                {
+                                    $bestPrice = $price;
+                                }
+                            }
+                            elseif ($price->getQuantity() > 0 && $price->getPrice() > 0)
+                            {
+                                $bestPrice = $price;
+                            }
+                        }
+                    }
+                }
+
+                if (is_null($bestPrice))
+                {
+                    $bestAlternativeOffer = array(
+                        'unitPrice' => null,
+                        'lineTotal' => null,
+                        'articleId' => null,
+                        'priceId' => null,
+                    );
+                }
+                else
+                {
+                    $bestAlternativeOffer = array(
+                        'unitPrice' => $bestPrice->getPrice(),
+                        'lineTotal' => $bestPrice->getPrice() * $quantityLine,
+                        'articleId' => $bestPrice->getVariable()->getArticle()->getId(),
+                        'priceId' => $bestPrice->getId(),
+                    );
+                }
+
+                if(is_null($bestLinePrice) || (!is_null($bestPrice) && $bestPrice < $bestLinePrice))
+                {
+                    $bestLinePrice = $bestPrice;
+                    $bestAlternative = $alternative;
+                }
+
+                $pricing["alternative"][$alternative->getId()] = $bestAlternativeOffer;
+            }
+
+            if(is_null($bestLinePrice))
+            {
+                $bestLineOffer = array(
+                    'unitPrice' => null,
+                    'lineTotal' => null,
+                    'alternativeId' => null,
+                );
+            }
+            else
+            {
+                $bestLineOffer = array(
+                    'unitPrice' => $bestLinePrice->getPrice(),
+                    'lineTotal' => $bestLinePrice->getPrice() * $quantityLine,
+                    'alternativeId' => $bestAlternative->getId(),
+                );
+            }
+
+            $pricing["line"][$line->getId()] = $bestLineOffer;
+        }
+
+        return $pricing;
     }
 }

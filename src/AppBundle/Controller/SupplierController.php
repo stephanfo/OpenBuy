@@ -47,6 +47,8 @@ class SupplierController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $supplier->setEnabled(true);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($supplier);
             $em->flush();
@@ -100,6 +102,54 @@ class SupplierController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($supplier);
+        $em->flush();
+
+        return $this->redirectToRoute('srm_suppliers_index');
+    }
+
+    /**
+     * @Route("/srm/suppliers/toggle/enable/{id}", requirements={"id": "\d+"}, name="srm_suppliers_enable")
+     */
+    public function enableToggleAction(Supplier $supplier, Request $request)
+    {
+        if($supplier->getEnabled())
+        {
+            $supplier->setEnabled(false);
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.supplier.disable.success", array('%supplier%' => $supplier->getName())));
+        }
+        else
+        {
+            $supplier->setEnabled(true);
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.supplier.enable.success", array('%supplier%' => $supplier->getName())));
+        }
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('srm_suppliers_index');
+    }
+
+    /**
+     * @Route("/srm/suppliers/copy/{id}", requirements={"id": "\d+"}, name="srm_suppliers_copy")
+     */
+    public function copyAction(Supplier $supplier, Request $request)
+    {
+        $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.supplier.copy.success", array('%supplier%' => $supplier->getName())));
+
+        $newSupplier = new Supplier();
+        $newSupplier->setName($supplier->getName() . " Copy");
+        $newSupplier->setAddressLine1($supplier->getAddressLine1());
+        $newSupplier->setAddressLine2($supplier->getAddressLine2());
+        $newSupplier->setAddressLine3($supplier->getAddressLine3());
+        $newSupplier->setPostcode($supplier->getPostcode());
+        $newSupplier->setCity($supplier->getCity());
+        $newSupplier->setState($supplier->getState());
+        $newSupplier->setCountry($supplier->getCountry());
+        $newSupplier->setEnabled($supplier->getEnabled());
+        $newSupplier->setInterface($supplier->getInterface());
+        $newSupplier->setParameters($supplier->getParameters());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($newSupplier);
         $em->flush();
 
         return $this->redirectToRoute('srm_suppliers_index');

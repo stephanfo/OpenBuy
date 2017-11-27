@@ -85,6 +85,13 @@ class Supplier
     private $country;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    private $enabled;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="interface", type="string", length=255, nullable=true)
@@ -487,5 +494,29 @@ class Supplier
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     *
+     * @return Supplier
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
     }
 }
