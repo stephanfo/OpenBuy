@@ -144,6 +144,8 @@ class SupplierController extends Controller
         $newSupplier->setCity($supplier->getCity());
         $newSupplier->setState($supplier->getState());
         $newSupplier->setCountry($supplier->getCountry());
+        $newSupplier->setCurrency($supplier->getCurrency());
+        $newSupplier->setExchangeRate($supplier->getExchangeRate());
         $newSupplier->setEnabled($supplier->getEnabled());
         $newSupplier->setInterface($supplier->getInterface());
         $newSupplier->setParameters($supplier->getParameters());

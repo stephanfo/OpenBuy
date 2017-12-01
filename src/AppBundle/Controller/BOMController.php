@@ -141,6 +141,7 @@ class BomController extends Controller
         return $this->render('bom/manage.html.twig', array(
             'bom' => $bom,
             'quantityId' => $quantityId,
+            'quantity' => $quantity,
             'pricing' => $pricing,
         ));
     }
@@ -148,6 +149,7 @@ class BomController extends Controller
     private function bomPricing(Bom $bom, int $quantity)
     {
         $pricing = null;
+        $total = 0;
 
         foreach ($bom->getLines() as $line)
         {
@@ -170,20 +172,20 @@ class BomController extends Controller
                             {
                                 if($quantityLine > $bestPrice->getQuantity())
                                 {
-                                    $bestTotal = $bestPrice->getPrice() * $quantityLine;
+                                    $bestTotal = $bestPrice->getPrice() * $bestPrice->getVariable()->getArticle()->getSupplier()->getExchangeRate() * $quantityLine;
                                 }
                                 else
                                 {
-                                    $bestTotal = $bestPrice->getPrice() * $bestPrice->getQuantity();
+                                    $bestTotal = $bestPrice->getPrice() * $bestPrice->getVariable()->getArticle()->getSupplier()->getExchangeRate()  * $bestPrice->getQuantity();
                                 }
 
                                 if($quantityLine > $price->getQuantity())
                                 {
-                                    $currentTotal = $price->getPrice() * $quantityLine;
+                                    $currentTotal = $price->getPrice() * $price->getVariable()->getArticle()->getSupplier()->getExchangeRate() * $quantityLine;
                                 }
                                 else
                                 {
-                                    $currentTotal = $price->getPrice() * $price->getQuantity();
+                                    $currentTotal = $price->getPrice() * $price->getVariable()->getArticle()->getSupplier()->getExchangeRate() * $price->getQuantity();
                                 }
 
                                 if ($currentTotal < $bestTotal)
@@ -204,6 +206,7 @@ class BomController extends Controller
                     $bestAlternativeOffer = array(
                         'unitPrice' => null,
                         'lineTotal' => null,
+                        'currency' => null,
                         'articleId' => null,
                         'priceId' => null,
                     );
@@ -213,6 +216,7 @@ class BomController extends Controller
                     $bestAlternativeOffer = array(
                         'unitPrice' => $bestPrice->getPrice(),
                         'lineTotal' => $bestPrice->getPrice() * $quantityLine,
+                        'currency' => $bestPrice->getVariable()->getArticle()->getSupplier()->getCurrency(),
                         'articleId' => $bestPrice->getVariable()->getArticle()->getId(),
                         'priceId' => $bestPrice->getId(),
                     );
@@ -232,6 +236,7 @@ class BomController extends Controller
                 $bestLineOffer = array(
                     'unitPrice' => null,
                     'lineTotal' => null,
+                    'currency' => null,
                     'alternativeId' => null,
                 );
             }
@@ -240,12 +245,17 @@ class BomController extends Controller
                 $bestLineOffer = array(
                     'unitPrice' => $bestLinePrice->getPrice(),
                     'lineTotal' => $bestLinePrice->getPrice() * $quantityLine,
+                    'currency' => $bestLinePrice->getVariable()->getArticle()->getSupplier()->getCurrency(),
                     'alternativeId' => $bestAlternative->getId(),
                 );
+
+                $total += $bestLinePrice->getPrice() * $bestLinePrice->getVariable()->getArticle()->getSupplier()->getExchangeRate() * $quantityLine;
             }
 
             $pricing["line"][$line->getId()] = $bestLineOffer;
         }
+
+        $pricing["total"] = $total;
 
         return $pricing;
     }

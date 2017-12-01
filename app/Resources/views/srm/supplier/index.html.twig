@@ -6,8 +6,8 @@
         <thead>
         <tr>
             <th>{{ 'supplier.label.name' | trans }}</th>
-            <th>{{ 'supplier.label.city' | trans }}</th>
             <th>{{ 'supplier.label.country' | trans }}</th>
+            <th>{{ 'supplier.label.currency' | trans }}</th>
             <th>{{ 'table.header.action' | trans }}</th>
         </tr>
         </thead>
@@ -15,8 +15,8 @@
         {% for supplier in list %}
             <tr>
                 <td>{{ supplier.name }}</td>
-                <td>{{ supplier.city }}</td>
                 <td>{{ supplier.country }}</td>
+                <td>{{ supplier.currency }} ({{ supplier.exchangeRate }})</td>
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#supplier_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
                     {% if is_granted('ROLE_SUPPLIER_ADMIN') %}
@@ -90,6 +90,10 @@
                             </dd>
                             <dt class="col-md-4">{{ 'supplier.label.interface' | trans }}: </dt>
                             <dd class="col-md-8">{{ supplier.interface }}</dd>
+                            <dt class="col-md-4">{{ 'supplier.label.currency' | trans }}: </dt>
+                            <dd class="col-md-8">{{ supplier.currency }}</dd>
+                            <dt class="col-md-4">{{ 'supplier.label.exchange_rate' | trans }}: </dt>
+                            <dd class="col-md-8">{{ supplier.exchangeRate }}</dd>
                         </dl>
                     </div>
                     <div class="modal-footer">

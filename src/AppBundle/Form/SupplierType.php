@@ -55,6 +55,14 @@ class SupplierType extends AbstractType
                 'translation_domain' => 'form',
                 'required' => false,
             ))
+            ->add('currency', TextType::class, array(
+                'label' => 'supplier.label.currency',
+                'translation_domain' => 'form',
+            ))
+            ->add('exchangeRate', TextType::class, array(
+                'label' => 'supplier.label.exchange_rate',
+                'translation_domain' => 'form',
+            ))
             ->add('interface', ChoiceType::class, array(
                 'choices' => array(
                     'supplier.interface.choice.digikey' => 'digikey'

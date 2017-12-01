@@ -27,7 +27,7 @@
                 <tbody>
                 {% for quantity in bom.quantities %}
                     <tr {% if quantityId == quantity.id %} class="table-warning"{% endif %}>
-                        <td>{{ quantity.quantity }}</td>
+                        <td>{{ quantity.quantity | number_format(0, '.', ',') }}</td>
                         <td>{{ quantity.name }}</td>
                         <td>{{ quantity.date | date('Y-m-d') }}</td>
                         <td>
@@ -61,7 +61,7 @@
                 <td>{{ line.id }}</td>
                 <td>{{ line.ecuPn }}</td>
                 <td>x{{ line.multiplier }}</td>
-                <td>{{ pricing.line[line.id].lineTotal }}</td>
+                <td>{% if pricing.line[line.id].lineTotal is not null %}{{ pricing.line[line.id].currency }}{{ pricing.line[line.id].lineTotal | number_format(2, '.', ',') }}{% endif %}</td>
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#alternative_add" data-form-type="AlternativeAdd" data-form-bom-id="{{ bom.id }}" data-form-line-id="{{ line.id }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.add' | trans }}"><i class="fa fa-plus"></i></button>
                     <a href="{{ path('scanner_line', { 'id': line.id }) }}"><button type="button" class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.download' | trans }}"><i class="fa fa-cloud-download"></i></button></a>
@@ -76,7 +76,7 @@
                     {% endif %}
                     <td class="bom-alternative{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">{{ alternative.mfrName }}</td>
                     <td class="bom-alternative{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">{{ alternative.mfrPn }}</td>
-                    <td class="bom-alternative{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">{{ pricing.alternative[alternative.id].unitPrice }}</td>
+                    <td class="bom-alternative{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">{{ pricing.alternative[alternative.id].currency }}{{ pricing.alternative[alternative.id].unitPrice }}</td>
                     <td class="index-action{% if pricing.line[line.id].alternativeId == alternative.id %} table-success{% endif %}">
                         <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#alternative_detail_{{ alternative.id }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
                         <a href="{{ path('scanner_alternative', { 'id': alternative.id }) }}"><button type="button" class="btn btn-sm btn-outline-info" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.download' | trans }}"><i class="fa fa-cloud-download"></i></button></a>
@@ -87,6 +87,12 @@
             {%  endfor %}
         {%  endfor %}
         </tbody>
+    <tfoot>
+    <tr>
+        <th colspan="3">{{ 'bom.manage.total' | trans }}</th>
+        <th colspan="2">{{ pricing.total | number_format(2, '.', ',') }} ({{ (pricing.total / quantity) | number_format(2, '.', ',') }} {{ 'bom.manage.each' | trans }})</th>
+    </tr>
+    </tfoot>
     </table>
     <div class="float-left">
         <a href="{{ path('line_delete_all', { 'id': bom.id }) }}"><button class="btn btn-secondary"><i class="fa fa-trash"></i> {{ 'bom.manage.button.deleteAll' | trans }}</button></a>
@@ -241,7 +247,7 @@
                                                 <strong>{{ 'article.label.mfrPn' | trans }}:</strong> {{ article.mfrPn }}<br/>
                                                 <strong>{{ 'article.label.mfrName' | trans }}: </strong> {{ article.mfrName }}<br/>
                                                 <strong>{{ 'article.label.package' | trans }}: </strong> {{ article.package }}<br/>
-                                                <strong>{{ 'article.label.stock' | trans }}:</strong> {{ variable.stock }}<br/>
+                                                <strong>{{ 'article.label.stock' | trans }}:</strong> {{ variable.stock | number_format(0, '.', ',') }}<br/>
                                                 <strong>{{ 'article.label.leadtime' | trans }}:</strong> {{ variable.leadtime }} days<br/>
                                                 <strong>{{ 'article.label.validity' | trans }}:</strong> {{ variable.validity | date('Y/m/d') }}<br/>
                                                 <i>({{ 'bom.manage.updated' | trans }}: {{ variable.created | date('Y/m/d H:i:s') }})</i>
@@ -259,8 +265,8 @@
                                                     <tbody>
                                                     {% for price in variable.prices %}
                                                         <tr{% if pricing.alternative[alternative.id].priceId == price.id %} class="table-success"{% endif %}">
-                                                            <td style="text-align: right;">{{ price.quantity }}</td>
-                                                            <td style="text-align: right;">{{ price.price }}</td>
+                                                            <td style="text-align: right;">{{ price.quantity | number_format(0, '.', ',') }}</td>
+                                                            <td style="text-align: right;">{{ article.supplier.currency }}{{ price.price }}</td>
                                                         </tr>
                                                     {% endfor %}
                                                     </tbody>

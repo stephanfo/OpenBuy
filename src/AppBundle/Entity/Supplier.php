@@ -85,6 +85,24 @@ class Supplier
     private $country;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="currency", type="string", length=255)
+     * @Assert\Length(min=1)
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     */
+    private $currency;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="exchangeRate", type="float")
+     * @Assert\Range(min=0)
+     */
+    private $exchangeRate;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean")
@@ -518,5 +536,53 @@ class Supplier
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     *
+     * @return Supplier
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Set exchangeRate
+     *
+     * @param float $exchangeRate
+     *
+     * @return Supplier
+     */
+    public function setExchangeRate($exchangeRate)
+    {
+        $this->exchangeRate = $exchangeRate;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeRate
+     *
+     * @return float
+     */
+    public function getExchangeRate()
+    {
+        return $this->exchangeRate;
     }
 }
