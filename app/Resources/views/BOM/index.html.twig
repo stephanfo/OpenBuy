@@ -19,7 +19,7 @@
                 <td>{{ bom.created | date('Y/m/d H:i:s') }}</td>
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#bom_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
-                    <a href="{{ path('bom_manage', { 'id': bom.id}) }}"><button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#bom_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.manage' | trans }}"><i class="fa fa-file-text"></i></button></a>
+                    <a href="{{ path('bom_manage', { 'id': bom.id}) }}"><button type="button" class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.manage' | trans }}"><i class="fa fa-file-text"></i></button></a>
                     {% if is_granted('ROLE_SUPPLIER_ADMIN') %}
                         <a href="{{ path('bom_edit', { 'id': bom.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
                         <a href="{{ path('bom_delete', { 'id': bom.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
