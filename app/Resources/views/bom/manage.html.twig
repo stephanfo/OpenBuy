@@ -100,7 +100,7 @@
     <div class="float-right">
         <button class="btn btn-primary" data-toggle="modal" data-target="#line_add"><i class="fa fa-plus"></i> {{ 'bom.manage.button.addLineSingle' | trans }}</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#line_add_excel"><i class="fa fa-file-excel-o"></i> {{ 'bom.manage.button.addLineExcel' | trans }}</button>
-        <a href="{{ path('scanner_bom', { 'id': bom.id }) }}"><button class="btn btn-info" data-toggle="modal" data-target="#line_add_excel"><i class="fa fa-cloud-download"></i> {{ 'bom.manage.button.loadAllAPI' | trans }}</button></a>
+        <button id="btnGetBom" class="btn btn-info"><i class="fa fa-cloud-download"></i> <span id="btnGetBomText">{{ 'bom.manage.button.loadAllAPI' | trans }}</span></button>
     </div>
     <div class="modal fade" id="line_add" tabindex="-1" role="dialog" aria-labelledby="AddModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -315,5 +315,29 @@
             $("#quantity_edit_quantity").val($(this).attr('data-form-quantity'));
             $("#quantity_edit_date").val($(this).attr('data-form-date'));
         });
+        $("#btnGetBom").click(function() {
+            $.ajax({
+                url: "{{ path('scanner_bom', { 'id': bom.id }) }}",
+                success: function(result){
+                    clearInterval(progressScan);
+                    location.reload();
+                }});
+            var progressScan = setInterval(function () {
+                getProgress()
+            }, 4000);
+        });
+        function getProgress() {
+            $.ajax({
+               url: "{{ path("scanner_status") }}",
+                success: function(result){
+                   if (!result.scanReload) {
+                       $("#btnGetBomText").html("scanning:" + result.scanCurrent + "/" + result.scanLength);
+                   }
+                   else
+                   {
+                       clearInterval(progressScan);
+                   }
+                }});
+        }
     </script>
 {% endblock %}

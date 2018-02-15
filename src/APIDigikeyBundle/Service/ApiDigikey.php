@@ -43,7 +43,7 @@ class ApiDigikey
     {
         return [
             'loginPage' => "https://sso.digikey.com/as/authorization.oauth2",
-            'redirectUri' => "https://openbuy.dev/api/digikey/code",
+            'redirectUri' => "https://openbuy.localdev/api/digikey/code",
             'clientId' => null,
             'clientSecret' => null,
             'customerId' => null,

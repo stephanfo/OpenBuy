@@ -78,11 +78,14 @@ class ScannerController extends Controller
         $session->set('scan_length', count($lines));
         $session->set('scan_current', 0);
         $session->set('scan_reload', false);
+        $session->save();
+
         $i = 0;
 
         foreach ($lines as $key => $line)
         {
             $session->set('scan_current', ++$i);
+            $session->save();
 
             $alternatives = $line->getAlternatives();
 
@@ -98,6 +101,7 @@ class ScannerController extends Controller
             }
         }
         $session->set('scan_reload', true);
+        $session->save();
 
         $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.scanner.bom.success", array('%bom%' => $bom->getName())));
 
@@ -111,12 +115,12 @@ class ScannerController extends Controller
     {
         $session = $request->getSession();
 
-        if ($session->has('scan_length') && $session->has('scan_max') && $session->has('scan_reload'))
+        if ($session->has('scan_length') && $session->has('scan_current') && $session->has('scan_reload'))
         {
             $response = array(
-                'scan_length' => $session->get('scan_length'),
-                'scan_current' => $session->get('scan_current'),
-                'scan_reload' => $session->get('scan_reload'),
+                'scanLength' => $session->get('scan_length'),
+                'scanCurrent' => $session->get('scan_current'),
+                'scanReload' => $session->get('scan_reload'),
             );
 
             if ($session->get('scan_reload') === true)
