@@ -135,25 +135,6 @@ class InterfaceDigikey
         return $response;
     }
 
-//    public function search($userAgent, $keyword, $supplierId = null) {
-//        $keywordResults = $this->keywordSearch($userAgent, $keyword, $supplierId);
-//
-//        if(is_string($keywordResults))
-//            return $keywordResults;
-//
-//        $detailResults = array();
-//        foreach ($keywordResults["Parts"] as $result) {
-//            $detailResult = $this->partDetailSearch($userAgent, $result["DigiKeyPartNumber"]);
-//
-//            if(is_string($detailResult))
-//                return $detailResult;
-//
-//            $detailResults[] = $detailResult;
-//        }
-//
-//        return $this->convertInArticles($detailResults);
-//    }
-
     public function search($userAgent, $keyword, $supplierId = null) {
         $keywordResults = $this->keywordSearch($userAgent, $keyword, $supplierId);
 
@@ -162,15 +143,12 @@ class InterfaceDigikey
 
         $detailResults = array();
         foreach ($keywordResults["Parts"] as $result) {
-            if($result["ManufacturerPartNumber"] == $keyword)
-            {
-                $detailResult = $this->partDetailSearch($userAgent, $result["DigiKeyPartNumber"]);
+            $detailResult = $this->partDetailSearch($userAgent, $result["DigiKeyPartNumber"]);
 
-                if(is_string($detailResult))
-                    return $detailResult;
+            if(is_string($detailResult))
+                return $detailResult;
 
-                $detailResults[] = $detailResult;
-            }
+            $detailResults[] = $detailResult;
         }
 
         return $this->convertInArticles($detailResults);
