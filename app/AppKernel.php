@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new APIDigikeyBundle\APIDigikeyBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
+            new APIExcelBundle\APIExcelBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

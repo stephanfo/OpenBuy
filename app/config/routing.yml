@@ -22,3 +22,8 @@ fos_user:
     prefix:   /{_locale}
     requirements:
         _locale: en|fr
+
+api_excel:
+    resource: "@APIExcelBundle/Controller/"
+    type:     annotation
+    prefix:   /api/excel

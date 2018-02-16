@@ -62,7 +62,7 @@ class InterfaceDigikeyController extends Controller
                     $response = $interface->keywordSearch($request->headers->get('User-Agent'), $data['keyword'], $supplier->getId());
                     break;
                 case 'partDetails':
-                    $response = $interface->partDetailSearch($request->headers->get('User-Agent'), $data['keyword'], $supplier->getId());
+                    $response = $interface->partDetails($request->headers->get('User-Agent'), $data['keyword'], $supplier->getId());
                     break;
                 default:
                     $response = null;
@@ -169,6 +169,10 @@ class InterfaceDigikeyController extends Controller
             ))
             ->add('partDetailsUri', TextType::class, array(
                 'label' => 'digikey.label.partdetails_uri',
+                'translation_domain' => 'interface',
+            ))
+            ->add('packageTypeUri', TextType::class, array(
+                'label' => 'digikey.label.package_type_uri',
                 'translation_domain' => 'interface',
             ))
             ->add('localSite', TextType::class, array(

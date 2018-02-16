@@ -20,6 +20,7 @@ class ApiDigikey
     private $refreshToken;
     private $keywordSearchUri;
     private $partDetailsUri;
+    private $packageTypeUri;
     private $localSite;
     private $localLanguage;
     private $localCurrency;
@@ -54,6 +55,7 @@ class ApiDigikey
             'refreshToken' => null,
             'keywordSearchUri' => "https://api.digikey.com/services/partsearch/v2/keywordsearch",
             'partDetailsUri' => "https://api.digikey.com/services/partsearch/v2/partdetails",
+            'packageTypeUri' => "https://api.digikey.com/services/packagetypebyquantity/v2/search",
             'localSite' => "fr",
             'localLanguage' => "fr",
             'localCurrency' => "EUR",
@@ -77,6 +79,7 @@ class ApiDigikey
             'refreshToken' => $this->refreshToken,
             'keywordSearchUri' => $this->keywordSearchUri,
             'partDetailsUri' => $this->partDetailsUri,
+            'packageTypeUri' => $this->packageTypeUri,
             'localSite' => $this->localSite,
             'localLanguage' => $this->localLanguage,
             'localCurrency' => $this->localCurrency,
@@ -99,6 +102,7 @@ class ApiDigikey
         $this->refreshToken = $config['refreshToken'];
         $this->keywordSearchUri = $config['keywordSearchUri'];
         $this->partDetailsUri = $config['partDetailsUri'];
+        $this->packageTypeUri = $config['packageTypeUri'];
         $this->localSite = $config['localSite'];
         $this->localLanguage = $config['localLanguage'];
         $this->localCurrency = $config['localCurrency'];
@@ -235,48 +239,38 @@ class ApiDigikey
 
     public function keywordSearch($userAgent, $keyword, $recordCount = 20)
     {
-        $this->handleConnection($userAgent);
-
-        $clientHttp = new Client(
-            array(
-                'verify' => false,
-                'cookies' => true,
-                'headers' => array(
-                    'User-Agent' => $userAgent
-                )
-            )
-        );
-
-        $headers = array(
-            'X-DIGIKEY-Locale-Site' => $this->localSite,
-            'X-DIGIKEY-Locale-Language' => $this->localLanguage,
-            'X-DIGIKEY-Locale-Currency' => $this->localCurrency,
-            'X-DIGIKEY-Locale-ShipToCountry' => $this->localShipToCountry,
-            'X-DIGIKEY-Customer-Id' => $this->customerId,
-            'X-DIGIKEY-Partner-Id' => $this->partnerId,
-            'X-IBM-Client-Id' => $this->clientId,
-            'Authorization' => $this->token,
-        );
-
         $searchRequest = array(
             'Keywords' => $keyword,
             'RecordCount' => $recordCount,
             'RecordStartPosition' => 0,
         );
 
-        try {
-            $response = $clientHttp->request('POST', $this->keywordSearchUri, ['headers' => $headers, 'json' => $searchRequest]);
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                return Psr7\str($e->getResponse());
-            }
-            return Psr7\str($e->getRequest());
-        }
-
-        return json_decode($response->getBody()->getContents(), true);
+        return $this->sendRequest($userAgent, $this->keywordSearchUri, $searchRequest);
     }
 
-    public function partDetailSearch($userAgent, $keyword)
+    public function partDetails($userAgent, $keyword)
+    {
+        $searchRequest = array(
+            'Part' => $keyword,
+        );
+
+        return $this->sendRequest($userAgent, $this->partDetailsUri, $searchRequest);
+
+    }
+
+    public function packageTypeByQuantity($userAgent, $keyword, $packagingPreference, $quantity)
+    {
+        $searchRequest = array(
+            'PartNumber' => $keyword,
+            'Quantity' => $quantity,
+            'PartPreference' => $packagingPreference,
+        );
+
+        return $this->sendRequest($userAgent, $this->packageTypeUri, $searchRequest);
+
+    }
+
+    private function sendRequest($userAgent, $apiUri, $request)
     {
         $this->handleConnection($userAgent);
 
@@ -301,12 +295,8 @@ class ApiDigikey
             'Authorization' => $this->token,
         );
 
-        $searchRequest = array(
-            'Part' => $keyword,
-        );
-
         try {
-            $response = $clientHttp->request('POST', $this->partDetailsUri, ['headers' => $headers, 'json' => $searchRequest]);
+            $response = $clientHttp->request('POST', $apiUri, ['headers' => $headers, 'json' => $request]);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
                 return Psr7\str($e->getResponse());

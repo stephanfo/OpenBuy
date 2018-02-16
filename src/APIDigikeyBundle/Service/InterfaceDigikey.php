@@ -122,13 +122,26 @@ class InterfaceDigikey
         return $response;
     }
 
-    public function partDetailSearch($userAgent, $keyword, $supplierId = null) {
+    public function partDetails($userAgent, $keyword, $supplierId = null) {
         if(!is_null($supplierId))
         {
             $this->loadSupplier($supplierId);
         }
 
-        $response = $this->api->partDetailSearch($userAgent, $keyword);
+        $response = $this->api->partDetails($userAgent, $keyword);
+
+        $this->updateSupplier();
+
+        return $response;
+    }
+
+    public function packageTypeByQuantity($userAgent, $keyword, $packagingPreference, $quantity, $supplierId = null) {
+        if(!is_null($supplierId))
+        {
+            $this->loadSupplier($supplierId);
+        }
+
+        $response = $this->api->partDetails($userAgent, $keyword, $packagingPreference, $quantity);
 
         $this->updateSupplier();
 
@@ -143,7 +156,7 @@ class InterfaceDigikey
 
         $detailResults = array();
         foreach ($keywordResults["Parts"] as $result) {
-            $detailResult = $this->partDetailSearch($userAgent, $result["DigiKeyPartNumber"]);
+            $detailResult = $this->partDetails($userAgent, $result["DigiKeyPartNumber"]);
 
             if(is_string($detailResult))
                 return $detailResult;

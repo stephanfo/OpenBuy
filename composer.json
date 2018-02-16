@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-            "APIDigikeyBundle\\": "src/APIDigikeyBundle"
+            "APIDigikeyBundle\\": "src/APIDigikeyBundle",
+            "APIExcelBundle\\": "src/APIExcelBundle"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
