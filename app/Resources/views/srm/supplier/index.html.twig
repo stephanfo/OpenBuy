@@ -5,6 +5,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>#</th>
             <th>{{ 'supplier.label.name' | trans }}</th>
             <th>{{ 'supplier.label.country' | trans }}</th>
             <th>{{ 'supplier.label.currency' | trans }}</th>
@@ -14,6 +15,7 @@
         <tbody>
         {% for supplier in list %}
             <tr>
+                <th>{{ supplier.id }}</th>
                 <td>{{ supplier.name }}</td>
                 <td>{{ supplier.country }}</td>
                 <td>{{ supplier.currency }} ({{ supplier.exchangeRate }})</td>

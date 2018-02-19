@@ -141,11 +141,20 @@ class InterfaceDigikey
             $this->loadSupplier($supplierId);
         }
 
-        $response = $this->api->partDetails($userAgent, $keyword, $packagingPreference, $quantity);
+        $response = $this->api->packageTypeByQuantity($userAgent, $keyword, $packagingPreference, $quantity);
 
         $this->updateSupplier();
 
         return $response;
+    }
+
+    public function packageTypeByQuantityInArticle($userAgent, $keyword, $packagingPreference, $quantity, $supplierId = null) {
+        $result = $this->packageTypeByQuantity($userAgent, $keyword, $packagingPreference, $quantity, $supplierId);
+
+        if(is_string($result))
+            return $result;
+
+        return $this->convertPartsInArticles(array($result));
     }
 
     public function search($userAgent, $keyword, $supplierId = null) {
@@ -164,10 +173,10 @@ class InterfaceDigikey
             $detailResults[] = $detailResult;
         }
 
-        return $this->convertInArticles($detailResults);
+        return $this->convertPartDetailsInArticles($detailResults);
     }
 
-    private function convertInArticles($resultArray) {
+    private function convertPartDetailsInArticles($resultArray) {
 
         $articleArray = array();
         foreach ($resultArray as $result) {
@@ -225,6 +234,72 @@ class InterfaceDigikey
             $this->em->flush();
 
             $articleArray[] = $article;
+        }
+
+        return $articleArray;
+    }
+
+    private function convertPartsInArticles($resultArray) {
+
+        $articleArray = array();
+        foreach ($resultArray as $result) {
+            foreach ($result['Parts'] as $part) {
+
+
+
+                $article = $this->em->getRepository('AppBundle:Article')->findOneBy(array(
+                    'supplier' => array($this->supplier),
+                    'sku' => array($part['DigiKeyPartNumber']),
+                ));
+
+                if(is_null($article)) {
+                    $article = new Article();
+                    $article->setSku($part['DigiKeyPartNumber']);
+                    $article->setSupplier($this->supplier);
+                }
+
+                $article->setMfrName($part["ManufacturerName"]["Text"]);
+                $article->setMfrPn($part["ManufacturerPartNumber"]);
+                $article->setPackage($part["Packaging"]["Value"]);
+                $article->setLink($part["PartUrl"]);
+                $article->setDescription($part["ProductDescription"]);
+                $article->setPicture($part["PrimaryPhoto"]);
+
+                $pricingArray = array();
+                foreach ($part["StandardPricing"] as $price) {
+                    $pricingArray[$price["BreakQuantity"]] = $price["UnitPrice"];
+                }
+                foreach ( $part["MyPricing"] as $price) {
+                    $pricingArray[$price["BreakQuantity"]] = $price["UnitPrice"];
+                }
+                ksort($pricingArray);
+
+                $previousPrice = null;
+                foreach ($pricingArray as $quantity => $price) {
+                    if(!is_null($previousPrice))
+                    {
+                        if($previousPrice < $price)
+                        {
+                            unset($pricingArray[$quantity]);
+                        }
+                        else if ($price < $previousPrice)
+                        {
+                            $previousPrice = $price;
+                        }
+                    }
+                    else
+                    {
+                        $previousPrice = $price;
+                    }
+                }
+
+                $article->createVariable((int)$part["ManufacturerLeadWeeks"] * 7, $part["QuantityOnHand"], 2, new \DateTime("now + 1 month"), null, $pricingArray);
+
+                $this->em->persist($article);
+                $this->em->flush();
+
+                $articleArray[] = $article;
+            }
         }
 
         return $articleArray;
