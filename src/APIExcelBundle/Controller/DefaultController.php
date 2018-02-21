@@ -55,7 +55,10 @@ class DefaultController extends Controller
             $data['sku'] = $article->getSku();
             $data['supplier'] = $supplier->getName();
             $data['currency'] = $supplier->getCurrency();
-            $data['comment'] = $data['search'] != $data['mfrPn'] ? "Part number corrected, please check is ok" : "";
+
+            $data['comment'] = "";
+            $data['comment'] .= $data['search'] != $data['mfrPn'] ? "Part number corrected\r\n" : "";
+            $data['comment'] .= count($articleArray) > 0 ? "The quantity is not a multiple of the MOQ\r\n" : "";
         }
         else
         {

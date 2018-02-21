@@ -245,8 +245,6 @@ class InterfaceDigikey
         foreach ($resultArray as $result) {
             foreach ($result['Parts'] as $part) {
 
-
-
                 $article = $this->em->getRepository('AppBundle:Article')->findOneBy(array(
                     'supplier' => array($this->supplier),
                     'sku' => array($part['DigiKeyPartNumber']),
