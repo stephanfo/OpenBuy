@@ -4,6 +4,7 @@ namespace APIExcelBundle\Controller;
 
 use APIDigikeyBundle\Service\InterfaceDigikey;
 use AppBundle\Entity\Supplier;
+use AppBundle\Entity\Variable;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,15 +35,40 @@ class DefaultController extends Controller
 
             if(count($variable->getPrices()) >= 1)
             {
-                $price = $this->findBestPrice($variable->getPrices(), $data['quantity']);
+                $pricing = $this->findBestPrice($variable->getPrices(), $data['quantity']);
 
-                $data['price'] = $price->getPrice();
-                $data['column'] = $price->getQuantity();
+                $data['price'] = $pricing['bestPrice']->getPrice();
+                $data['column'] = $pricing['bestPrice']->getQuantity();
+
+                if (!is_null($pricing['previousPrice']))
+                {
+                    $data['priceBefore'] = $pricing['previousPrice']->getPrice();
+                    $data['columnBefore'] = $pricing['previousPrice']->getQuantity();
+                }
+                else
+                {
+                    $data['priceBefore'] = "";
+                    $data['columnBefore'] = "";
+                }
+                if (!is_null($pricing['nextPrice']))
+                {
+                    $data['priceAfter'] = $pricing['nextPrice']->getPrice();
+                    $data['columnAfter'] = $pricing['nextPrice']->getQuantity();
+                }
+                else
+                {
+                    $data['priceAfter'] = "";
+                    $data['columnAfter'] = "";
+                }
             }
             else
             {
                 $data['price'] = "";
                 $data['column'] = "";
+                $data['priceBefore'] = "";
+                $data['columnBefore'] = "";
+                $data['priceAfter'] = "";
+                $data['columnAfter'] = "";
             }
 
             $data['stock'] = $variable->getStock();
@@ -58,7 +84,10 @@ class DefaultController extends Controller
 
             $data['comment'] = "";
             $data['comment'] .= $data['search'] != $data['mfrPn'] ? "Part number corrected\r\n" : "";
-            $data['comment'] .= count($articleArray) > 0 ? "The quantity is not a multiple of the MOQ\r\n" : "";
+            $data['comment'] .= ($data['quantity'] % $article->getMoq()) != 0 ? "The quantity is not a multiple of the MOQ\r\n" : "";
+            $data['comment'] .= count($articleArray) > 0 ? "Only the first price has been returned\r\n" : "";
+
+            $data['updated'] = $variable->getCreated()->format('Y-m-d H:i:s');
         }
         else
         {
@@ -85,17 +114,32 @@ class DefaultController extends Controller
     private function findBestPrice($prices, $quantity)
     {
         $bestPrice = $prices->first();
+        $previousPrice = null;
+        $nextPrice = null;
+        $newBestPrice = false;
 
         foreach ($prices as $price) {
+            if ($newBestPrice) {
+                $nextPrice = $price;
+                $newBestPrice = false;
+            }
+
             if (
                 (max(array($price->getQuantity(), $quantity)) * $price->getPrice())
                 <
                 (max(array($bestPrice->getQuantity(), $quantity)) * $bestPrice->getPrice())
             ) {
+                $previousPrice = $bestPrice;
                 $bestPrice = $price;
+                $newBestPrice = true;
+                $nextPrice = null;
             }
         }
 
-        return $bestPrice;
+        return array(
+            'bestPrice' => $bestPrice,
+            'previousPrice' => $previousPrice,
+            'nextPrice' => $nextPrice
+        );
     }
 }

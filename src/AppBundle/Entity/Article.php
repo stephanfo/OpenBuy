@@ -55,6 +55,13 @@ class Article
     private $package;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="moq", type="integer", nullable=true)
+     */
+    private $moq;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
@@ -514,5 +521,29 @@ class Article
     public function getAlternatives()
     {
         return $this->alternatives;
+    }
+
+    /**
+     * Set moq.
+     *
+     * @param int|null $moq
+     *
+     * @return Article
+     */
+    public function setMoq($moq = null)
+    {
+        $this->moq = $moq;
+
+        return $this;
+    }
+
+    /**
+     * Get moq.
+     *
+     * @return int|null
+     */
+    public function getMoq()
+    {
+        return $this->moq;
     }
 }
