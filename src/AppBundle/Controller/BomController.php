@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Bom;
 use AppBundle\Form\BomType;
 
-class BOMController extends Controller
+class BomController extends Controller
 {
     /**
      * @Route("/bom", defaults={"page": "1"}, name="bom")
