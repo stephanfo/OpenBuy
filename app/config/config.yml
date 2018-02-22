@@ -108,14 +108,3 @@ fos_user:
     from_email:
         address: '%sender_email%'
         sender_name: '%sender_name%'
-
-assetic:
-    debug:          '%kernel.debug%'
-    use_controller: '%kernel.debug%'
-    node:           /usr/local/bin/node
-    filters:
-        cssrewrite: ~
-        uglifyjs2:
-            bin:    /usr/local/bin/uglifyjs
-        uglifycss:
-            bin:    /usr/local/bin/uglifycss

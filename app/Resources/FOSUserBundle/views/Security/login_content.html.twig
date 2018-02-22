@@ -10,16 +10,12 @@
                 <div class="float-right">
                     {% if app.request.locale != 'fr' %}
                         <a href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale': 'fr'})) }}">
-                            {% image '%kernel.root_dir%/Resources/public/images/flags/fr.png' %}
-                                <img src="{{ asset_url }}" alt="Example" class="image-flag"/>
-                            {% endimage %}
+                            <img src="{{ asset('images/flags/fr.png') }}" alt="Example" class="image-flag"/>
                         </a>
                     {%  endif %}
                     {% if app.request.locale != 'en' %}
                         <a href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale': 'en'})) }}">
-                            {% image '%kernel.root_dir%/Resources/public/images/flags/en.png' %}
-                                <img src="{{ asset_url }}" alt="Example" class="image-flag"/>
-                            {% endimage %}
+                            <img src="{{ asset('images/flags/en.png') }}" alt="Example" class="image-flag"/>
                         </a>
                     {%  endif %}
                 </div>

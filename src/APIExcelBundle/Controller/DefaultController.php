@@ -74,6 +74,7 @@ class DefaultController extends Controller
             $data['stock'] = $variable->getStock();
             $data['leadtime'] = $variable->getLeadtime();
             $data['package'] = $article->getPackage();
+            $data['moq'] = $article->getMoq();
             $data['url'] = $article->getLink();
             $data['mfrPn'] = $article->getMfrPn();
             $data['mfrName'] = $article->getMfrName();
@@ -84,7 +85,10 @@ class DefaultController extends Controller
 
             $data['comment'] = "";
             $data['comment'] .= $data['search'] != $data['mfrPn'] ? "Part number corrected\r\n" : "";
-            $data['comment'] .= ($data['quantity'] % $article->getMoq()) != 0 ? "The quantity is not a multiple of the MOQ\r\n" : "";
+            if ($article->getMoq() > 0 && ($data['quantity'] % $article->getMoq()) != 0)
+            {
+                $data['comment'] .= "The quantity is not a multiple of the MOQ\r\n";
+            }
             $data['comment'] .= count($articleArray) > 0 ? "Only the first price has been returned\r\n" : "";
 
             $data['updated'] = $variable->getCreated()->format('Y-m-d H:i:s');

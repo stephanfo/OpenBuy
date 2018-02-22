@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new APIDigikeyBundle\APIDigikeyBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new APIExcelBundle\APIExcelBundle(),
@@ -35,8 +34,6 @@ class AppKernel extends Kernel
             if ('dev' === $this->getEnvironment()) {
                 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
                 $bundles[] = new Symfony\Bundle\WebServerBundle\WebServerBundle();
-                $bundles[] = new JMS\DiExtraBundle\JMSDiExtraBundle();
-                $bundles[] = new JMS\AopBundle\JMSAopBundle();
             }
         }
 

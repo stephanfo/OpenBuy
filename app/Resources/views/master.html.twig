@@ -4,13 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{{ 'app.title' | trans }}{% endblock %}</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <script src="https://use.fontawesome.com/9dc8d74932.js"></script>
-        {% stylesheets '%kernel.root_dir%/Resources/public/css/*' filter='cssrewrite' filter='uglifycss'%}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
-    {% endblock %}
+        <link rel="stylesheet" href="{{ asset('build/vendor.css') }}" />
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}" />
+    {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
@@ -71,16 +67,12 @@
     <div class="float-right">
         {% if app.request.locale != 'fr' %}
             <a href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale': 'fr'})) }}">
-                {% image '%kernel.root_dir%/Resources/public/images/flags/fr.png' %}
-                <img src="{{ asset_url }}" alt="Example" class="image-flag"/>
-                {% endimage %}
+                <img src="{{ asset('images/flags/fr.png') }}" alt="Example" class="image-flag"/>
             </a>
         {%  endif %}
         {% if app.request.locale != 'en' %}
             <a href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale': 'en'})) }}">
-                {% image '%kernel.root_dir%/Resources/public/images/flags/en.png' %}
-                <img src="{{ asset_url }}" alt="Example" class="image-flag"/>
-                {% endimage %}
+                <img src="{{ asset('images/flags/en.png') }}" alt="Example" class="image-flag"/>
             </a>
         {%  endif %}
     </div>
@@ -120,15 +112,9 @@
 <div class="container-fluid app-container">
     {% block container %} {% endblock %}
 </div>
-{% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <script>
-        $(function () {
-            $('[data-tooltip="tooltip"]').tooltip()
-        });
-    </script>
-{% endblock %}
+<script src="{{ asset('build/manifest.js') }}"></script>
+<script src="{{ asset('build/vendor.js') }}"></script>
+<script src="{{ asset('build/app.js') }}"></script>
+{% block javascripts %}{% endblock %}
 </body>
 </html>
