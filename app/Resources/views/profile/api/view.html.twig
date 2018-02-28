@@ -1,0 +1,17 @@
+{% extends '::layout.profile.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'profile.api.token.title' | trans }}</h1>
+    <p>{{ 'profile.api.token.introduction' | trans }}</p>
+    <p>
+        {% if user.apiToken is not null %}
+            {{ 'profile.api.token.label' | trans }}: {{ user.apiToken }}
+        {% else %}
+            {{ 'profile.api.token.empty' | trans }}
+        {% endif %}
+    </p>
+    <a href="{{ path('profile_api_token_new') }}"><button class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'profile.api.token.button.new' | trans }}</button></a>
+    {% if user.apiToken is not null %}
+        <a href="{{ path('profile_api_token_delete') }}"><button class="btn btn-danger"><i class="fa fa-trash"></i> {{ 'profile.api.token.button.delete' | trans }}</button></a>
+    {% endif %}
+{% endblock %}

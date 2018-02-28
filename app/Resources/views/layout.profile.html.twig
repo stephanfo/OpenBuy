@@ -1,0 +1,33 @@
+{% extends "::master.html.twig" %}
+
+{% block title %}
+    {{ 'title.profile' | trans }} - {{ parent() }}
+{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <div class="col-xl-2 col-md-3 col-sm-4">
+            <h5>{{ 'leftmenu.title.profile' | trans }}</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_profile_show') }}">{{ 'leftmenu.profile_view' | trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_profile_edit') }}">{{ 'leftmenu.profile_edit' | trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_change_password') }}">{{ 'leftmenu.change_password' | trans }}</a>
+                </li>
+            </ul>
+            <h5 class="app-nav-sidebar-header">{{ 'leftmenu.title.api' | trans }}</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('profile_api_token_view') }}">{{ 'leftmenu.token' | trans }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xl-10 col-md-9 col-sm-8">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

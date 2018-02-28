@@ -1,0 +1,27 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h1>{{ 'profile.title.show' | trans }}</h1>
+<h2>{{ 'profile.title.show.account' | trans }}</h2>
+<p>
+    {{ 'profile.show.username' | trans }}: {{ user.username }}<br/>
+    {{ 'profile.show.email' | trans }}: {{ user.email }}
+</p>
+<h2>{{ 'profile.title.show.details' | trans }}</h2>
+<p>
+    {{ 'profile.show.firstname' | trans }}: {{ user.firstname }}<br/>
+    {{ 'profile.show.lastname' | trans }}: {{ user.lastname }}<br/>
+    {{ 'profile.show.jobrole' | trans }}: {{ user.jobrole }}<br/>
+    {{ 'profile.show.phone' | trans }}: {{ user.phone }}<br/>
+    {{ 'profile.show.mobile' | trans }}: {{ user.mobile }}<br/>
+    {{ 'profile.show.address' | trans }}: {{ user.address }}<br/>
+    {{ 'profile.show.location' | trans }}: {{ user.location }}<br/>
+    {{ 'profile.show.country' | trans }}: {{ user.country }}<br/>
+    {{ 'profile.show.longitude' | trans }}: {{ user.longitude }}<br/>
+    {{ 'profile.show.latitude' | trans }}: {{ user.latitude }}
+</p>
+{% if user.apiToken is not empty %}
+    <h2>{{ 'profile.title.show.api' | trans }}</h2>
+    <p>
+        {{ 'profile.show.api_token' | trans }}: {{ user.apiToken }}
+    </p>
+{% endif %}

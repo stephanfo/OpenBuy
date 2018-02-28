@@ -110,3 +110,6 @@ fos_user:
     from_email:
         address: '%sender_email%'
         sender_name: '%sender_name%'
+    profile:
+        form:
+            type: AppBundle\Form\ProfileType

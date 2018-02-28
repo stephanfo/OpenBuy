@@ -52,7 +52,6 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Type(type="string")
      */
     private $phone;
@@ -104,6 +103,14 @@ class User extends BaseUser
      * @Assert\Type(type="double")
      */
     private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apiToken", type="string", length=255, nullable=true)
+     * @Assert\Type(type="string")
+     */
+    private $apiToken;
 
     /**
      * @ORM\OneToMany(targetEntity="Ecu", mappedBy="user", cascade={"persist", "remove"})
@@ -520,5 +527,29 @@ class User extends BaseUser
     public function getSuppliers()
     {
         return $this->suppliers;
+    }
+
+    /**
+     * Set apiToken.
+     *
+     * @param string|null $apiToken
+     *
+     * @return User
+     */
+    public function setApiToken($apiToken = null)
+    {
+        $this->apiToken = $apiToken;
+
+        return $this;
+    }
+
+    /**
+     * Get apiToken.
+     *
+     * @return string|null
+     */
+    public function getApiToken()
+    {
+        return $this->apiToken;
     }
 }
