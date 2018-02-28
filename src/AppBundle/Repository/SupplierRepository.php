@@ -15,6 +15,7 @@ class SupplierRepository extends \Doctrine\ORM\EntityRepository
     public function getSuppliersPerPage($page, $nbPerPage)
     {
         $query = $this->createQueryBuilder('supplier')
+            ->join('supplier.user', 'user')
             ->orderBy('supplier.name', 'ASC')
             ->setFirstResult(($page - 1) * $nbPerPage)
             ->setMaxResults($nbPerPage);
@@ -24,10 +25,13 @@ class SupplierRepository extends \Doctrine\ORM\EntityRepository
 
     public function getSuppliersWithAPI()
     {
-        $query = $this->createQueryBuilder('supplier');
+        $query = $this->createQueryBuilder('supplier')
+            ->join('supplier.user', 'user');
+
         $query->where($query->expr()->isNotNull('supplier.interface'));
         $query->andWhere('supplier.enabled = :true');
         $query->setParameter('true', true);
+
         return $query->getQuery()->getResult();
     }
 }

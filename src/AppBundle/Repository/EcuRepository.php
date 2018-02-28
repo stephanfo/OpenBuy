@@ -15,6 +15,7 @@ class EcuRepository extends \Doctrine\ORM\EntityRepository
     public function getEcusPerPage($page, $nbPerPage)
     {
         $query = $this->createQueryBuilder('ecu')
+            ->join('ecu.user', 'user')
             ->orderBy('ecu.name', 'ASC')
             ->setFirstResult(($page - 1) * $nbPerPage)
             ->setMaxResults($nbPerPage);

@@ -90,7 +90,7 @@ class Article
     private $checking;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Supplier", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="Supplier", inversedBy="articles", fetch="EAGER")
      * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id", nullable=false)
      */
     private $supplier;

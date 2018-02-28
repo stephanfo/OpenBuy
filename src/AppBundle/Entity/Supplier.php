@@ -124,6 +124,12 @@ class Supplier
     private $parameters;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="suppliers", fetch="EAGER")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private $user;
+
+    /**
      * @ORM\OneToMany(targetEntity="Article", mappedBy="supplier", cascade={"persist", "remove"})
      */
     private $articles;
@@ -584,5 +590,29 @@ class Supplier
     public function getExchangeRate()
     {
         return $this->exchangeRate;
+    }
+
+    /**
+     * Set user.
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Supplier
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

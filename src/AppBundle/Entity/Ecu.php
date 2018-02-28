@@ -104,6 +104,12 @@ class Ecu
     private $boms;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ecus", fetch="EAGER")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private $user;
+
+    /**
      * Get id
      *
      * @return integer
@@ -368,5 +374,29 @@ class Ecu
     public function getBoms()
     {
         return $this->boms;
+    }
+
+    /**
+     * Set user.
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Ecu
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

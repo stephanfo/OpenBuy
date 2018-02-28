@@ -63,7 +63,7 @@ class Variable
     private $comment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="variables")
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="variables", fetch="EAGER")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id", nullable=false)
      */
     private $article;

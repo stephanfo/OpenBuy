@@ -48,6 +48,7 @@ class SupplierController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $supplier->setEnabled(true);
+            $supplier->setUser($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($supplier);
@@ -149,6 +150,7 @@ class SupplierController extends Controller
         $newSupplier->setEnabled($supplier->getEnabled());
         $newSupplier->setInterface($supplier->getInterface());
         $newSupplier->setParameters($supplier->getParameters());
+        $newSupplier->setUser($this->getUser());
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($newSupplier);

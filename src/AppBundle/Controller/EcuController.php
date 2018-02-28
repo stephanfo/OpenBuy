@@ -46,6 +46,7 @@ class EcuController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ecu->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($ecu);
             $em->flush();

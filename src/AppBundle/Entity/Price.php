@@ -40,7 +40,7 @@ class Price
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Variable", inversedBy="prices")
+     * @ORM\ManyToOne(targetEntity="Variable", inversedBy="prices", fetch="EAGER")
      * @ORM\JoinColumn(name="variable_id", referencedColumnName="id", nullable=false)
      */
     private $variable;

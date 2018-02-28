@@ -106,6 +106,16 @@ class User extends BaseUser
     private $longitude;
 
     /**
+     * @ORM\OneToMany(targetEntity="Ecu", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $ecus;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Supplier", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $suppliers;
+
+    /**
      * @var \DateTime $created
      *
      * @ORM\Column(type="datetime", nullable=true)
@@ -438,5 +448,77 @@ class User extends BaseUser
     public function getDeleted()
     {
         return $this->deleted;
+    }
+
+    /**
+     * Add ecus.
+     *
+     * @param \AppBundle\Entity\Ecu $ecus
+     *
+     * @return User
+     */
+    public function addEcus(\AppBundle\Entity\Ecu $ecus)
+    {
+        $this->ecus[] = $ecus;
+
+        return $this;
+    }
+
+    /**
+     * Remove ecus.
+     *
+     * @param \AppBundle\Entity\Ecu $ecus
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeEcus(\AppBundle\Entity\Ecu $ecus)
+    {
+        return $this->ecus->removeElement($ecus);
+    }
+
+    /**
+     * Get ecus.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEcus()
+    {
+        return $this->ecus;
+    }
+
+    /**
+     * Add supplier.
+     *
+     * @param \AppBundle\Entity\Supplier $supplier
+     *
+     * @return User
+     */
+    public function addSupplier(\AppBundle\Entity\Supplier $supplier)
+    {
+        $this->suppliers[] = $supplier;
+
+        return $this;
+    }
+
+    /**
+     * Remove supplier.
+     *
+     * @param \AppBundle\Entity\Supplier $supplier
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeSupplier(\AppBundle\Entity\Supplier $supplier)
+    {
+        return $this->suppliers->removeElement($supplier);
+    }
+
+    /**
+     * Get suppliers.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSuppliers()
+    {
+        return $this->suppliers;
     }
 }

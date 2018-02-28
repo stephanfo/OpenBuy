@@ -68,6 +68,8 @@ doctrine:
             softdeleteable:
                 class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                 enabled: true
+            userfilter:
+                class: AppBundle\Doctrine\UserFilter
 
 # Swiftmailer Configuration
 swiftmailer:

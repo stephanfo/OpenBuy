@@ -32,6 +32,10 @@ security:
             logout:
                 path:   fos_user_security_logout
             anonymous: true
+            remember_me:
+                secret: '%secret%'
+                lifetime: 604800
+                path: /
 
     access_control:
         - { path: ^/../login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
