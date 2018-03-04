@@ -20,36 +20,38 @@ class InterfaceDigikey
         if (!is_null($supplierId)) {
             $this->loadSupplier($supplierId);
         }
+
+        $this->api->setConfig($this->em->getRepository(Config::class)->findByName($this->getClassName()));
     }
 
     private function loadSupplier($supplierId)
     {
         $this->supplier = $this->em->getRepository(Supplier::class)->find($supplierId);
-        $this->api->setConfig($this->supplier->getParameters());
+        $this->api->setParameters($this->supplier->getParameters());
     }
 
     private function updateSupplier()
     {
-        if ($this->api->configUpdated) {
-            $this->supplier->setParameters($this->api->getConfig());
+        if ($this->api->parametersUpdated) {
+            $this->supplier->setParameters($this->api->getParameters());
             $this->em->flush();
         }
     }
 
-    public function getConfig($supplierId) {
+    public function getParameters($supplierId) {
         if (!is_null($supplierId)) {
             $this->loadSupplier($supplierId);
         }
 
         if(is_null($this->supplier->getParameters())) {
-            return $this->api->getDefaultConfig();
+            return $this->api->getDefaultParameters();
         } else {
-            return $this->api->getConfig();
+            return $this->api->getParameters();
         }
     }
 
-    public function setConfig($config) {
-        $this->api->setConfig($config);
+    public function setParameters($parameters) {
+        $this->api->setParameters($parameters);
         $this->updateSupplier();
     }
 

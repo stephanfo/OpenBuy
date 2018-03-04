@@ -8,54 +8,59 @@ use GuzzleHttp\Psr7;
 
 class ApiDigikey
 {
-    private $loginPage;
+    const loginPage = "https://sso.digikey.com/as/authorization.oauth2";
+    const tokenPage = "https://sso.digikey.com/as/token.oauth2";
+    const keywordSearchUri = "https://api.digikey.com/services/partsearch/v2/keywordsearch";
+    const partDetailsUri = "https://api.digikey.com/services/partsearch/v2/partdetails";
+    const packageTypeUri = "https://api.digikey.com/services/packagetypebyquantity/v2/search";
+
     private $redirectUri;
     private $clientId;
     private $clientSecret;
+
     private $customerId;
     private $code;
-    private $tokenPage;
     private $token;
     private $expiration;
     private $refreshToken;
-    private $keywordSearchUri;
-    private $partDetailsUri;
-    private $packageTypeUri;
     private $localSite;
     private $localLanguage;
     private $localCurrency;
     private $localShipToCountry;
     private $partnerId;
 
-    public $configUpdated;
+    public $parametersUpdated;
 
-    function __construct($config = null)
+    function __construct($config = null, $parameters = null)
     {
-        if (is_null($config)) {
-            $this->setConfig($this->getDefaultConfig());
-            $this->configUpdated = true;
-        } else {
+        if (is_array($config)){
             $this->setConfig($config);
-            $this->configUpdated = false;
+        }
+
+        if (is_array($parameters)) {
+            $this->setParameters($parameters);
+            $this->parametersUpdated = false;
+        } else {
+            $this->setParameters($this->getDefaultParameters());
+            $this->parametersUpdated = true;
         }
     }
 
-    public function getDefaultConfig()
+    public function setConfig($config)
+    {
+        $this->redirectUri = $config['redirectUri'];
+        $this->clientId = $config['clientId'];
+        $this->clientSecret = $config['clientSecret'];
+    }
+
+    public function getDefaultParameters()
     {
         return [
-            'loginPage' => "https://sso.digikey.com/as/authorization.oauth2",
-            'redirectUri' => "https://openbuy.localdev/api/digikey/code",
-            'clientId' => null,
-            'clientSecret' => null,
             'customerId' => null,
             'code' => null,
-            'tokenPage' => "https://sso.digikey.com/as/token.oauth2",
             'token' => null,
             'expiration' => null,
             'refreshToken' => null,
-            'keywordSearchUri' => "https://api.digikey.com/services/partsearch/v2/keywordsearch",
-            'partDetailsUri' => "https://api.digikey.com/services/partsearch/v2/partdetails",
-            'packageTypeUri' => "https://api.digikey.com/services/packagetypebyquantity/v2/search",
             'localSite' => "fr",
             'localLanguage' => "fr",
             'localCurrency' => "EUR",
@@ -64,22 +69,14 @@ class ApiDigikey
         ];
     }
 
-    public function getConfig()
+    public function getParameters()
     {
         return [
-            'loginPage' => $this->loginPage,
-            'redirectUri' => $this->redirectUri,
-            'clientId' => $this->clientId,
-            'clientSecret' => $this->clientSecret,
             'customerId' => $this->customerId,
             'code' => $this->code,
-            'tokenPage' => $this->tokenPage,
             'token' => $this->token,
             'expiration' => $this->expiration,
             'refreshToken' => $this->refreshToken,
-            'keywordSearchUri' => $this->keywordSearchUri,
-            'partDetailsUri' => $this->partDetailsUri,
-            'packageTypeUri' => $this->packageTypeUri,
             'localSite' => $this->localSite,
             'localLanguage' => $this->localLanguage,
             'localCurrency' => $this->localCurrency,
@@ -88,28 +85,20 @@ class ApiDigikey
         ];
     }
 
-    public function setConfig($config)
+    public function setParameters($parameters)
     {
-        $this->loginPage = $config['loginPage'];
-        $this->redirectUri = $config['redirectUri'];
-        $this->clientId = $config['clientId'];
-        $this->clientSecret = $config['clientSecret'];
-        $this->customerId = $config['customerId'];
-        $this->code = $config['code'];
-        $this->tokenPage = $config['tokenPage'];
-        $this->token = $config['token'];
-        $this->expiration = $config['expiration'];
-        $this->refreshToken = $config['refreshToken'];
-        $this->keywordSearchUri = $config['keywordSearchUri'];
-        $this->partDetailsUri = $config['partDetailsUri'];
-        $this->packageTypeUri = $config['packageTypeUri'];
-        $this->localSite = $config['localSite'];
-        $this->localLanguage = $config['localLanguage'];
-        $this->localCurrency = $config['localCurrency'];
-        $this->localShipToCountry = $config['localShipToCountry'];
-        $this->partnerId = $config['partnerId'];
+        $this->customerId = $parameters['customerId'];
+        $this->code = $parameters['code'];
+        $this->token = $parameters['token'];
+        $this->expiration = $parameters['expiration'];
+        $this->refreshToken = $parameters['refreshToken'];
+        $this->localSite = $parameters['localSite'];
+        $this->localLanguage = $parameters['localLanguage'];
+        $this->localCurrency = $parameters['localCurrency'];
+        $this->localShipToCountry = $parameters['localShipToCountry'];
+        $this->partnerId = $parameters['partnerId'];
 
-        $this->configUpdated = true;
+        $this->paramsUpdated = true;
     }
 
     public function linkLoginPage()
@@ -130,17 +119,17 @@ class ApiDigikey
         $this->expiration = null;
         $this->refreshToken = null;
 
-        $this->configUpdated = true;
+        $this->paramsUpdated = true;
 
-        return $this->getConfig();
+        return $this->getParameters();
     }
 
     public function setCode($code)
     {
         $this->code = $code;
-        $this->configUpdated = true;
+        $this->paramsUpdated = true;
 
-        return $this->getConfig();
+        return $this->getParameters();
     }
 
     public function retrieveToken($userAgent)
@@ -177,9 +166,9 @@ class ApiDigikey
         $this->expiration = new \DateTime('+ ' . $content["expires_in"] . ' seconds');
         $this->refreshToken = $content["refresh_token"];
 
-        $this->configUpdated = true;
+        $this->paramsUpdated = true;
 
-        return $this->getConfig();
+        return $this->getParameters();
     }
 
     public function refreshToken($userAgent)
@@ -215,9 +204,9 @@ class ApiDigikey
         $this->expiration = new \DateTime('+ ' . $content["expires_in"] . ' seconds');
         $this->refreshToken = $content["refresh_token"];
 
-        $this->configUpdated = true;
+        $this->paramsUpdated = true;
 
-        return $this->getConfig();
+        return $this->getParameters();
     }
 
     private function isTokenValid() {

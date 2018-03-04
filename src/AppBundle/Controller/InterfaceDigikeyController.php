@@ -20,7 +20,7 @@ class InterfaceDigikeyController extends Controller
      */
     public function editAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
     {
-        $config = $interface->getConfig($supplier->getId());
+        $config = $interface->getParameters($supplier->getId());
 
         $form = $this->getForm();
         $form->setData($config);
@@ -28,7 +28,7 @@ class InterfaceDigikeyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $interface->setConfig($form->getData());
+            $interface->setParameters($form->getData());
 
             $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.edit.success", array('%supplier%' => $supplier->getName()), "interface"));
 
@@ -138,42 +138,10 @@ class InterfaceDigikeyController extends Controller
     private function getForm()
     {
         return $this->createFormBuilder()
-            ->add('loginPage', TextType::class, array(
-                'label' => 'digikey.label.login_page',
-                'translation_domain' => 'interface',
-            ))
-            ->add('redirectUri', TextType::class, array(
-                'label' => 'digikey.label.redirect_uri',
-                'translation_domain' => 'interface',
-            ))
-            ->add('clientId', TextType::class, array(
-                'label' => 'digikey.label.client_id',
-                'translation_domain' => 'interface',
-            ))
-            ->add('clientSecret', TextType::class, array(
-                'label' => 'digikey.label.client_secret',
-                'translation_domain' => 'interface',
-            ))
             ->add('customerId', TextType::class, array(
                 'label' => 'digikey.label.customer_id',
                 'translation_domain' => 'interface',
                 'required' => false,
-            ))
-            ->add('tokenPage', TextType::class, array(
-                'label' => 'digikey.label.token_page',
-                'translation_domain' => 'interface',
-            ))
-            ->add('keywordSearchUri', TextType::class, array(
-                'label' => 'digikey.label.keywordsearch_uri',
-                'translation_domain' => 'interface',
-            ))
-            ->add('partDetailsUri', TextType::class, array(
-                'label' => 'digikey.label.partdetails_uri',
-                'translation_domain' => 'interface',
-            ))
-            ->add('packageTypeUri', TextType::class, array(
-                'label' => 'digikey.label.package_type_uri',
-                'translation_domain' => 'interface',
             ))
             ->add('localSite', TextType::class, array(
                 'label' => 'digikey.label.local_site',

@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\UserType;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserController extends Controller
 {
