@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * UserRepository
  *
@@ -10,5 +12,14 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getUsersPerPage($page, $nbPerPage)
+    {
+        $query = $this->createQueryBuilder('user')
+            ->orderBy('user.firstname')
+            ->addOrderBy('user.lastname')
+            ->setFirstResult(($page-1) * $nbPerPage)
+            ->setMaxResults($nbPerPage);
 
+        return new Paginator($query, true);
+    }
 }

@@ -1,0 +1,115 @@
+{% extends '::layout.admin.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'admin.users.index.title' | trans }}</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>{{ 'admin.users.label.name' | trans }}</th>
+            <th>{{ 'admin.users.label.last_login' | trans }}</th>
+            <th>{{ 'admin.users.label.auths' | trans }}</th>
+            <th>{{ 'table.header.action' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in list %}
+            <tr>
+                <th>{{ user.id }}</th>
+                <td>{{ user.fullname }}</td>
+                <td>{{ user.lastLogin | date('Y-m-d') }}</td>
+                <td>
+                    {% if user.hasRole('ROLE_CRM') %}
+                        <a href="{{ path('admin_users_auths_toggle', { 'id': user.id, 'auth': 'crm' }) }}"><button class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.crm.disallow' | trans }}"><li class="fa fa-building"></li></button></a>
+                    {% else %}
+                        <a href="{{ path('admin_users_auths_toggle', { 'id': user.id, 'auth': 'crm' }) }}"><button class="btn btn-sm btn-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.crm.allow' | trans }}"><li class="fa fa-building"></li></button></a>
+                    {% endif %}
+                    {% if user.hasRole('ROLE_SRM') %}
+                        <a href="{{ path('admin_users_auths_toggle', { 'id': user.id, 'auth': 'srm' }) }}"><button class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.srm.disallow' | trans }}"><li class="fa fa-industry"></li></button></a>
+                    {% else %}
+                        <a href="{{ path('admin_users_auths_toggle', { 'id': user.id, 'auth': 'srm' }) }}"><button class="btn btn-sm btn-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.srm.allow' | trans }}"><li class="fa fa-industry"></li></button></a>
+                    {% endif %}
+                    {% if user.hasRole('ROLE_BOM') %}
+                        <a href="{{ path('admin_users_auths_toggle', { 'id': user.id, 'auth': 'bom' }) }}"><button class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.bom.disallow' | trans }}"><li class="fa fa-money"></li></button></a>
+                    {% else %}
+                        <a href="{{ path('admin_users_auths_toggle', { 'id': user.id, 'auth': 'bom' }) }}"><button class="btn btn-sm btn-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.bom.allow' | trans }}"><li class="fa fa-money"></li></button></a>
+                    {% endif %}
+                </td>
+                <td class="index-action">
+                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#user_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
+                    {% if user.isEnabled %}
+                        <a href="{{ path('admin_users_enable_toggle', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.disable' | trans }}"><i class="fa fa-check"></i></button></a>
+                    {% else %}
+                        <a href="{{ path('admin_users_enable_toggle', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-outlined-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.enable' | trans }}"><i class="fa fa-ban"></i></button></a>
+                    {% endif %}
+                    <a href="{{ path('admin_users_edit', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
+                    <a href="{{ path('admin_users_delete', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
+                </td>
+            </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+    {% if nbPages > 1 %}
+        <nav class="float-right">
+            <ul class="pagination">
+                <li class="page-item{% if page < 2 %} disabled{% endif %}">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                {% for i in 1..nbPages %}
+                    {% if i == page %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path('admin_users_index', { 'page': i }) }}">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                <li class="page-item{% if page >= nbPages %} disabled{% endif %}">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    {% endif %}
+    <p>
+        <a href="{{ path('admin_users_new') }}"><button class="btn btn-primary">Create a new user</button></a>
+    </p>
+    {% for user in list %}
+        <div class="modal fade" id="user_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="user_{{ loop.index }}_Label">{{ user.fullname }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="row">
+                            <dt class="col-md-4">{{ 'admin.users.label.name' | trans }}: </dt>
+                            <dd class="col-md-8">{{ user.fullname }}</dd>
+                            <dt class="col-md-4">{{ 'admin.users.label.jobrole' | trans }}: </dt>
+                            <dd class="col-md-8">{{ user.jobrole }}</dd>
+                            <dt class="col-md-4">{{ 'admin.users.label.phone' | trans }}: </dt>
+                            <dd class="col-md-8">{{ user.phone }}</dd>
+                            <dt class="col-md-4">{{ 'admin.users.label.mobile' | trans }}: </dt>
+                            <dd class="col-md-8">{{ user.mobile }}</dd>
+                            <dt class="col-md-4">{{ 'admin.users.label.jobrole' | trans }}: </dt>
+                            <dd class="col-md-8">{{ user.jobrole }}</dd>
+                            <dt class="col-md-4">{{ 'admin.users.label.address' | trans }}: </dt>
+                            <dd class="col-md-8">
+                                {{ user.address }}<br/>
+                                {{ user.location }}<br/>
+                                {{ user.country }}<br/>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'modal.button.close' | trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

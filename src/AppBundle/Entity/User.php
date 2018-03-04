@@ -15,6 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
+    const NB_PER_PAGE = 20;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -191,6 +193,16 @@ class User extends BaseUser
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Get fullname
+     *
+     * @return string
+     */
+    public function getFullname()
+    {
+        return $this->firstname . " " . $this->lastname;
     }
 
     /**

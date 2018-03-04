@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{{ 'app.title' | trans }}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('build/vendor.css') }}" />
-        <link rel="stylesheet" href="{{ asset('build/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/vendor.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}" />
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -23,32 +23,30 @@
                     {{ 'topmenu.home' | trans }}
                 </a>
             </li>
+            {% if is_granted('ROLE_CRM') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('crm_ecus_index') }}">
                     <i class="fa fa-building"></i>
                     {{ "topmenu.customers" | trans }}
                 </a>
             </li>
+            {%  endif %}
+            {% if is_granted('ROLE_SRM') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('srm_suppliers_index') }}">
                     <i class="fa fa-industry"></i>
                     {{ "topmenu.suppliers" | trans }}
                 </a>
             </li>
+            {%  endif %}
+            {% if is_granted('ROLE_BOM') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('bom_index') }}">
                     <i class="fa fa-money"></i>
                     {{ "topmenu.bom" | trans }}
                 </a>
             </li>
-            {% if app.environment == "dev" %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('dev') }}">
-                        <i class="fa fa-cog"></i>
-                        {{ "topmenu.dev" | trans }}
-                    </a>
-                </li>
-            {% endif %}
+            {%  endif %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>
@@ -64,6 +62,22 @@
                     <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">{{ 'topmenu.logout' | trans }}</a>
                 </div>
             </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin_users_index') }}">
+                        <i class="fa fa-cogs"></i>
+                        {{ "topmenu.admin" | trans }}
+                    </a>
+                </li>
+                {% if app.environment == "dev" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('dev') }}">
+                            <i class="fa fa-cog"></i>
+                            {{ "topmenu.dev" | trans }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endif %}
         </ul>
     </div>
     <div class="float-right">
