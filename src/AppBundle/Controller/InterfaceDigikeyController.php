@@ -20,10 +20,10 @@ class InterfaceDigikeyController extends Controller
      */
     public function editAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
     {
-        $config = $interface->getParameters($supplier->getId());
+        $parameters = $interface->getParameters($supplier->getId());
 
         $form = $this->getForm();
-        $form->setData($config);
+        $form->setData($parameters);
 
         $form->handleRequest($request);
 

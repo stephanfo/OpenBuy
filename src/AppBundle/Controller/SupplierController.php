@@ -17,7 +17,7 @@ class SupplierController extends Controller
     {
         $listSuppliers = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Supplier')
+            ->getRepository(Supplier::class)
             ->getSuppliersPerPage($page, $nbPerPage);
 
         $nbPages = ceil(count($listSuppliers) / $nbPerPage);

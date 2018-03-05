@@ -109,7 +109,7 @@ class ApiDigikey
             'redirect_uri' => $this->redirectUri,
         ];
 
-        return $this->loginPage . "?" . http_build_query($params);
+        return self::loginPage . "?" . http_build_query($params);
     }
 
     public function revoke()
@@ -153,7 +153,7 @@ class ApiDigikey
         ];
 
         try {
-            $response = $clientHttp->request('POST', $this->tokenPage, [
+            $response = $clientHttp->request('POST', self::tokenPage, [
                 'form_params' => $form_params,
             ]);
         } catch (RequestException $e) {
@@ -191,7 +191,7 @@ class ApiDigikey
         ];
 
         try {
-            $response = $clientHttp->request('POST', $this->tokenPage, [
+            $response = $clientHttp->request('POST', self::tokenPage, [
                 'form_params' => $form_params,
             ]);
         } catch (RequestException $e) {
@@ -234,7 +234,7 @@ class ApiDigikey
             'RecordStartPosition' => 0,
         );
 
-        return $this->sendRequest($userAgent, $this->keywordSearchUri, $searchRequest);
+        return $this->sendRequest($userAgent, self::keywordSearchUri, $searchRequest);
     }
 
     public function partDetails($userAgent, $keyword)
@@ -243,7 +243,7 @@ class ApiDigikey
             'Part' => $keyword,
         );
 
-        return $this->sendRequest($userAgent, $this->partDetailsUri, $searchRequest);
+        return $this->sendRequest($userAgent, self::partDetailsUri, $searchRequest);
 
     }
 
@@ -255,7 +255,7 @@ class ApiDigikey
             'PartPreference' => $packagingPreference,
         );
 
-        return $this->sendRequest($userAgent, $this->packageTypeUri, $searchRequest);
+        return $this->sendRequest($userAgent, self::packageTypeUri, $searchRequest);
 
     }
 

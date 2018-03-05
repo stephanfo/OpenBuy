@@ -2,9 +2,11 @@
 
 namespace APIDigikeyBundle\Service;
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\Article;
 use Doctrine\ORM\EntityManager;
 use AppBundle\Entity\Supplier;
+use AppBundle\Entity\Config;
 
 class InterfaceDigikey
 {
@@ -21,7 +23,10 @@ class InterfaceDigikey
             $this->loadSupplier($supplierId);
         }
 
-        $this->api->setConfig($this->em->getRepository(Config::class)->findByName($this->getClassName()));
+        $config = $this->em->getRepository(Config::class)->findOneBy(array('name' => $this->getClassName()));
+        $parameters = $config->getParameters();
+
+        $this->api->setConfig($parameters);
     }
 
     private function loadSupplier($supplierId)
@@ -202,7 +207,7 @@ class InterfaceDigikey
     }
 
     private function convertPartInArticle ($part) {
-        $article = $this->em->getRepository('AppBundle:Article')->findOneBy(array(
+        $article = $this->em->getRepository(Article::class)->findOneBy(array(
             'supplier' => array($this->supplier),
             'sku' => array($part['DigiKeyPartNumber']),
         ));

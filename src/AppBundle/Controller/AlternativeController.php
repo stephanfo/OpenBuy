@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Alternative;
+use AppBundle\Entity\Line;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -81,7 +82,7 @@ class AlternativeController extends Controller
             {
                 $em = $this->getDoctrine()->getManager();
 
-                $alternative = $em->getRepository('AppBundle:Alternative')->find($alternativeId);
+                $alternative = $em->getRepository(Alternative::class)->find($alternativeId);
                 $alternative->setMfrName($mfrName);
                 $alternative->setMfrPn($mfrPn);
 
@@ -208,7 +209,7 @@ class AlternativeController extends Controller
             $lineId = $data["lineId"];
 
             $em = $this->getDoctrine()->getManager();
-            $line = $em->getRepository('AppBundle:Line')->find($lineId);
+            $line = $em->getRepository(Line::class)->find($lineId);
 
             if (is_string($data['mfrName1']) && is_string($data['mfrPn1']))
                 $line->createAlternative($data['mfrName1'], $data['mfrPn1']);

@@ -2,6 +2,7 @@
 
 namespace APIDigikeyBundle\Controller;
 
+use AppBundle\Entity\Supplier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,9 +34,9 @@ class DefaultController extends Controller
         $locale = $params['local'];
         $session->remove("interface_digikey_code_id");
 
-        $supplier = $this->getDoctrine()->getRepository('AppBundle:Supplier')->find($id);
+        $supplier = $this->getDoctrine()->getRepository(Supplier::class)->find($id);
 
-        $api = new ApiDigikey($supplier->getParameters());
+        $api = new ApiDigikey(null, $supplier->getParameters());
         $supplier->setParameters($api->setCode($code));
 
         $this->getDoctrine()->getManager()->flush();

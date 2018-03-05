@@ -17,7 +17,7 @@ class EcuController extends Controller
     {
         $list = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Ecu')
+            ->getRepository(Ecu::class)
             ->getEcusPerPage($page, $nbPerPage);
 
         $nbPages = ceil(count($list) / $nbPerPage);

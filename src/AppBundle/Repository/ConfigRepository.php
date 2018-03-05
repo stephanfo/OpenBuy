@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * ConfigRepository
  *
@@ -10,4 +12,14 @@ namespace AppBundle\Repository;
  */
 class ConfigRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getConfigsPerPage($page, $nbPerPage)
+    {
+        $query = $this->createQueryBuilder('config')
+            ->orderBy('config.name', 'ASC')
+            ->setFirstResult(($page - 1) * $nbPerPage)
+            ->setMaxResults($nbPerPage);
+
+        return new Paginator($query, true);
+    }
+
 }

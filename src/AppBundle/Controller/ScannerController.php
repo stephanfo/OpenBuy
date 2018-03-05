@@ -6,6 +6,7 @@ use APIDigikeyBundle\Service\InterfaceDigikey;
 use AppBundle\Entity\Alternative;
 use AppBundle\Entity\Bom;
 use AppBundle\Entity\Line;
+use AppBundle\Entity\Supplier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -141,7 +142,7 @@ class ScannerController extends Controller
 
     private function scanAlternative(Alternative $alternative, InterfaceDigikey $interfaceDigikey, Request $request)
     {
-        $suppliers = $this->getDoctrine()->getRepository('AppBundle:Supplier')->getSuppliersWithAPI();
+        $suppliers = $this->getDoctrine()->getRepository(Supplier::class)->getSuppliersWithAPI();
 
         foreach ($alternative->getArticles() as $article)
         {

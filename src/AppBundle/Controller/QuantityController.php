@@ -87,7 +87,7 @@ class QuantityController extends Controller
             {
                 $em = $this->getDoctrine()->getManager();
 
-                $quantityEntity = $em->getRepository('AppBundle:Quantity')->find($quantityId);
+                $quantityEntity = $em->getRepository(Quantity::class)->find($quantityId);
                 $quantityEntity->setName($name);
                 $quantityEntity->setQuantity($quantity);
                 $quantityEntity->setDate($date);

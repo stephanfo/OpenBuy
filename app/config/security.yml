@@ -44,9 +44,9 @@ security:
         - { path: ^/../register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/../resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/excel, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/../dev, roles: ROLE_ADMIN }
         - { path: ^/../bom, roles: ROLE_BOM }
         - { path: ^/../crm, roles: ROLE_CRM }
         - { path: ^/../srm, roles: ROLE_SRM }
-        - { path: ^/../user, roles: ROLE_ADMIN }
+        - { path: ^/../admin, roles: ROLE_ADMIN }
+        - { path: ^/../dev, roles: ROLE_ADMIN }
         - { path: ^/, role: IS_AUTHENTICATED_FULLY }

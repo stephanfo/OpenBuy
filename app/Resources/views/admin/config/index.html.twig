@@ -1,0 +1,74 @@
+{% extends '::layout.admin.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'admin.configs.index.title' | trans }}</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'admin.configs.label.name' | trans }}</th>
+            <th>{{ 'admin.configs.label.updated' | trans }}</th>
+            <th>{{ 'table.header.action' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for config in list %}
+            <tr>
+                <th>{{ config.name }}</th>
+                <td>{{ config.updated | date('Y-m-d') }}</td>
+                <td class="index-action">
+                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#config_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
+                    <a href="{{ path('admin_configs_edit', { 'name': config.name }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
+                </td>
+            </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+    {% if nbPages > 1 %}
+        <nav class="float-right">
+            <ul class="pagination">
+                <li class="page-item{% if page < 2 %} disabled{% endif %}">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                {% for i in 1..nbPages %}
+                    {% if i == page %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path('admin_users_index', { 'page': i }) }}">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                <li class="page-item{% if page >= nbPages %} disabled{% endif %}">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    {% endif %}
+    {% for config in list %}
+        <div class="modal fade" id="config_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="config_{{ loop.index }}_Label">{{ config.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="row">
+                            {% for key, parameter in config.parameters %}
+                                <dt class="col-md-4">{{ 'admin.config.label' ~ key | trans }}: </dt>
+                                <dd class="col-md-8">{{ parameter }}</dd>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'modal.button.close' | trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Ecu;
 use AppBundle\Entity\Quantity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,7 +21,7 @@ class BomController extends Controller
     {
         $list = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Bom')
+            ->getRepository(Bom::class)
             ->getBomsPerPage($page, $nbPerPage);
 
         $nbPages = ceil(count($list) / $nbPerPage);
@@ -47,7 +48,7 @@ class BomController extends Controller
 
         if (!is_null($ecuId))
         {
-            $bom->setEcu($this->getDoctrine()->getRepository('AppBundle:Ecu')->find($ecuId));
+            $bom->setEcu($this->getDoctrine()->getRepository(Ecu::class)->find($ecuId));
         }
 
         $form = $this->createForm(BomType::class, $bom);
@@ -115,7 +116,7 @@ class BomController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $bom = $em->getRepository('AppBundle:Bom')->getBomFullDetails($id);
+        $bom = $em->getRepository(Bom::class)->getBomFullDetails($id);
 
         if(is_null($quantityId))
         {
@@ -133,7 +134,7 @@ class BomController extends Controller
         }
         else
         {
-            $quantity = $em->getRepository('AppBundle:Quantity')->find($quantityId)->getQuantity();
+            $quantity = $em->getRepository(Quantity::class)->find($quantityId)->getQuantity();
         }
 
         $pricing = $this->bomPricing($bom, $quantity);

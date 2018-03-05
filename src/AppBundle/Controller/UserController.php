@@ -21,7 +21,7 @@ class UserController extends Controller
         $em->getFilters()->disable('userfilter');
 
         $list = $em
-            ->getRepository('AppBundle:User')
+            ->getRepository(User::class)
             ->getUsersPerPage($page, $nbPerPage);
 
         $nbPages = ceil(count($list) / $nbPerPage);

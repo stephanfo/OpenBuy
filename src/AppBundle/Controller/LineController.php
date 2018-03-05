@@ -265,7 +265,7 @@ class LineController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $bomFull = $em->getRepository('AppBundle:Bom')->getBomLinesAlternatives($bom->getId());
+            $bomFull = $em->getRepository(Bom::class)->getBomLinesAlternatives($bom->getId());
 
             for ($i = $lineStart ; $i <= count($lines) - 1 ; $i++)
             {
@@ -363,7 +363,7 @@ class LineController extends Controller
             {
                 $em = $this->getDoctrine()->getManager();
 
-                $line = $em->getRepository('AppBundle:Line')->find($lineId);
+                $line = $em->getRepository(Line::class)->find($lineId);
                 $line->setEcuPn($ecuPn);
                 $line->setMultiplier($multiplier);
 

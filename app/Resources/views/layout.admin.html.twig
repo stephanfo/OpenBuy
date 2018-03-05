@@ -22,6 +22,15 @@
                     <a class="nav-link" href="{{ path('admin_users_new') }}">{{ 'leftmenu.users.create' | trans }}</a>
                 </li>
             </ul>
+            <h5 class="app-nav-sidebar-header">{{ 'leftmenu.title.config' | trans }}</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin_configs_index') }}">{{ 'leftmenu.configs.list' | trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin_configs_edit', { 'name': 'InterfaceDigikey' }) }}">{{ 'leftmenu.configs.interface_digikey' | trans }}</a>
+                </li>
+            </ul>
         </div>
         <div class="col-xl-10 col-md-9 col-sm-8">
             {% block content %}{% endblock %}
