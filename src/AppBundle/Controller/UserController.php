@@ -121,7 +121,7 @@ class UserController extends Controller
                 $user->setEnabled(true);
                 $userManager->updateUser($user);
 
-                $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash..new.success"), array('%email%' => $user->getEmail()));
+                $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.users.new.success"), array('%user%' => $user->getFullname()));
 
                 return $this->redirectToRoute('admin_users_index');
             }
