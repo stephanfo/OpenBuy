@@ -22,80 +22,91 @@ class DefaultController extends Controller
         $data['search'] = $request->request->get('search');
         $data['quantity'] = $request->request->get('quantity');
         $data['preference'] = $request->request->get('preference');
+        $data['apiToken'] = $request->request->get('apiToken');
         $data['supplierId'] = $request->request->get('supplierId');
 
-        $articleArray = $interfaceDigikey->packageTypeByQuantityInArticle($request->headers->get('User-Agent'), $data['search'], $data['preference'], $data['quantity'], $data['supplierId']);
+        $supplier = $this->getDoctrine()->getRepository(Supplier::class)->find($data['supplierId']);
 
-        if (count($articleArray) > 0 && !is_string($articleArray))
+        if ($supplier->getUser()->getApiToken() === $data['apiToken'])
         {
-            $article = array_shift($articleArray);
-            $variables = $article->getVariables();
-            $variable = $variables->last();
-            $supplier = $article->getSupplier();
+            $articleArray = $interfaceDigikey->packageTypeByQuantityInArticle($request->headers->get('User-Agent'), $data['search'], $data['preference'], $data['quantity'], $data['supplierId']);
 
-            if(count($variable->getPrices()) >= 1)
+
+            if (count($articleArray) > 0 && !is_string($articleArray))
             {
-                $pricing = $this->findBestPrice($variable->getPrices(), $data['quantity']);
+                $article = array_shift($articleArray);
+                $variables = $article->getVariables();
+                $variable = $variables->last();
+                $supplier = $article->getSupplier();
 
-                $data['price'] = $pricing['bestPrice']->getPrice();
-                $data['column'] = $pricing['bestPrice']->getQuantity();
-
-                if (!is_null($pricing['previousPrice']))
+                if(count($variable->getPrices()) >= 1)
                 {
-                    $data['priceBefore'] = $pricing['previousPrice']->getPrice();
-                    $data['columnBefore'] = $pricing['previousPrice']->getQuantity();
+                    $pricing = $this->findBestPrice($variable->getPrices(), $data['quantity']);
+
+                    $data['price'] = $pricing['bestPrice']->getPrice();
+                    $data['column'] = $pricing['bestPrice']->getQuantity();
+
+                    if (!is_null($pricing['previousPrice']))
+                    {
+                        $data['priceBefore'] = $pricing['previousPrice']->getPrice();
+                        $data['columnBefore'] = $pricing['previousPrice']->getQuantity();
+                    }
+                    else
+                    {
+                        $data['priceBefore'] = "";
+                        $data['columnBefore'] = "";
+                    }
+                    if (!is_null($pricing['nextPrice']))
+                    {
+                        $data['priceAfter'] = $pricing['nextPrice']->getPrice();
+                        $data['columnAfter'] = $pricing['nextPrice']->getQuantity();
+                    }
+                    else
+                    {
+                        $data['priceAfter'] = "";
+                        $data['columnAfter'] = "";
+                    }
                 }
                 else
                 {
+                    $data['price'] = "";
+                    $data['column'] = "";
                     $data['priceBefore'] = "";
                     $data['columnBefore'] = "";
-                }
-                if (!is_null($pricing['nextPrice']))
-                {
-                    $data['priceAfter'] = $pricing['nextPrice']->getPrice();
-                    $data['columnAfter'] = $pricing['nextPrice']->getQuantity();
-                }
-                else
-                {
                     $data['priceAfter'] = "";
                     $data['columnAfter'] = "";
                 }
+
+                $data['stock'] = $variable->getStock();
+                $data['leadtime'] = $variable->getLeadtime();
+                $data['package'] = $article->getPackage();
+                $data['moq'] = $article->getMoq();
+                $data['url'] = $article->getLink();
+                $data['mfrPn'] = $article->getMfrPn();
+                $data['mfrName'] = $article->getMfrName();
+                $data['description'] = $article->getDescription();
+                $data['sku'] = $article->getSku();
+                $data['supplier'] = $supplier->getName();
+                $data['currency'] = $supplier->getCurrency();
+
+                $data['comment'] = "";
+                $data['comment'] .= $data['search'] != $data['mfrPn'] ? "Part number corrected\r\n" : "";
+                if ($article->getMoq() > 0 && ($data['quantity'] % $article->getMoq()) != 0)
+                {
+                    $data['comment'] .= "The quantity is not a multiple of the MOQ\r\n";
+                }
+                $data['comment'] .= count($articleArray) > 0 ? "Only the first price has been returned\r\n" : "";
+
+                $data['updated'] = $variable->getCreated()->format('Y-m-d H:i:s');
             }
             else
             {
-                $data['price'] = "";
-                $data['column'] = "";
-                $data['priceBefore'] = "";
-                $data['columnBefore'] = "";
-                $data['priceAfter'] = "";
-                $data['columnAfter'] = "";
+                $data['error'] = "No article returned";
             }
-
-            $data['stock'] = $variable->getStock();
-            $data['leadtime'] = $variable->getLeadtime();
-            $data['package'] = $article->getPackage();
-            $data['moq'] = $article->getMoq();
-            $data['url'] = $article->getLink();
-            $data['mfrPn'] = $article->getMfrPn();
-            $data['mfrName'] = $article->getMfrName();
-            $data['description'] = $article->getDescription();
-            $data['sku'] = $article->getSku();
-            $data['supplier'] = $supplier->getName();
-            $data['currency'] = $supplier->getCurrency();
-
-            $data['comment'] = "";
-            $data['comment'] .= $data['search'] != $data['mfrPn'] ? "Part number corrected\r\n" : "";
-            if ($article->getMoq() > 0 && ($data['quantity'] % $article->getMoq()) != 0)
-            {
-                $data['comment'] .= "The quantity is not a multiple of the MOQ\r\n";
-            }
-            $data['comment'] .= count($articleArray) > 0 ? "Only the first price has been returned\r\n" : "";
-
-            $data['updated'] = $variable->getCreated()->format('Y-m-d H:i:s');
         }
         else
         {
-            $data['error'] = "No article returned";
+            $data['error'] = "Bad token or bad Supplier ID";
         }
 
         $response = new Response($this->arrayToXML($data));

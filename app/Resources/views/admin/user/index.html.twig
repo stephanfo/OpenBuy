@@ -43,7 +43,6 @@
                         <a href="{{ path('admin_users_enable_toggle', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-outlined-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.enable' | trans }}"><i class="fa fa-ban"></i></button></a>
                     {% endif %}
                     <a href="{{ path('admin_users_edit', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
-                    <a href="{{ path('admin_users_delete', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
                 </td>
             </tr>
         {%  endfor %}

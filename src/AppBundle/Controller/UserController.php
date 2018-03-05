@@ -141,24 +141,6 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/admin/users/delete/{id}", requirements={"id": "\d+"}, name="admin_users_delete")
-     */
-    public function deleteAction($id, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $em->getFilters()->disable('userfilter');
-
-        $userManager = $this->get('fos_user.user_manager');
-        $user = $userManager->findUserBy(array('id' => $id));
-
-        $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.id.delete.success"), array('%user%' => $user->getFullname()));
-
-        $userManager->deleteUser($user);
-
-        return $this->redirectToRoute('admin_users_index');
-    }
-
-    /**
      * @Route("/admin/users/auths/{auth}/toggle/{id}", requirements={"id": "\d+"}, name="admin_users_auths_toggle")
      */
     public function authToggleAction($auth, $id, Request $request)
