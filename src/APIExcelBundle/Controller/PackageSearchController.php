@@ -9,25 +9,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Spatie\ArrayToXml\ArrayToXml;
 
-class DefaultController extends Controller
+class PackageSearchController extends Controller
 {
     /**
-     * @Route("/packagesearch")
+     * @Route("/packagesearch/price")
      */
-    public function packageSearchAction(InterfaceDigikey $interfaceDigikey, Request $request)
+    public function priceAction(InterfaceDigikey $interfaceDigikey, Request $request)
     {
         $data = array();
         $data['type'] = 'PackageSearch';
         $data['search'] = $request->request->get('search');
         $data['quantity'] = $request->request->get('quantity');
         $data['preference'] = $request->request->get('preference');
-        $data['apiToken'] = $request->request->get('apiToken');
         $data['supplierId'] = $request->request->get('supplierId');
 
         $supplier = $this->getDoctrine()->getRepository(Supplier::class)->find($data['supplierId']);
 
-        if ($supplier->getUser()->getApiToken() === $data['apiToken'])
+        if ($supplier->getUser()->getApiToken() === $request->request->get('apiToken'))
         {
             $articleArray = $interfaceDigikey->packageTypeByQuantityInArticle($request->headers->get('User-Agent'), $data['search'], $data['preference'], $data['quantity'], $data['supplierId']);
 
@@ -42,6 +42,8 @@ class DefaultController extends Controller
                 if(count($variable->getPrices()) >= 1)
                 {
                     $pricing = $this->findBestPrice($variable->getPrices(), $data['quantity']);
+
+                    $data['allPrices'] = array('price' => $pricing['allPrices']);
 
                     $data['price'] = $pricing['bestPrice']->getPrice();
                     $data['column'] = $pricing['bestPrice']->getQuantity();
@@ -66,19 +68,33 @@ class DefaultController extends Controller
                         $data['priceAfter'] = "";
                         $data['columnAfter'] = "";
                     }
+                    if (!is_null($pricing['firstPrice']))
+                    {
+                        $data['priceFirst'] = $pricing['firstPrice']->getPrice();
+                        $data['columnFirst'] = $pricing['firstPrice']->getQuantity();
+                    }
+                    else
+                    {
+                        $data['priceFirst'] = "";
+                        $data['columnFirst'] = "";
+                    }
                 }
                 else
                 {
+                    $data['allPrices'] = null;
                     $data['price'] = "";
                     $data['column'] = "";
                     $data['priceBefore'] = "";
                     $data['columnBefore'] = "";
                     $data['priceAfter'] = "";
                     $data['columnAfter'] = "";
+                    $data['priceFirst'] = "";
+                    $data['columnFirst'] = "";
                 }
 
                 $data['stock'] = $variable->getStock();
                 $data['leadtime'] = $variable->getLeadtime();
+                $data['status'] = $variable->getStatus();
                 $data['package'] = $article->getPackage();
                 $data['moq'] = $article->getMoq();
                 $data['url'] = $article->getLink();
@@ -90,6 +106,7 @@ class DefaultController extends Controller
                 $data['currency'] = $supplier->getCurrency();
 
                 $data['comment'] = "";
+                $data['comment'] .= !is_null($variable->getComment()) ? $variable->getComment() . "\r\n" : "";
                 $data['comment'] .= $data['search'] != $data['mfrPn'] ? "Part number corrected\r\n" : "";
                 if ($article->getMoq() > 0 && ($data['quantity'] % $article->getMoq()) != 0)
                 {
@@ -109,31 +126,26 @@ class DefaultController extends Controller
             $data['error'] = "Bad token or bad Supplier ID";
         }
 
-        $response = new Response($this->arrayToXML($data));
+        $dataXml = ArrayToXml::convert($data, 'response');
+
+        $response = new Response($dataXml);
         $response->headers->set('Content-Type', 'xml');
 
         return $response;
     }
 
-    private function arrayToXML($array) {
-
-        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><response></response>");
-
-        foreach($array as $key => $value) {
-            $xml->addChild("$key",htmlspecialchars("$value"));
-        }
-
-        return $xml->asXML();
-    }
-
     private function findBestPrice($prices, $quantity)
     {
-        $bestPrice = $prices->first();
+        $firstPrice = $prices->first();
+        $bestPrice = $firstPrice;
         $previousPrice = null;
         $nextPrice = null;
         $newBestPrice = false;
+        $allPrices = null;
 
         foreach ($prices as $price) {
+            $allPrices[] = array('quantity' => $price->getQuantity(), 'price' => $price->getPrice());
+
             if ($newBestPrice) {
                 $nextPrice = $price;
                 $newBestPrice = false;
@@ -152,6 +164,8 @@ class DefaultController extends Controller
         }
 
         return array(
+            'allPrices' => $allPrices,
+            'firstPrice' => $firstPrice,
             'bestPrice' => $bestPrice,
             'previousPrice' => $previousPrice,
             'nextPrice' => $nextPrice

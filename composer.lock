@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "182d6f706253c24ed77ae2e4bb1b0a99",
+    "content-hash": "b626b8a26b04b3166b961e8917155abb",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2204,6 +2204,55 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2018-01-11T05:54:03+00:00"
+        },
+        {
+            "name": "spatie/array-to-xml",
+            "version": "2.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/array-to-xml.git",
+                "reference": "cb8befcd0c58ccf8baa5491e61a5c1d02a3acbba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/array-to-xml/zipball/cb8befcd0c58ccf8baa5491e61a5c1d02a3acbba",
+                "reference": "cb8befcd0c58ccf8baa5491e61a5c1d02a3acbba",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^6.3",
+                "spatie/phpunit-snapshot-assertions": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\ArrayToXml\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert an array to xml",
+            "homepage": "https://github.com/spatie/array-to-xml",
+            "keywords": [
+                "array",
+                "convert",
+                "xml"
+            ],
+            "time": "2018-02-20T15:21:24+00:00"
         },
         {
             "name": "stfalcon/tinymce-bundle",

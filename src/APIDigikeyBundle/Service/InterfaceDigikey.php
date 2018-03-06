@@ -254,7 +254,7 @@ class InterfaceDigikey
             }
         }
 
-        $article->createVariable((int)$part["ManufacturerLeadWeeks"] * 7, $part["QuantityOnHand"], 2, new \DateTime("now + 1 day"), null, $pricingArray);
+        $article->createVariable((int)$part["ManufacturerLeadWeeks"] * 7, $part["QuantityOnHand"], 2, new \DateTime("now + 1 day"), $part["PartStatus"], null, $pricingArray);
 
         $this->em->persist($article);
         $this->em->flush();

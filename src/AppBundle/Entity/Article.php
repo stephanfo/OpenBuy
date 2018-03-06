@@ -462,7 +462,7 @@ class Article
      *
      * @return Article
      */
-    public function createVariable(?int $leadtime = null, ?int $stock = null, ?int $delivery = null, \DateTime $validity = null, ?string $comment = null, array $prices = array())
+    public function createVariable(?int $leadtime = null, ?int $stock = null, ?int $delivery = null, \DateTime $validity = null, ?string $status = null, ?string $comment = null, array $prices = array())
     {
         $variable = new Variable();
         $variable->setArticle($this);
@@ -471,6 +471,7 @@ class Article
         $variable->setStock($stock);
         $variable->setDelivery($delivery);
         $variable->setValidity($validity);
+        $variable->setStatus($status);
         $variable->setComment($comment);
         $variable->createPrices($prices);
 

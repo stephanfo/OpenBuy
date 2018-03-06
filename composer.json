@@ -26,6 +26,7 @@
         "liuggio/excelbundle": "^2.1",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
+        "spatie/array-to-xml": "^2.7",
         "stfalcon/tinymce-bundle": "^2.1",
         "stof/doctrine-extensions-bundle": "^1.2",
         "symfony/monolog-bundle": "^3.1.0",
