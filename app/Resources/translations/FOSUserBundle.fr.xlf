@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2018-03-09T21:08:01Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="a5eba05921c11add89e9b68570149da22499c604" resname="change_password.submit">
+        <source>change_password.submit</source>
+        <target>Change mon mot de passe</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/ChangePassword/change_password_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9741ffbcf8dbb31e1a2d32bd25cb0ccc5a6dea54" resname="profile.edit.submit">
+        <source>profile.edit.submit</source>
+        <target>Mettre à jour mon profile</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/Profile/edit_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c05ea373f9cb7d804e1489bc9d2cb07239993fd6" resname="profile.show.address">
+        <source>profile.show.address</source>
+        <target>Adresse</target>
+        <jms:reference-file line="16">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b1f7a3ae2a83dc9f1b63e4236122db8934e9e525" resname="profile.show.api_token">
+        <source>profile.show.api_token</source>
+        <target>Token</target>
+        <jms:reference-file line="25">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="102fec7e8a14ac25f78f4d8e9b61fbc598597369" resname="profile.show.country">
+        <source>profile.show.country</source>
+        <target>Pays</target>
+        <jms:reference-file line="18">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6f2b87ab0da336a9cb633f397ff7f86ab7ea522b" resname="profile.show.email">
+        <source>profile.show.email</source>
+        <target>Email</target>
+        <jms:reference-file line="7">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="23dc75f0ce6a28854008a1cf8c3041e41181ba8d" resname="profile.show.firstname">
+        <source>profile.show.firstname</source>
+        <target>Prénom</target>
+        <jms:reference-file line="11">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="202ca8de0474a72c80c79443b2b60337c8d08925" resname="profile.show.jobrole">
+        <source>profile.show.jobrole</source>
+        <target>Fonction</target>
+        <jms:reference-file line="13">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="19e3f28bfb3a3b7d5fa0e6fe1bcca8a0a969de0c" resname="profile.show.lastname">
+        <source>profile.show.lastname</source>
+        <target>Nom</target>
+        <jms:reference-file line="12">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="478a17cefad686ac4825bf4eebc022f0b8be2472" resname="profile.show.latitude">
+        <source>profile.show.latitude</source>
+        <target>Latitude</target>
+        <jms:reference-file line="20">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b15db0f077e13788faefdec8e4542cca550ec967" resname="profile.show.location">
+        <source>profile.show.location</source>
+        <target>Ville</target>
+        <jms:reference-file line="17">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="07b85b74e7a87a5cfcd524c13bdf1f9722b48910" resname="profile.show.longitude">
+        <source>profile.show.longitude</source>
+        <target>Longitude</target>
+        <jms:reference-file line="19">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="90345419c0b67b9490676572cd018a2ac0681f8b" resname="profile.show.mobile">
+        <source>profile.show.mobile</source>
+        <target>Portable</target>
+        <jms:reference-file line="15">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="74c8a466cb184fe99fe49b9c9893ebcd4314007e" resname="profile.show.phone">
+        <source>profile.show.phone</source>
+        <target>Téléphone</target>
+        <jms:reference-file line="14">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0d6307def2ec4ecb26978118bb2deca9d566945c" resname="profile.show.username">
+        <source>profile.show.username</source>
+        <target>Identifiant</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d095d705c92016d970ba39bdb34819c6b2cbcea5" resname="profile.title.show">
+        <source>profile.title.show</source>
+        <target>Mon profile</target>
+        <jms:reference-file line="3">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="aa270294fb708ebdebf6e7bca51c98ca3b6d7421" resname="profile.title.show.account">
+        <source>profile.title.show.account</source>
+        <target>Mon compte</target>
+        <jms:reference-file line="4">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="71cba1252e8bb1fa8c3bef06216cfc045279d41a" resname="profile.title.show.api">
+        <source>profile.title.show.api</source>
+        <target>Mon API</target>
+        <jms:reference-file line="23">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c0f254664d7f64a3bab2d8e9ab0895401b77c98c" resname="profile.title.show.details">
+        <source>profile.title.show.details</source>
+        <target>Mes détails</target>
+        <jms:reference-file line="9">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="62d5564c383b885ff0de25abd24a41080499970b" resname="security.login.password">
+        <source>security.login.password</source>
+        <target>Mot de passe</target>
+        <jms:reference-file line="33">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d074ed9a0eb75b7f17ef2274c21d4c3d12d91634" resname="security.login.remember_me">
+        <source>security.login.remember_me</source>
+        <target>Se souvenir de moi</target>
+        <jms:reference-file line="38">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="79c180ac5e987e195d1dfeda857a114ed692d07f" resname="security.login.submit">
+        <source>security.login.submit</source>
+        <target>Connexion</target>
+        <jms:reference-file line="44">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f67e024a53ee538d1848db7e173825b67e83fe08" resname="security.login.title">
+        <source>security.login.title</source>
+        <target>Connectez-vous</target>
+        <jms:reference-file line="8">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="64e1b2aaf6156a7e34a13fbc38801e89478efff8" resname="security.login.username">
+        <source>security.login.username</source>
+        <target>Nom d'utilisateur</target>
+        <jms:reference-file line="30">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

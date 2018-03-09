@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2018-03-09T21:08:01Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="a755b928ea6322e87aed1807daa8aac260540124" resname="console.actions">
+        <source>console.actions</source>
+        <target>Actions</target>
+        <jms:reference-file line="17">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a34fdabee709514169f172923e6da9061d67305a" resname="console.parameters">
+        <source>console.parameters</source>
+        <target>Paramètres courants</target>
+        <jms:reference-file line="8">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6e958aad6ae7a4334d7a88535dc0cb8233709a39" resname="console.simulation.answer">
+        <source>console.simulation.answer</source>
+        <target>Réponse</target>
+        <jms:reference-file line="46">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="e4eea5352dfd897618b17815b0c34e8b436a03d8" resname="console.simulation.form">
+        <source>console.simulation.form</source>
+        <target>Formulaire de requetage</target>
+        <jms:reference-file line="39">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="63e36395e4b3a7676a78e7788c45773f062b2b1f" resname="console.title">
+        <source>console.title</source>
+        <target>Console</target>
+        <jms:reference-file line="4">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="034f65a2381df11939d27ba2f9da882c97367388" resname="digikey.button.code">
+        <source>digikey.button.code</source>
+        <target>Code</target>
+        <jms:reference-file line="23">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="40befee1a0bcadcb8bef0808a359e1cb41c443a7" resname="digikey.button.code.description">
+        <source>digikey.button.code.description</source>
+        <target>Générer un code d'authentification</target>
+        <jms:reference-file line="24">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8bb13cc65baf99261fdd7620d87fc3c2da8cb124" resname="digikey.button.refresh">
+        <source>digikey.button.refresh</source>
+        <target>Rafraichir</target>
+        <jms:reference-file line="31">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8b6fb89f5dae0afa6197e9d789b1d6e87de570af" resname="digikey.button.refresh.description">
+        <source>digikey.button.refresh.description</source>
+        <target>Rafraichir le token</target>
+        <jms:reference-file line="32">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d8f9aa7f3f9e6e40439707af658036f5b84908e1" resname="digikey.button.revoke">
+        <source>digikey.button.revoke</source>
+        <target>Revoquer</target>
+        <jms:reference-file line="19">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c53870b659812f87dfaec2c84fae931413844bb9" resname="digikey.button.revoke.description">
+        <source>digikey.button.revoke.description</source>
+        <target>Revoquer le token courant</target>
+        <jms:reference-file line="20">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f18207f5fd40aa4e69cdf4f768e20eecda5d095e" resname="digikey.button.token">
+        <source>digikey.button.token</source>
+        <target>Token</target>
+        <jms:reference-file line="27">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="228bff400e3f3f077c907d3ab994ce7f67317ce9" resname="digikey.button.token.description">
+        <source>digikey.button.token.description</source>
+        <target>Générer un token</target>
+        <jms:reference-file line="28">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6ad4e288b9dd04064f4a1077d6983ea75bb40011" resname="digikey.label.code">
+        <source>digikey.label.code</source>
+        <target>Code</target>
+        <jms:reference-file line="10">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eabbbdada2d00c1ee1b160ca59736cc537d69a11" resname="digikey.label.customer_id">
+        <source>digikey.label.customer_id</source>
+        <target>ID Contact (optionnel)</target>
+        <jms:reference-file line="166">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="fd79a3fb1a4eef3de31c4dd945a3993d505eef59" resname="digikey.label.expiration">
+        <source>digikey.label.expiration</source>
+        <target>Expiration</target>
+        <jms:reference-file line="12">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9f7edb63105a6024efa446050ab2fdad9382dea2" resname="digikey.label.local_currency">
+        <source>digikey.label.local_currency</source>
+        <target>Devise</target>
+        <jms:reference-file line="179">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6ddadae0f5e50d6b9e0548c9b95808faf29ac640" resname="digikey.label.local_language">
+        <source>digikey.label.local_language</source>
+        <target>Langue</target>
+        <jms:reference-file line="175">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="71e30746dab766b5a99b539bf9a2f2e6d3747a5f" resname="digikey.label.local_ship_to_country">
+        <source>digikey.label.local_ship_to_country</source>
+        <target>Pays de réception</target>
+        <jms:reference-file line="183">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ea30369e894802beaa84a4adbb4ffcf7280b82d0" resname="digikey.label.local_site">
+        <source>digikey.label.local_site</source>
+        <target>Site internet</target>
+        <jms:reference-file line="171">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b997da7b10909d1fc990e12ea72113fc1321d572" resname="digikey.label.partner_id">
+        <source>digikey.label.partner_id</source>
+        <target>ID partenaire</target>
+        <jms:reference-file line="187">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c3d38db183eeb0d03537256b7d8c306a987d9ba9" resname="digikey.label.refresh_token">
+        <source>digikey.label.refresh_token</source>
+        <target>Token de rafraichissement</target>
+        <jms:reference-file line="13">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9bc7b604b4c15c259a1e44ea5db4c42ad1a6222c" resname="digikey.label.token">
+        <source>digikey.label.token</source>
+        <target>Token</target>
+        <jms:reference-file line="11">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="dcb8247be3174faf68bdce4d68409bad34d93b8f" resname="edit.title">
+        <source>edit.title</source>
+        <target>Edition des paramètres</target>
+        <jms:reference-file line="4">/Resources/views/interface/digikey/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7c160cc2fef98468e3da062a0ccf3b3d7fcba526" resname="error.bad_code">
+        <source>error.bad_code</source>
+        <target>Le code reçu n'est pas valable</target>
+        <jms:reference-file line="30">/../src/APIDigikeyBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="92e3b44515bf7f0d2c47a8c173c99ab641936751" resname="error.bad_id">
+        <source>error.bad_id</source>
+        <target>L'ID reçu n'existe pas</target>
+        <jms:reference-file line="24">/../src/APIDigikeyBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3f8d8e5920cd00bdbfbf0567d27cfcf65e335d2c" resname="flash.console.empty_config">
+        <source>flash.console.empty_config</source>
+        <target>La configuration du fournisseur %supplier% est vide. Merci de charger des paramètres et de réessayer</target>
+        <jms:reference-file line="50">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4f804b49d71304a7f6df779d9b61796eb6dddef2" resname="flash.edit.success">
+        <source>flash.edit.success</source>
+        <target>Les paramètres ont été mis à jour</target>
+        <jms:reference-file line="33">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0b36841a4fa1ba3e3dafd0e974eec188b538da06" resname="flash.revoke.success">
+        <source>flash.revoke.success</source>
+        <target>L'accès a été révoqué</target>
+        <jms:reference-file line="88">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f918890f691caf6b755e80f0adb2e8eafdd54e64" resname="flash.token.error">
+        <source>flash.token.error</source>
+        <target xml:space="preserve">Erreur pendant la génération du token du fournisseur : %supplier%.
+Message : %error%</target>
+        <jms:reference-file line="122">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <jms:reference-file line="138">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="624e0192c07f306f2611c9d2c9379a886a3ae852" resname="flash.token.success">
+        <source>flash.token.success</source>
+        <target>Un nouveau token a été généré</target>
+        <jms:reference-file line="120">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <jms:reference-file line="136">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4f8c0431b6f93893d74d2c06c769e919c15f1f2c" resname="form.button.send">
+        <source>form.button.send</source>
+        <target>Envoyer</target>
+        <jms:reference-file line="42">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="55016e5829dd2e0f248c37f55a060782c7c11fff" resname="form.keywordsearch.label">
+        <source>form.keywordsearch.label</source>
+        <target>Recherche par mot clefs</target>
+        <jms:reference-file line="202">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="bfb1420a2bfa1f57a25d73754eef64375eb8dc80" resname="form.partdetails.label">
+        <source>form.partdetails.label</source>
+        <target>Détail d'une référence</target>
+        <jms:reference-file line="203">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f71d80fa070adb79a4153b47e61be88cf26cdd0f" resname="form.path.label">
+        <source>form.path.label</source>
+        <target>Type d'interrogation</target>
+        <jms:reference-file line="198">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="35bc599df1344e58e1e5868f8a135f3eb8bf654f" resname="form.search.label">
+        <source>form.search.label</source>
+        <target>Mots clefs</target>
+        <jms:reference-file line="210">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
