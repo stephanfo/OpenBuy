@@ -71,10 +71,7 @@
                 </li>
                 {% if app.environment == "dev" %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('dev') }}">
-                            <i class="fa fa-cog"></i>
-                            {{ "topmenu.dev" | trans }}
-                        </a>
+                        <a class="nav-link" href="{{ path('jms_translation_index') }}"><i class="fa fa-language"></i> {{ 'leftmenu.dev.translations' | trans }}</a>
                     </li>
                 {% endif %}
             {% endif %}

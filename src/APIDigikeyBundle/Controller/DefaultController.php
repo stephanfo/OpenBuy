@@ -2,6 +2,7 @@
 
 namespace APIDigikeyBundle\Controller;
 
+use APIDigikeyBundle\Service\InterfaceDigikey;
 use AppBundle\Entity\Supplier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,7 +16,7 @@ class DefaultController extends Controller
     /**
      * @Route("/code", name="api_digikey_code")
      */
-    public function codeAction(Request $request)
+    public function codeAction(Request $request, InterfaceDigikey $interfaceDigikey)
     {
         $session = $request->getSession();
 
@@ -31,21 +32,13 @@ class DefaultController extends Controller
 
         $params = $session->get("interface_digikey_code_id");
         $id = $params['id'];
-        $locale = $params['local'];
+        $redirect = $params['redirect'];
         $session->remove("interface_digikey_code_id");
 
-        $supplier = $this->getDoctrine()->getRepository(Supplier::class)->find($id);
+        $interfaceDigikey->setCodeAndToken($request->headers->get('User-Agent'), $code, $id);
 
-        $api = new ApiDigikey(null, $supplier->getParameters());
-        $supplier->setParameters($api->setCode($code));
+        $session->getFlashBag()->add('success', $this->get('translator')->trans("flash.interface.code.success", array('%supplier%' => $interfaceDigikey->supplier->getName()), "api_digikey"));
 
-        $this->getDoctrine()->getManager()->flush();
-
-        $session->getFlashBag()->add('success', $this->get('translator')->trans("flash.interface.code.success", array('%supplier%' => $supplier->getName()), "api_digikey"));
-
-        return $this->redirectToRoute('interface_digikey_console', array(
-            'id' => $supplier->getId(),
-            '_locale' => $locale
-        ));
+        return $this->redirectToRoute($redirect['route'], $redirect['params']);
     }
 }

@@ -14,7 +14,7 @@
         <tbody>
         {% for bom in list %}
             <tr>
-                <td>{{ bom.name }}</td>
+                <th>{{ bom.name }}</th>
                 <td>{{ bom.ecu.name }}</td>
                 <td>{{ bom.created | date('Y/m/d H:i:s') }}</td>
                 <td class="index-action">

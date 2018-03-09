@@ -97,7 +97,13 @@ class InterfaceDigikeyController extends Controller
     {
         $request->getSession()->set("interface_digikey_code_id", array(
             'id' => $supplier->getId(),
-            'local' => $request->getLocale(),
+            'redirect' => array(
+                'route' => "interface_digikey_console",
+                'params' => array(
+                    'id' => $supplier->getId(),
+                    'local' => $request->getLocale(),
+                )
+            )
         ));
 
         return $this->redirect($interface->linkLoginPage($supplier->getId()));
@@ -133,6 +139,24 @@ class InterfaceDigikeyController extends Controller
         }
 
         return $this->redirectToRoute('interface_digikey_console', array('id' => $supplier->getId()));
+    }
+
+    /**
+     * @Route("/interface/digikey/signing/{id}", requirements={"id": "\d+"}, name="interface_digikey_signin")
+     */
+    public function signinAction(Supplier $supplier, InterfaceDigikey $interface, Request $request)
+    {
+        $request->getSession()->set("interface_digikey_code_id", array(
+            'id' => $supplier->getId(),
+            'redirect' => array(
+                'route' => "srm_suppliers_index",
+                'params' => array(
+                    'local' => $request->getLocale(),
+                )
+            )
+        ));
+
+        return $this->redirect($interface->linkLoginPage($supplier->getId()));
     }
 
     private function getForm()

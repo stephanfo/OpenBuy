@@ -12,7 +12,7 @@ class InterfaceDigikey
 {
     private $api;
     private $em;
-    private $supplier;
+    public $supplier;
 
     function __construct(EntityManager $em, ApiDigikey $api, $supplierId = null)
     {
@@ -80,6 +80,25 @@ class InterfaceDigikey
         }
 
         return $this->api->linkLoginPage();
+    }
+
+    public function setCodeAndToken($userAgent, $code, $supplierId = null)
+    {
+        if(!is_null($supplierId))
+        {
+            $this->loadSupplier($supplierId);
+        }
+
+        $this->api->setCode($code);
+
+        $response = $this->api->retrieveToken($userAgent);
+
+        if (!is_array($response)) {
+            return $response;
+        } else {
+            $this->updateSupplier();
+            return true;
+        }
     }
 
     public function retrieveToken($userAgent, $supplierId = null)

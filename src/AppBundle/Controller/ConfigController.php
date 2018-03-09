@@ -53,7 +53,7 @@ class ConfigController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.configs.edit.success"), array('%config%' => $config->getName()));
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.configs.edit.success", array('%config%' => $config->getName())));
 
             return $this->redirectToRoute('admin_configs_index');
         }

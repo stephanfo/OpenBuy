@@ -29,6 +29,11 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    APIDigikeyBundle\Controller\:
+        resource: '../../src/APIDigikeyBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
     APIExcelBundle\Controller\:
         resource: '../../src/APIExcelBundle/Controller'
         public: true

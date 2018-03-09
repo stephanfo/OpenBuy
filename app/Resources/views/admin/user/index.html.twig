@@ -5,7 +5,6 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
             <th>{{ 'admin.users.label.name' | trans }}</th>
             <th>{{ 'admin.users.label.last_login' | trans }}</th>
             <th>{{ 'admin.users.label.auths' | trans }}</th>
@@ -14,9 +13,8 @@
         </thead>
         <tbody>
         {% for user in list %}
-            <tr>
-                <th>{{ user.id }}</th>
-                <td>{{ user.fullname }}</td>
+            <tr{% if user.hasRole('ROLE_ADMIN') %} class="table-warning"{% elseif user.hasRole('ROLE_SUPER_ADMIN') %} class="table-danger"{% endif %}>
+                <th>{{ user.fullname }}{% if user.hasRole('ROLE_ADMIN') %} (admin){% elseif user.hasRole('ROLE_SUPER_ADMIN') %} (super admin){% endif %}</th>
                 <td>{{ user.lastLogin | date('Y-m-d') }}</td>
                 <td>
                     {% if user.hasRole('ROLE_CRM') %}
@@ -36,13 +34,15 @@
                     {% endif %}
                 </td>
                 <td class="index-action">
-                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#user_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
-                    {% if user.isEnabled %}
-                        <a href="{{ path('admin_users_enable_toggle', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.disable' | trans }}"><i class="fa fa-check"></i></button></a>
-                    {% else %}
-                        <a href="{{ path('admin_users_enable_toggle', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-outlined-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.enable' | trans }}"><i class="fa fa-ban"></i></button></a>
+                    {% if not user.hasRole('ROLE_SUPER_ADMIN')%}
+                        <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#user_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
+                        {% if user.isEnabled %}
+                            <a href="{{ path('admin_users_enable_toggle', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.disable' | trans }}"><i class="fa fa-check"></i></button></a>
+                        {% else %}
+                            <a href="{{ path('admin_users_enable_toggle', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-outlined-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.enable' | trans }}"><i class="fa fa-ban"></i></button></a>
+                        {% endif %}
+                        <a href="{{ path('admin_users_edit', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
                     {% endif %}
-                    <a href="{{ path('admin_users_edit', { 'id' : user.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
                 </td>
             </tr>
         {%  endfor %}

@@ -57,7 +57,7 @@ class UserController extends Controller
 
             $userManager->updateUser($user);
 
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.edit.success"), array('%user%' => $user->getFullname()));
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.edit.success", array('%user%' => $user->getFullname())));
 
             return $this->redirectToRoute('admin_users_index');
         }
@@ -82,12 +82,12 @@ class UserController extends Controller
         if ($user->isEnabled())
         {
             $user->setEnabled(false);
-            $request->getSession()->getFlashBag()->add('warning', $this->get('translator')->trans("flash.admin.users.disable.toggle.success"), array('%user%' => $user->getFullname()));
+            $request->getSession()->getFlashBag()->add('warning', $this->get('translator')->trans("flash.admin.users.disable.toggle.success", array('%user%' => $user->getFullname())));
         }
         else
         {
             $user->setEnabled(true);
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.enable.toggle.success"), array('%user%' => $user->getFullname()));
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.enable.toggle.success", array('%user%' => $user->getFullname())));
         }
 
         $userManager->updateUser($user);
@@ -121,7 +121,7 @@ class UserController extends Controller
                 $user->setEnabled(true);
                 $userManager->updateUser($user);
 
-                $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.users.new.success"), array('%user%' => $user->getFullname()));
+                $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.users.new.success", array('%user%' => $user->getFullname())));
 
                 return $this->redirectToRoute('admin_users_index');
             }
@@ -156,36 +156,36 @@ class UserController extends Controller
                 if ($user->hasRole('ROLE_CRM'))
                 {
                     $user->removeRole('ROLE_CRM');
-                    $request->getSession()->getFlashBag()->add('warning', $this->get('translator')->trans("flash.admin.users.disallow.toggle.success"), array('%user%' => $user->getFullname(), '%auth%' => $auth));
+                    $request->getSession()->getFlashBag()->add('warning', $this->get('translator')->trans("flash.admin.users.disallow.toggle.success", array('%user%' => $user->getFullname(), '%auth%' => $auth)));
                 }
                 else
                 {
                     $user->addRole('ROLE_CRM');
-                    $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.allow.toggle.success"), array('%user%' => $user->getFullname(), '%auth%' => $auth));
+                    $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.allow.toggle.success", array('%user%' => $user->getFullname(), '%auth%' => $auth)));
                 }
                 break;
             case "srm":
                 if ($user->hasRole('ROLE_SRM'))
                 {
                     $user->removeRole('ROLE_SRM');
-                    $request->getSession()->getFlashBag()->add('warning', $this->get('translator')->trans("flash.admin.users.disallow.toggle.success"), array('%user%' => $user->getFullname(), '%auth%' => $auth));
+                    $request->getSession()->getFlashBag()->add('warning', $this->get('translator')->trans("flash.admin.users.disallow.toggle.success", array('%user%' => $user->getFullname(), '%auth%' => $auth)));
                 }
                 else
                 {
                     $user->addRole('ROLE_SRM');
-                    $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.allow.toggle.success"), array('%user%' => $user->getFullname(), '%auth%' => $auth));
+                    $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.allow.toggle.success", array('%user%' => $user->getFullname(), '%auth%' => $auth)));
                 }
                 break;
             case "bom":
                 if ($user->hasRole('ROLE_BOM'))
                 {
                     $user->removeRole('ROLE_BOM');
-                    $request->getSession()->getFlashBag()->add('warning', $this->get('translator')->trans("flash.admin.users.disallow.toggle.success"), array('%user%' => $user->getFullname(), '%auth%' => $auth));
+                    $request->getSession()->getFlashBag()->add('warning', $this->get('translator')->trans("flash.admin.users.disallow.toggle.success", array('%user%' => $user->getFullname(), '%auth%' => $auth)));
                 }
                 else
                 {
                     $user->addRole('ROLE_BOM');
-                    $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.allow.toggle.success"), array('%user%' => $user->getFullname(), '%auth%' => $auth));
+                    $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.admin.users.allow.toggle.success", array('%user%' => $user->getFullname(), '%auth%' => $auth)));
                 }
                 break;
         }

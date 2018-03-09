@@ -13,7 +13,7 @@
         <tbody>
         {% for ecu in list %}
             <tr>
-                <td>{{ ecu.name }}</td>
+                <th>{{ ecu.name }}</th>
                 <td>{{ ecu.country }}</td>
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#ecu_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>

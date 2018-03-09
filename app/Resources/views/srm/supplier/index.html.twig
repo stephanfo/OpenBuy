@@ -5,20 +5,30 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
             <th>{{ 'supplier.label.name' | trans }}</th>
             <th>{{ 'supplier.label.country' | trans }}</th>
             <th>{{ 'supplier.label.currency' | trans }}</th>
+            <th>{{ 'table.header.interface' | trans }}</th>
+            <th>{{ 'table.header.api' | trans }}</th>
             <th>{{ 'table.header.action' | trans }}</th>
         </tr>
         </thead>
         <tbody>
         {% for supplier in list %}
             <tr>
-                <th>{{ supplier.id }}</th>
-                <td>{{ supplier.name }}</td>
+                <th>{{ supplier.name }}</th>
                 <td>{{ supplier.country }}</td>
                 <td>{{ supplier.currency }} ({{ supplier.exchangeRate }})</td>
+                <td class="index-action">
+                    {% if supplier.interface is not empty %}
+                        <a href="{{ path('interface_' ~ supplier.interface ~ '_signin', { 'id': supplier.id }) }}"><button class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit.signin' | trans }}"><li class="fa fa-sign-in"></li></button></a>
+                        <a href="{{ path('interface_' ~ supplier.interface ~ '_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit.parameters' | trans }}"><i class="fa fa-cogs"></i></button></a>
+                        <a href="{{ path('interface_' ~ supplier.interface ~ '_console', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-secondary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.test' | trans }}"><i class="fa fa-terminal"></i></button></a>
+                    {%  endif %}
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-info disabled">{{ supplier.id }}</button>
+                </td>
                 <td class="index-action">
                     <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#supplier_{{ loop.index }}" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.view' | trans }}"><i class="fa fa-list"></i></button>
                     {% if supplier.enabled %}
@@ -28,13 +38,6 @@
                     {% endif %}
                     <a href="{{ path('srm_suppliers_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-primary" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit' | trans }}"><i class="fa fa-edit"></i></button></a>
                     <a href="{{ path('srm_suppliers_copy', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.copy' | trans }}"><i class="fa fa-clone"></i></button></a>
-                    {% if supplier.interface is not empty %}
-                        <a href="{{ path('interface_' ~ supplier.interface ~ '_edit', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.edit.parameters' | trans }}"><i class="fa fa-cogs"></i></button></a>
-                        <a href="{{ path('interface_' ~ supplier.interface ~ '_console', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.test' | trans }}"><i class="fa fa-terminal"></i></button></a>
-                    {% else %}
-                        <button type="button" class="btn btn-sm btn-warning disabled"><i class="fa fa-cogs"></i></button>
-                        <button type="button" class="btn btn-sm btn-warning disabled"><i class="fa fa-terminal"></i></button>
-                    {%  endif %}
                     <a href="{{ path('srm_suppliers_delete', { 'id': supplier.id }) }}"><button type="button" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="{{ 'tooltip.delete' | trans }}"><i class="fa fa-times"></i></button></a>
                 </td>
             </tr>

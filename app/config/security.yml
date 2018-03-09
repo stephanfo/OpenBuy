@@ -9,7 +9,7 @@ security:
         ROLE_SRM:             ROLE_USER
         ROLE_CRM:             ROLE_USER
         ROLE_BOM:             ROLE_SRM, ROLE_CRM
-        ROLE_ADMIN:           ROLE_BOM
+        ROLE_ADMIN:           ROLE_USER
         ROLE_SUPER_ADMIN:     ROLE_ADMIN
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
@@ -49,4 +49,4 @@ security:
         - { path: ^/../srm, roles: ROLE_SRM }
         - { path: ^/../admin, roles: ROLE_ADMIN }
         - { path: ^/../dev, roles: ROLE_ADMIN }
-        - { path: ^/, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/, role: ROLE_USER }
