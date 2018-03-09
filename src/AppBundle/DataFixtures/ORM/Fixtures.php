@@ -27,7 +27,7 @@ class Fixtures extends Fixture
         $config = new Config();
         $config->setName('InterfaceDigikey');
         $config->setParameters(array(
-            'redirectUri' => "https://openbuy.localdev/api/digikey/code",
+            'redirectUri' => "https://yourdomain.com/interface/digikey/code",
             'clientId' => "Please change this one with your Client ID",
             'clientSecret' => "Please change this one with your Client Secret",
         ));

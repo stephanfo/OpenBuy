@@ -15,7 +15,7 @@ app:
 api_digikey:
     resource: "@APIDigikeyBundle/Controller/"
     type:     annotation
-    prefix:   /api/digikey
+    prefix:   /interface/digikey
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
