@@ -50,6 +50,9 @@
             </ul>
         </nav>
     {% endif %}
+    <p>
+        <a href="{{ path('bom_new') }}"><button class="btn btn-primary">{{ 'bom.add' | trans }}</li></button></a>
+    </p>
     {% for bom in list %}
         <div class="modal fade" id="bom_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="BomModal{{ loop.index }}" aria-hidden="true">
             <div class="modal-dialog" role="document">

@@ -6,18 +6,36 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7;
 
+/*
+ * Stephanfo (Stéphane RATELET)
+ *
+ * This class provide the connection to the Digikey API
+ *
+ * It is important to understand the difference between the config and the parameters.
+ *
+ * Config is the parameters requested for the 3rd party requester (please refer to OAuth2.0 and the Digi-Key API portal)
+ *   the config should be common for a platform and independent to the users
+ *   the config is especially used for the auth process to get the code and manage the tokens
+ * Parameters are specific to users and suppliers, and are used for the header of the requests
+ *   this can change the language, site, devise, ...
+ *   you should use one parameters per user/supplier
+ */
+
 class ApiDigikey
 {
+    // Constants
     const loginPage = "https://sso.digikey.com/as/authorization.oauth2";
     const tokenPage = "https://sso.digikey.com/as/token.oauth2";
     const keywordSearchUri = "https://api.digikey.com/services/partsearch/v2/keywordsearch";
     const partDetailsUri = "https://api.digikey.com/services/partsearch/v2/partdetails";
     const packageTypeUri = "https://api.digikey.com/services/packagetypebyquantity/v2/search";
 
+    // Config datas - common to any users in a single platform
     private $redirectUri;
     private $clientId;
     private $clientSecret;
 
+    // Paramters - specific user by user
     private $customerId;
     private $code;
     private $token;
@@ -31,6 +49,7 @@ class ApiDigikey
 
     public $parametersUpdated;
 
+    // Constructor that load the config and parameters if they are sent
     function __construct($config = null, $parameters = null)
     {
         if (is_array($config)){
@@ -46,6 +65,7 @@ class ApiDigikey
         }
     }
 
+    // Load config in the class
     public function setConfig($config)
     {
         $this->redirectUri = $config['redirectUri'];
@@ -53,6 +73,7 @@ class ApiDigikey
         $this->clientSecret = $config['clientSecret'];
     }
 
+    // Generate the default parameters
     public function getDefaultParameters()
     {
         return [
@@ -61,7 +82,7 @@ class ApiDigikey
             'token' => null,
             'expiration' => null,
             'refreshToken' => null,
-            'localSite' => "fr",
+            'localSite' => "FR",
             'localLanguage' => "fr",
             'localCurrency' => "EUR",
             'localShipToCountry' => "FR",
@@ -69,6 +90,7 @@ class ApiDigikey
         ];
     }
 
+    // Send the current parameters
     public function getParameters()
     {
         return [
@@ -85,6 +107,7 @@ class ApiDigikey
         ];
     }
 
+    // Load the parameters sent
     public function setParameters($parameters)
     {
         $this->customerId = $parameters['customerId'];
@@ -101,6 +124,10 @@ class ApiDigikey
         $this->paramsUpdated = true;
     }
 
+    /*
+     * Return the link to the Digikey SSO to allow the user to enter his digikey.com credentials
+     * see this page for more details: https://api-portal.digikey.com/app_overview#authorizationCode
+     */
     public function linkLoginPage()
     {
         $params = [
@@ -112,6 +139,9 @@ class ApiDigikey
         return self::loginPage . "?" . http_build_query($params);
     }
 
+    /*
+     * Revoke the current connection data
+     */
     public function revoke()
     {
         $this->code = null;
@@ -124,6 +154,9 @@ class ApiDigikey
         return $this->getParameters();
     }
 
+    /*
+     * Store the authorisation code
+     */
     public function setCode($code)
     {
         $this->code = $code;
@@ -132,6 +165,13 @@ class ApiDigikey
         return $this->getParameters();
     }
 
+    /*
+     * Exchange the authorisation code for a Token, its expiration and Refresh Token
+     * This is a simple http post
+     * In case of fail, the function return the PSR7 error string
+     *
+     * Check this page for more details: https://api-portal.digikey.com/app_overview#accessToken
+     */
     public function retrieveToken($userAgent)
     {
         $clientHttp = new Client(
@@ -171,6 +211,13 @@ class ApiDigikey
         return $this->getParameters();
     }
 
+    /*
+     * Exchange the Refresh Token for a fresh Token/Refresh token
+     * This is a simple http post
+     * In case of fail, the function return the PSR7 error string
+     *
+     * Check this page for more details: https://api-portal.digikey.com/app_overview#refreshToken
+     */
     public function refreshToken($userAgent)
     {
         $clientHttp = new Client(
@@ -209,6 +256,10 @@ class ApiDigikey
         return $this->getParameters();
     }
 
+    /*
+     * Check if the token is still valid
+     * This is based on the expiration only
+     */
     private function isTokenValid() {
         $now = new \DateTime();
 
@@ -218,6 +269,10 @@ class ApiDigikey
         return true;
     }
 
+    /*
+     * Refresh the token if case it expired
+     * This should be executed before every requests
+     */
     private function handleConnection($userAgent)
     {
         if(!$this->isTokenValid())
@@ -226,6 +281,11 @@ class ApiDigikey
         return true;
     }
 
+    /*
+     * Perform a Keyword search and return the result in php array or a string in case of error
+     *
+     * Check this page for more details: https://api-portal.digikey.com/node/3287
+     */
     public function keywordSearch($userAgent, $keyword, $recordCount = 20)
     {
         $searchRequest = array(
@@ -237,6 +297,11 @@ class ApiDigikey
         return $this->sendRequest($userAgent, self::keywordSearchUri, $searchRequest);
     }
 
+    /*
+     * Perform a PartDetail request and return the result in php array or a string in case of error
+     *
+     * Check this page for more details: https://api-portal.digikey.com/node/3287
+     */
     public function partDetails($userAgent, $keyword)
     {
         $searchRequest = array(
@@ -247,6 +312,11 @@ class ApiDigikey
 
     }
 
+    /*
+     * Perform a package search based on quantity and return the result in php array or a string in case of error
+     *
+     * Check this page for more details: https://api-portal.digikey.com/node/3287
+     */
     public function packageTypeByQuantity($userAgent, $keyword, $packagingPreference, $quantity)
     {
         $searchRequest = array(
@@ -259,6 +329,11 @@ class ApiDigikey
 
     }
 
+    /*
+     * Manage the APIs requests, then return the JSON response converted in a PHP array
+     *
+     * Return PSR7 string in case of an error occurs
+     */
     private function sendRequest($userAgent, $apiUri, $request)
     {
         $this->handleConnection($userAgent);
@@ -296,6 +371,9 @@ class ApiDigikey
         return json_decode($response->getBody()->getContents(), true);
     }
 
+    /*
+     * Name od the class
+     */
     public function getClassName()
     {
         return "ApiDigikey";

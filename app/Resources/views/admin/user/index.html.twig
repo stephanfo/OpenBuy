@@ -72,7 +72,7 @@
         </nav>
     {% endif %}
     <p>
-        <a href="{{ path('admin_users_new') }}"><button class="btn btn-primary">Create a new user</button></a>
+        <a href="{{ path('admin_users_new') }}"><button class="btn btn-primary">{{ 'user.new' | trans }}</button></a>
     </p>
     {% for user in list %}
         <div class="modal fade" id="user_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

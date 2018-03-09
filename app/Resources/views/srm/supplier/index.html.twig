@@ -67,6 +67,9 @@
             </ul>
         </nav>
     {% endif %}
+    <p>
+        <a href="{{ path('srm_suppliers_new') }}"><button class="btn btn-primary">{{ 'supplier.add' | trans }}</li></button></a>
+    </p>
     {% for supplier in list %}
         <div class="modal fade" id="supplier_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

@@ -56,7 +56,10 @@ class SupplierController extends Controller
 
             $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.supplier.new.success", array('%supplier%' => $supplier->getName())));
 
-            return $this->redirectToRoute('srm_suppliers_index');
+            if (is_null($supplier->getInterface()))
+                return $this->redirectToRoute('srm_suppliers_index');
+            else
+                return $this->redirectToRoute('interface_'. $supplier->getInterface() . '_edit', array('id' => $supplier->getId()));
         }
 
         return $this->render('srm/supplier/new.html.twig', array(
@@ -84,7 +87,10 @@ class SupplierController extends Controller
 
             $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans("flash.supplier.edit.success", array('%supplier%' => $supplier->getName())));
 
-            return $this->redirectToRoute('srm_suppliers_index');
+            if (is_null($supplier->getInterface()))
+                return $this->redirectToRoute('srm_suppliers_index');
+            else
+                return $this->redirectToRoute('interface_'. $supplier->getInterface() . '_edit', array('id' => $supplier->getId()));
         }
 
         return $this->render('srm/supplier/edit.html.twig', array(

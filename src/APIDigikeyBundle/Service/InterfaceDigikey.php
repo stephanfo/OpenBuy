@@ -14,6 +14,9 @@ class InterfaceDigikey
     private $em;
     public $supplier;
 
+    /*
+     * Load the Supplier if Id submitted and load the config
+     */
     function __construct(EntityManager $em, ApiDigikey $api, $supplierId = null)
     {
         $this->api = $api;
@@ -24,17 +27,21 @@ class InterfaceDigikey
         }
 
         $config = $this->em->getRepository(Config::class)->findOneBy(array('name' => $this->getClassName()));
-        $parameters = $config->getParameters();
-
-        $this->api->setConfig($parameters);
+        $this->api->setConfig($config->getParameters());
     }
 
+    /*
+     * Retrive the Supplier Parameters configuration from the ORM
+     */
     private function loadSupplier($supplierId)
     {
         $this->supplier = $this->em->getRepository(Supplier::class)->find($supplierId);
         $this->api->setParameters($this->supplier->getParameters());
     }
 
+    /*
+     * Store Supplier Parameters in the ORM
+     */
     private function updateSupplier()
     {
         if ($this->api->parametersUpdated) {
@@ -82,6 +89,9 @@ class InterfaceDigikey
         return $this->api->linkLoginPage();
     }
 
+    /*
+     * Store the Authorisation code and retrieve the Token, expiration and Refresh Token
+     */
     public function setCodeAndToken($userAgent, $code, $supplierId = null)
     {
         if(!is_null($supplierId))
@@ -180,9 +190,12 @@ class InterfaceDigikey
         if(is_string($result))
             return $result;
 
-        return $this->convertPartsInArticles(array($result));
+        return $this->convertPartsInArticles($result);
     }
 
+    /*
+     * Return a list of Articles/Variables after performing a keywordSearch and looping in partDetails on all results
+     */
     public function search($userAgent, $keyword, $supplierId = null) {
         $keywordResults = $this->keywordSearch($userAgent, $keyword, $supplierId);
 
@@ -190,22 +203,25 @@ class InterfaceDigikey
             return $keywordResults;
 
         $detailResults = array();
-        foreach ($keywordResults["Parts"] as $result) {
-            $detailResult = $this->partDetails($userAgent, $result["DigiKeyPartNumber"]);
+        foreach ($keywordResults["Parts"] as $part) {
+            $detailResult = $this->partDetails($userAgent, $part["DigiKeyPartNumber"]);
 
             if(is_string($detailResult))
                 return $detailResult;
 
-            $detailResults[] = $detailResult;
+            $detailResults[] = $this->convertPartInArticle($detailResult['PartDetails']);
         }
 
-        return $this->convertPartDetailsInArticles($detailResults);
+        return $detailResults;
     }
 
-    private function convertPartDetailsInArticles($resultArray) {
+    /*
+     * Conversion of multiple parts answer to a set of Articles/Variables
+     * This format is aligned with the answer of packageTypeByQuantity & keywordSearch APIs
+     */
+    private function convertPartsInArticles($resultArray) {
         $articleArray = array();
-        foreach ($resultArray as $result) {
-            $part = $result['PartDetails'];
+        foreach ($resultArray['Parts'] as $part) {
             $article = $this->convertPartInArticle($part);
             $articleArray[] = $article;
         }
@@ -213,18 +229,15 @@ class InterfaceDigikey
         return $articleArray;
     }
 
-    private function convertPartsInArticles($resultArray) {
-        $articleArray = array();
-        foreach ($resultArray as $result) {
-            foreach ($result['Parts'] as $part) {
-                $article = $this->convertPartInArticle($part);
-                $articleArray[] = $article;
-            }
-        }
-
-        return $articleArray;
-    }
-
+    /*
+     * Convert a single part from Digikey API to an Article/Variable entity
+     *
+     * If the entity Article already exists, this will update the data and attach a new variable entity
+     * If the entity Article does not exist, this will create both Article and Variable entity
+     *
+     * Entities are retrieved and flushed in the function
+     * Return the Article entity and the Variables
+     */
     private function convertPartInArticle ($part) {
         $article = $this->em->getRepository(Article::class)->findOneBy(array(
             'supplier' => array($this->supplier),

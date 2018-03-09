@@ -27,7 +27,12 @@ class PackageSearchController extends Controller
 
         $supplier = $this->getDoctrine()->getRepository(Supplier::class)->find($data['supplierId']);
 
-        if (!is_null($supplier) && $supplier->getUser()->getApiToken() === $request->request->get('apiToken'))
+        if (
+            !is_null($supplier) &&
+            $supplier->getUser()->isEnabled() &&
+            $supplier->getUser()->hasRole('ROLE_SRM') &&
+            $supplier->getUser()->getApiToken() === $request->request->get('apiToken')
+        )
         {
             $articleArray = $interfaceDigikey->packageTypeByQuantityInArticle($request->headers->get('User-Agent'), $data['search'], $data['preference'], $data['quantity'], $data['supplierId']);
 
@@ -123,7 +128,7 @@ class PackageSearchController extends Controller
         }
         else
         {
-            $data['error'] = "Bad token or bad Supplier ID";
+            $data['error'] = "Bad token or bad Supplier ID or you are not allowed to request :-(";
         }
 
         $dataXml = ArrayToXml::convert($data, 'response');

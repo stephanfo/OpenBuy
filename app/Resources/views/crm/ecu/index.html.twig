@@ -48,9 +48,9 @@
             </ul>
         </nav>
     {% endif %}
-    <div class="float-right">
+    <p>
         <a href="{{ path('crm_ecus_new') }}"><button class="btn btn-primary">{{ 'ecu.add' | trans }}</li></button></a>
-    </div>
+    </p>
     {% for ecu in list %}
         <div class="modal fade" id="ecu_{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
