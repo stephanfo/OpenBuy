@@ -14,7 +14,7 @@ use Spatie\ArrayToXml\ArrayToXml;
 class PackageSearchController extends Controller
 {
     /**
-     * @Route("/digikey/packagesearch/price")
+     * @Route("/digikey/packagebyquantity/pricing")
      */
     public function priceAction(InterfaceDigikey $interfaceDigikey, Request $request)
     {

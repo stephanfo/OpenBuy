@@ -26,4 +26,4 @@ fos_user:
 api_excel:
     resource: "@APIExcelBundle/Controller/"
     type:     annotation
-    prefix:   /api/excel
+    prefix:   /api
