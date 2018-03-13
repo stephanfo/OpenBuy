@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2018-03-09T22:00:12Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+  <file date="2018-03-13T12:45:33Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -546,11 +546,11 @@ Si vous rencontrez des difficultés à interagir avec la plateforme, ou remarque
       </trans-unit>
       <trans-unit id="894fe034f49988e083e2ccb2b138678807ae18a3" resname="leftmenu.profile_edit">
         <source>leftmenu.profile_edit</source>
-        <target>Editer mon profile</target>
+        <target>Editer mon profil</target>
       </trans-unit>
       <trans-unit id="d998db154f978944530a142991a954567118d958" resname="leftmenu.profile_view">
         <source>leftmenu.profile_view</source>
-        <target>Voir mon profile</target>
+        <target>Voir mon profil</target>
       </trans-unit>
       <trans-unit id="019573ba526e1a9229e6932455d21c7d69b23b30" resname="leftmenu.projects_list">
         <source>leftmenu.projects_list</source>
@@ -590,7 +590,7 @@ Si vous rencontrez des difficultés à interagir avec la plateforme, ou remarque
       </trans-unit>
       <trans-unit id="935416651e6717e4f054e018c9a5ee1981cf6d60" resname="leftmenu.title.profile">
         <source>leftmenu.title.profile</source>
-        <target>Mon profile</target>
+        <target>Mon profil</target>
       </trans-unit>
       <trans-unit id="f7e77d6e784ac66d2053447f7d175fcabb55927c" resname="leftmenu.title.quick_links">
         <source>leftmenu.title.quick_links</source>
@@ -826,7 +826,7 @@ Si vous rencontrez des difficultés à interagir avec la plateforme, ou remarque
       </trans-unit>
       <trans-unit id="22c6829739e2327c3edd44fc5dacb2f22c8c1aca" resname="title.profile">
         <source>title.profile</source>
-        <target>Profile</target>
+        <target>Profil</target>
       </trans-unit>
       <trans-unit id="0669822b3ac84198165e6d8ebba7d5fc411a2eb6" resname="title.srm">
         <source>title.srm</source>
@@ -942,15 +942,19 @@ Si vous rencontrez des difficultés à interagir avec la plateforme, ou remarque
       </trans-unit>
       <trans-unit id="32a7adf52bb4a4e56edce50a5b3138cc17de8103" resname="topmenu.profile_edit">
         <source>topmenu.profile_edit</source>
-        <target>Editer mon profile</target>
+        <target>Editer mon profil</target>
       </trans-unit>
       <trans-unit id="135dfd50acc5948a3d9e9c3e94f96c7f07b337bf" resname="topmenu.profile_view">
         <source>topmenu.profile_view</source>
-        <target>Voir mon profile</target>
+        <target>Voir mon profil</target>
       </trans-unit>
       <trans-unit id="2ff777b37bc3ea6eae8672412e633e02a053fe7c" resname="topmenu.suppliers">
         <source>topmenu.suppliers</source>
         <target>SRM</target>
+      </trans-unit>
+      <trans-unit id="35e7da363a187cefb3bda1f1324bbf15f2ab29ca" resname="topmenu.token">
+        <source>topmenu.token</source>
+        <target>Gérer mon token</target>
       </trans-unit>
       <trans-unit id="140e18ea96c4b37f14b4c9b9fa5b420e8454e614" resname="user.new">
         <source>user.new</source>

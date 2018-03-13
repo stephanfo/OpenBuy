@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2018-03-09T21:59:46Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2018-03-13T12:47:31Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -546,7 +546,7 @@ If you need support using the platform or if you find a bug, please contact the 
       </trans-unit>
       <trans-unit id="894fe034f49988e083e2ccb2b138678807ae18a3" resname="leftmenu.profile_edit">
         <source>leftmenu.profile_edit</source>
-        <target>Edit my profil</target>
+        <target>Edit my profile</target>
       </trans-unit>
       <trans-unit id="d998db154f978944530a142991a954567118d958" resname="leftmenu.profile_view">
         <source>leftmenu.profile_view</source>
@@ -590,7 +590,7 @@ If you need support using the platform or if you find a bug, please contact the 
       </trans-unit>
       <trans-unit id="935416651e6717e4f054e018c9a5ee1981cf6d60" resname="leftmenu.title.profile">
         <source>leftmenu.title.profile</source>
-        <target>My profil</target>
+        <target>My profile</target>
       </trans-unit>
       <trans-unit id="f7e77d6e784ac66d2053447f7d175fcabb55927c" resname="leftmenu.title.quick_links">
         <source>leftmenu.title.quick_links</source>
@@ -722,7 +722,7 @@ If you need support using the platform or if you find a bug, please contact the 
       </trans-unit>
       <trans-unit id="0566cf58ae49df2f31b1141401e53505950ce531" resname="profile.api.token.title">
         <source>profile.api.token.title</source>
-        <target>Manage my Token</target>
+        <target>Manage my token</target>
       </trans-unit>
       <trans-unit id="39797f8111f6801053dee1fac86e813dcc22e78e" resname="quantity.label.action">
         <source>quantity.label.action</source>
@@ -826,7 +826,7 @@ If you need support using the platform or if you find a bug, please contact the 
       </trans-unit>
       <trans-unit id="22c6829739e2327c3edd44fc5dacb2f22c8c1aca" resname="title.profile">
         <source>title.profile</source>
-        <target>Profil</target>
+        <target>Profile</target>
       </trans-unit>
       <trans-unit id="0669822b3ac84198165e6d8ebba7d5fc411a2eb6" resname="title.srm">
         <source>title.srm</source>
@@ -951,6 +951,10 @@ If you need support using the platform or if you find a bug, please contact the 
       <trans-unit id="2ff777b37bc3ea6eae8672412e633e02a053fe7c" resname="topmenu.suppliers">
         <source>topmenu.suppliers</source>
         <target>SRM</target>
+      </trans-unit>
+      <trans-unit id="35e7da363a187cefb3bda1f1324bbf15f2ab29ca" resname="topmenu.token">
+        <source>topmenu.token</source>
+        <target>Manage my token</target>
       </trans-unit>
       <trans-unit id="140e18ea96c4b37f14b4c9b9fa5b420e8454e614" resname="user.new">
         <source>user.new</source>
