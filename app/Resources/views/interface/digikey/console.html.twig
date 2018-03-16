@@ -52,3 +52,20 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('input[name="form[path]"]').change(function () {
+            if(this.value == "packageByQuantity")
+            {
+                $('#form_quantity').parent().children().css("display", "block");
+                $('#form_packaging').parent().children().css("display", "block");
+            }
+            else
+            {
+                $('#form_quantity').parent().children().css("display", "none");
+                $('#form_packaging').parent().children().css("display", "none");
+            }
+        })
+    </script>
+{% endblock %}

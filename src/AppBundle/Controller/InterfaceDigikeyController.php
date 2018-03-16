@@ -65,6 +65,13 @@ class InterfaceDigikeyController extends Controller
                 case 'partDetails':
                     $response = $interface->partDetails($request->headers->get('User-Agent'), $data['keyword'], $supplier->getId());
                     break;
+                case 'packageByQuantity':
+                    if(intval($data['quantity']) < 1)
+                        $data['quantity'] = 1;
+                    if($data['packaging'] !== "CT" && $data['packaging'] !== "DKR")
+                        $data['packaging'] = "CT";
+                    $response = $interface->packageTypeByQuantity($request->headers->get('User-Agent'), $data['keyword'], $data['packaging'], intval($data['quantity']), $supplier->getId());
+                    break;
                 default:
                     $response = null;
             }
@@ -209,7 +216,7 @@ class InterfaceDigikeyController extends Controller
                     'SK' => 'SK',
                     'TW' => 'TW',
                     'US' => 'US',
-                    ),
+                ),
                 'multiple' => false,
                 'expanded' => false,
             ))
@@ -327,6 +334,7 @@ class InterfaceDigikeyController extends Controller
                 'choices' => array(
                     'form.keywordsearch.label' => 'keywordSearch',
                     'form.partdetails.label' => 'partDetails',
+                    'form.packagebyquantity.label' => 'packageByQuantity',
                 ),
                 'data' => 'keywordSearch',
                 'expanded' => true,
@@ -336,6 +344,35 @@ class InterfaceDigikeyController extends Controller
                 'label' => 'form.search.label',
                 'translation_domain' => 'interface',
                 'required' => true,
+                'data' => "RC1005J000CS",
+            ))
+            ->add('quantity', NumberType::class, array(
+                'label' => 'form.quantity.label',
+                'translation_domain' => 'interface',
+                'required' => false,
+                'data' => 1,
+                'attr' => array(
+                    'style' => 'display: none;'
+                ),
+                'label_attr' => array(
+                    'style' => 'display: none;'
+                )
+            ))
+            ->add('packaging', ChoiceType::class, array(
+                'label' => 'form.packaging.label',
+                'translation_domain' => 'interface',
+                'required' => true,
+                'choices' => array(
+                    "form.packaging.ct" => "CT",
+                    "form.packaging.dkr" => "DKR",
+                ),
+                'data' => "CT",
+                'attr' => array(
+                    'style' => 'display: none;'
+                ),
+                'label_attr' => array(
+                    'style' => 'display: none;'
+                )
             ))
             ->getForm();
     }

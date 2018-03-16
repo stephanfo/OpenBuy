@@ -257,6 +257,17 @@ class InterfaceDigikey
         $article->setLink($part["PartUrl"]);
         $article->setDescription($part["ProductDescription"]);
         $article->setPicture($part["PrimaryPhoto"]);
+        $article->setExtra(array(
+            'families' => array(
+                $part["Category"]["Text"] ? $part["Category"]["Text"] : null,
+                $part["Family"]["Text"] ? $part["Family"]["Text"] : null,
+            ),
+            'rohsStatus' => $part["RohsInfo"] ? $part["RohsInfo"] : null,
+            'leadStatus' => $part["LeadStatus"] ? $part["LeadStatus"] : null,
+            'partStatus' => $part["PartStatus"] ? $part["PartStatus"] : null,
+            'obsolete' => $part["Obsolete"] ? $part["Obsolete"] : null,
+            'nonStock' => $part["NonStock"] ? $part["NonStock"] : null,
+        ));
 
         $pricingArray = array();
         foreach ($part["StandardPricing"] as $price) {
@@ -286,7 +297,7 @@ class InterfaceDigikey
             }
         }
 
-        $article->createVariable((int)$part["ManufacturerLeadWeeks"] * 7, $part["QuantityOnHand"], 2, new \DateTime("now + 1 day"), $part["PartStatus"], null, $pricingArray);
+        $article->createVariable((int)$part["ManufacturerLeadWeeks"] * 7, $part["QuantityOnHand"], 2, new \DateTime("now + 1 day"), null, $pricingArray);
 
         $this->em->persist($article);
         $this->em->flush();

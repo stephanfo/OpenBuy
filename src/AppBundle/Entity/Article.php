@@ -83,6 +83,13 @@ class Article
     private $picture;
 
     /**
+     * @var array
+     *
+     * @ORM\column(name="extra", type="array", nullable=true)
+     */
+    private $extra;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="checking", type="boolean", nullable=true)
@@ -462,7 +469,7 @@ class Article
      *
      * @return Article
      */
-    public function createVariable(?int $leadtime = null, ?int $stock = null, ?int $delivery = null, \DateTime $validity = null, ?string $status = null, ?string $comment = null, array $prices = array())
+    public function createVariable(?int $leadtime = null, ?int $stock = null, ?int $delivery = null, \DateTime $validity = null, ?string $comment = null, array $prices = array())
     {
         $variable = new Variable();
         $variable->setArticle($this);
@@ -471,7 +478,6 @@ class Article
         $variable->setStock($stock);
         $variable->setDelivery($delivery);
         $variable->setValidity($validity);
-        $variable->setStatus($status);
         $variable->setComment($comment);
         $variable->createPrices($prices);
 
@@ -546,5 +552,29 @@ class Article
     public function getMoq()
     {
         return $this->moq;
+    }
+
+    /**
+     * Set extra.
+     *
+     * @param array|null $extra
+     *
+     * @return Article
+     */
+    public function setExtra($extra = null)
+    {
+        $this->extra = $extra;
+
+        return $this;
+    }
+
+    /**
+     * Get extra.
+     *
+     * @return array|null
+     */
+    public function getExtra()
+    {
+        return $this->extra;
     }
 }

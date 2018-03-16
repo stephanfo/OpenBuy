@@ -58,13 +58,6 @@ class Variable
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255, nullable=true)
-     */
-    private $status;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
     private $comment;
@@ -388,29 +381,5 @@ class Variable
     public function getPrices()
     {
         return $this->prices;
-    }
-
-    /**
-     * Set status.
-     *
-     * @param string|null $status
-     *
-     * @return Variable
-     */
-    public function setStatus($status = null)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status.
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 }

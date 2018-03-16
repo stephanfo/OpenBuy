@@ -99,7 +99,6 @@ class PackageSearchController extends Controller
 
                 $data['stock'] = $variable->getStock();
                 $data['leadtime'] = $variable->getLeadtime();
-                $data['status'] = $variable->getStatus();
                 $data['package'] = $article->getPackage();
                 $data['moq'] = $article->getMoq();
                 $data['url'] = $article->getLink();
@@ -109,6 +108,7 @@ class PackageSearchController extends Controller
                 $data['sku'] = $article->getSku();
                 $data['supplier'] = $supplier->getName();
                 $data['currency'] = $supplier->getCurrency();
+                $data['extra'] = $article->getExtra();
 
                 $data['comment'] = "";
                 $data['comment'] .= !is_null($variable->getComment()) ? $variable->getComment() . "\r\n" : "";
