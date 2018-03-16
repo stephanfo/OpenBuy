@@ -259,14 +259,15 @@ class InterfaceDigikey
         $article->setPicture($part["PrimaryPhoto"]);
         $article->setExtra(array(
             'families' => array(
-                $part["Category"]["Text"] ? $part["Category"]["Text"] : null,
-                $part["Family"]["Text"] ? $part["Family"]["Text"] : null,
+                'l1' => $part["Category"]["Text"] ? $part["Category"]["Text"] : null,
+                'l2' => $part["Family"]["Text"] ? $part["Family"]["Text"] : null,
             ),
             'rohsStatus' => $part["RohsInfo"] ? $part["RohsInfo"] : null,
             'leadStatus' => $part["LeadStatus"] ? $part["LeadStatus"] : null,
             'partStatus' => $part["PartStatus"] ? $part["PartStatus"] : null,
             'obsolete' => $part["Obsolete"] ? $part["Obsolete"] : null,
             'nonStock' => $part["NonStock"] ? $part["NonStock"] : null,
+            'datasheet' => $part["PrimaryDatasheet"] ? $part["PrimaryDatasheet"] : null,
         ));
 
         $pricingArray = array();
