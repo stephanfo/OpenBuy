@@ -61,9 +61,11 @@ class InterfaceDigikeyController extends Controller
             switch ($data['path']) {
                 case 'keywordSearch':
                     $response = $interface->keywordSearch($request->headers->get('User-Agent'), $data['keyword'], $supplier->getId());
+                    $transactionDetails = $interface->getTransactionDetails();
                     break;
                 case 'partDetails':
                     $response = $interface->partDetails($request->headers->get('User-Agent'), $data['keyword'], $supplier->getId());
+                    $transactionDetails = $interface->getTransactionDetails();
                     break;
                 case 'packageByQuantity':
                     if(intval($data['quantity']) < 1)
@@ -71,17 +73,21 @@ class InterfaceDigikeyController extends Controller
                     if($data['packaging'] !== "CT" && $data['packaging'] !== "DKR")
                         $data['packaging'] = "CT";
                     $response = $interface->packageTypeByQuantity($request->headers->get('User-Agent'), $data['keyword'], $data['packaging'], intval($data['quantity']), $supplier->getId());
+                    $transactionDetails = $interface->getTransactionDetails();
                     break;
                 default:
                     $response = null;
+                    $transactionDetails = null;
             }
         } else {
             $response = null;
+            $transactionDetails = null;
         }
 
         return $this->render('interface/digikey/console.html.twig', array(
             'supplier' => $supplier,
             'response' => print_r($response, true),
+            'transactionDetails' => print_r($transactionDetails, true),
             'form' => $form->createView(),
         ));
     }
@@ -351,12 +357,6 @@ class InterfaceDigikeyController extends Controller
                 'translation_domain' => 'interface',
                 'required' => false,
                 'data' => 1,
-                'attr' => array(
-                    'style' => 'display: none;'
-                ),
-                'label_attr' => array(
-                    'style' => 'display: none;'
-                )
             ))
             ->add('packaging', ChoiceType::class, array(
                 'label' => 'form.packaging.label',
@@ -367,12 +367,6 @@ class InterfaceDigikeyController extends Controller
                     "form.packaging.dkr" => "DKR",
                 ),
                 'data' => "CT",
-                'attr' => array(
-                    'style' => 'display: none;'
-                ),
-                'label_attr' => array(
-                    'style' => 'display: none;'
-                )
             ))
             ->getForm();
     }

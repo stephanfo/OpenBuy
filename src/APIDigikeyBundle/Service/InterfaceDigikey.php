@@ -67,6 +67,11 @@ class InterfaceDigikey
         $this->updateSupplier();
     }
 
+    public function getTransactionDetails()
+    {
+        return $this->api->getTransactionDetails();
+    }
+
     public function revoke($supplierId = null)
     {
         if(!is_null($supplierId))

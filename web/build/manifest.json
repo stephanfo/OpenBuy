@@ -1,14 +1,14 @@
 {
-  "build/app.css": "/build/app.css",
-  "build/app.js": "/build/app.js",
+  "build/app.css": "/build/app.c172de6f.css",
+  "build/app.js": "/build/app.bba68803.js",
   "build/fonts/fontawesome-webfont.eot": "/build/fonts/fontawesome-webfont.674f50d2.eot",
   "build/fonts/fontawesome-webfont.ttf": "/build/fonts/fontawesome-webfont.b06871f2.ttf",
   "build/fonts/fontawesome-webfont.woff": "/build/fonts/fontawesome-webfont.fee66e71.woff",
   "build/fonts/fontawesome-webfont.woff2": "/build/fonts/fontawesome-webfont.af7ae505.woff2",
   "build/images/fontawesome-webfont.svg": "/build/images/fontawesome-webfont.912ec66d.svg",
-  "build/login.css": "/build/login.css",
-  "build/login.js": "/build/login.js",
-  "build/manifest.js": "/build/manifest.js",
-  "build/vendor.css": "/build/vendor.css",
-  "build/vendor.js": "/build/vendor.js"
+  "build/login.css": "/build/login.b7d0b05c.css",
+  "build/login.js": "/build/login.d14da38a.js",
+  "build/manifest.js": "/build/manifest.d41d8cd9.js",
+  "build/vendor.css": "/build/vendor.ce5a2789.css",
+  "build/vendor.js": "/build/vendor.5fa002bd.js"
 }

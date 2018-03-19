@@ -44,19 +44,58 @@
         </div>
         <div class="col-md-8">
             <h2>{{ 'console.simulation.answer' | trans({}, 'interface') }}</h2>
-            {% if response is not null %}
-                <pre>
-                    {{ response }}
-                </pre>
-            {% endif %}
+            <div id="accordion">
+                {% if transactionDetails is not empty %}
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    {{ 'console.simulation.transaction_details' | trans({}, 'interface') }}
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="pre">
+                                    {{ transactionDetails }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if response is not empty %}
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    {{ 'console.simulation.response' | trans({}, 'interface') }}
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="pre">
+                                    {{ response }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script>
-        $('input[name="form[path]"]').change(function () {
-            if(this.value == "packageByQuantity")
+        $(document).ready(function () {
+            updateForm();
+        });
+
+        $('input[name="form[path]"]').change(updateForm);
+
+        function updateForm() {
+            if($('input[name="form[path]"]:checked').val() == "packageByQuantity")
             {
                 $('#form_quantity').parent().children().css("display", "block");
                 $('#form_packaging').parent().children().css("display", "block");
@@ -66,6 +105,6 @@
                 $('#form_quantity').parent().children().css("display", "none");
                 $('#form_packaging').parent().children().css("display", "none");
             }
-        })
+        };
     </script>
 {% endblock %}

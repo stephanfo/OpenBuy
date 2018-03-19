@@ -5,6 +5,7 @@ namespace APIDigikeyBundle\Service;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7;
+use GuzzleHttp\TransferStats;
 
 /*
  * Stephanfo (Stéphane RATELET)
@@ -48,6 +49,15 @@ class ApiDigikey
     private $partnerId;
 
     public $parametersUpdated;
+
+    // Request details
+    private $requestUri;
+    private $requestHeaders;
+    private $requestBody;
+    private $responseTime;
+    private $responseStatus;
+    private $responseHeaders;
+    private $responseBody;
 
     // Constructor that load the config and parameters if they are sent
     function __construct($config = null, $parameters = null)
@@ -359,16 +369,53 @@ class ApiDigikey
             'Authorization' => $this->token,
         );
 
+        $this->requestHeaders = $headers;
+        $this->requestUri = $apiUri;
+        $this->requestBody = $request;
+        $this->responseTime = null;
+        $this->responseStatus = null;
+        $this->responseHeaders = null;
+        $this->responseBody = null;
+
         try {
-            $response = $clientHttp->request('POST', $apiUri, ['headers' => $headers, 'json' => $request]);
+            $response = $clientHttp->request('POST', $apiUri, [
+                'headers' => $headers,
+                'json' => $request,
+                'on_stats' => function (TransferStats $stats) {
+                    $this->responseTime = $stats->getTransferTime();
+                }
+            ]);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
+                $this->responseStatus = $e->getResponse()->getStatusCode();
+                $this->responseHeaders = $e->getResponse()->getHeaders();
+                $this->responseBody = Psr7\str($e->getResponse());
                 return Psr7\str($e->getResponse());
             }
             return Psr7\str($e->getRequest());
         }
 
+        $this->responseStatus = $response->getStatusCode();
+        $this->responseHeaders = $response->getHeaders();
+        $this->responseBody = null;
+
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /*
+     * Return the request stats
+     */
+    public function getTransactionDetails()
+    {
+        return array(
+            'requestHeaders' => $this->requestHeaders,
+            'requestUri' => $this->requestUri,
+            'requestBody' => $this->requestBody,
+            'responseTime' => $this->responseTime,
+            'responsaStatus' => $this->responseStatus,
+            'responseHeaders' => $this->responseHeaders,
+            'responseBody' => $this->responseBody,
+        );
     }
 
     /*

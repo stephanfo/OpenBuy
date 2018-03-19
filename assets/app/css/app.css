@@ -24,3 +24,9 @@ td.index-action {
 td.bom-alternative {
     font-style: italic;
 }
+
+div.pre
+{
+    font-family: Consolas, Lucida Console, "Courier New", monospace;
+    white-space: pre;
+}
