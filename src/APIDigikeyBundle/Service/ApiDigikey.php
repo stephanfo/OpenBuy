@@ -55,9 +55,10 @@ class ApiDigikey
     private $requestHeaders;
     private $requestBody;
     private $responseTime;
-    private $responseStatus;
+    private $responseStatusCode;
     private $responseHeaders;
     private $responseBody;
+    private $responseReasonPhrase;
 
     // Constructor that load the config and parameters if they are sent
     function __construct($config = null, $parameters = null)
@@ -373,7 +374,8 @@ class ApiDigikey
         $this->requestUri = $apiUri;
         $this->requestBody = $request;
         $this->responseTime = null;
-        $this->responseStatus = null;
+        $this->responseStatusCode = null;
+        $this->responseReasonPhrase = null;
         $this->responseHeaders = null;
         $this->responseBody = null;
 
@@ -382,12 +384,13 @@ class ApiDigikey
                 'headers' => $headers,
                 'json' => $request,
                 'on_stats' => function (TransferStats $stats) {
-                    $this->responseTime = $stats->getTransferTime();
+                    $this->responseTime = $stats->getTransferTime() * 1000;
                 }
             ]);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
-                $this->responseStatus = $e->getResponse()->getStatusCode();
+                $this->responseStatusCode = $e->getResponse()->getStatusCode();
+                $this->responseReasonPhrase = $e->getResponse()->getReasonPhrase();
                 $this->responseHeaders = $e->getResponse()->getHeaders();
                 $this->responseBody = Psr7\str($e->getResponse());
                 return Psr7\str($e->getResponse());
@@ -395,7 +398,8 @@ class ApiDigikey
             return Psr7\str($e->getRequest());
         }
 
-        $this->responseStatus = $response->getStatusCode();
+        $this->responseStatusCode = $response->getStatusCode();
+        $this->responseReasonPhrase = $response->getReasonPhrase();
         $this->responseHeaders = $response->getHeaders();
         $this->responseBody = null;
 
@@ -412,7 +416,8 @@ class ApiDigikey
             'requestUri' => $this->requestUri,
             'requestBody' => $this->requestBody,
             'responseTime' => $this->responseTime,
-            'responsaStatus' => $this->responseStatus,
+            'responseStatusCode' => $this->responseStatusCode,
+            'responseReasonPhrase' => $this->responseReasonPhrase,
             'responseHeaders' => $this->responseHeaders,
             'responseBody' => $this->responseBody,
         );

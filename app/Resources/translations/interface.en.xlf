@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2018-03-13T12:40:58Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2018-03-21T22:06:00Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -8,583 +8,464 @@
     <body>
       <trans-unit id="031fd11ba8734ab304116a023b5216306b246bee" resname="AT">
         <source>AT</source>
-        <target state="new">AT</target>
-        <jms:reference-file line="175">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="271">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>AT</target>
       </trans-unit>
       <trans-unit id="acdf41735f790252eae39bee834dcad0de587e3d" resname="AU">
         <source>AU</source>
-        <target state="new">AU</target>
-        <jms:reference-file line="176">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="272">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>AU</target>
       </trans-unit>
       <trans-unit id="60f722ded2237228971016bfdce5dcb94404f498" resname="AUD">
         <source>AUD</source>
-        <target state="new">AUD</target>
-        <jms:reference-file line="247">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>AUD</target>
       </trans-unit>
       <trans-unit id="3472ff5765a2d9cb8605e9b928f61808c7010096" resname="BE">
         <source>BE</source>
-        <target state="new">BE</target>
-        <jms:reference-file line="177">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="273">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>BE</target>
       </trans-unit>
       <trans-unit id="9f5da1d189a479a06c40c8d6edcc3363d968c7fe" resname="BG">
         <source>BG</source>
-        <target state="new">BG</target>
-        <jms:reference-file line="178">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="274">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>BG</target>
       </trans-unit>
       <trans-unit id="09acbb7d1da8aa3daff4c1ec8076713606974c64" resname="CA">
         <source>CA</source>
-        <target state="new">CA</target>
-        <jms:reference-file line="179">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="275">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>CA</target>
       </trans-unit>
       <trans-unit id="b821b203c038c046376e4b93c2e6663d2c992111" resname="CAD">
         <source>CAD</source>
-        <target state="new">CAD</target>
-        <jms:reference-file line="248">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>CAD</target>
       </trans-unit>
       <trans-unit id="b4061022cd6180ebd0ebf9a724b6f1762017973b" resname="CH">
         <source>CH</source>
-        <target state="new">CH</target>
-        <jms:reference-file line="180">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="276">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>CH</target>
       </trans-unit>
       <trans-unit id="5065f3689a7d7b6866f33c8d8dd8eac774b3eddc" resname="CN">
         <source>CN</source>
-        <target state="new">CN</target>
-        <jms:reference-file line="181">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="277">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>CN</target>
       </trans-unit>
       <trans-unit id="44e949cb95d4bbd927d61fbe6d06d28eb4960dd6" resname="CNY">
         <source>CNY</source>
-        <target state="new">CNY</target>
-        <jms:reference-file line="249">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>CNY</target>
       </trans-unit>
       <trans-unit id="1abd761884ed31397162c678cc45dbd15b20cdf0" resname="CZ">
         <source>CZ</source>
-        <target state="new">CZ</target>
-        <jms:reference-file line="182">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="278">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>CZ</target>
       </trans-unit>
       <trans-unit id="ce3e4bed2954adbf05f8edfaf1a4c0cc0cea70e9" resname="DE">
         <source>DE</source>
-        <target state="new">DE</target>
-        <jms:reference-file line="183">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="279">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>DE</target>
       </trans-unit>
       <trans-unit id="7b3ebc324268e66c2e58d3ac733f5dec5827eda6" resname="DK">
         <source>DK</source>
-        <target state="new">DK</target>
-        <jms:reference-file line="184">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="280">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>DK</target>
       </trans-unit>
       <trans-unit id="41a45154c211e4aa6412df2e58547dc4eb5d155e" resname="DKK">
         <source>DKK</source>
-        <target state="new">DKK</target>
-        <jms:reference-file line="250">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>DKK</target>
       </trans-unit>
       <trans-unit id="1a8aea63b8211aafabd118db0572a13810d234ff" resname="EE">
         <source>EE</source>
-        <target state="new">EE</target>
-        <jms:reference-file line="185">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="281">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>EE</target>
       </trans-unit>
       <trans-unit id="9debabbaa01a190fabe8324c5e6e2f2808052099" resname="ES">
         <source>ES</source>
-        <target state="new">ES</target>
-        <jms:reference-file line="186">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="282">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>ES</target>
       </trans-unit>
       <trans-unit id="d06e0731df1a4cdf21dfbcfddeb5d1d3cca162cc" resname="EUR">
         <source>EUR</source>
-        <target state="new">EUR</target>
-        <jms:reference-file line="251">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>EUR</target>
       </trans-unit>
       <trans-unit id="8f2ffce11be02356fb37abc2bef0f4d2163e26ff" resname="FI">
         <source>FI</source>
-        <target state="new">FI</target>
-        <jms:reference-file line="187">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="283">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>FI</target>
       </trans-unit>
       <trans-unit id="6d2830b1e76dc7300fce6745176601827d233de8" resname="FR">
         <source>FR</source>
-        <target state="new">FR</target>
-        <jms:reference-file line="188">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="284">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>FR</target>
       </trans-unit>
       <trans-unit id="505a44facaa3e758845f6e101f4e21f9d99acf63" resname="GB">
         <source>GB</source>
-        <target state="new">GB</target>
-        <jms:reference-file line="189">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="285">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>GB</target>
       </trans-unit>
       <trans-unit id="f2645d2bf0bd3778cec1c327380c1851ab44cc2a" resname="GBP">
         <source>GBP</source>
-        <target state="new">GBP</target>
-        <jms:reference-file line="252">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>GBP</target>
       </trans-unit>
       <trans-unit id="7433e6c1b098b3bdaf6011cdf61e3ae5855499cf" resname="GR">
         <source>GR</source>
-        <target state="new">GR</target>
-        <jms:reference-file line="190">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="286">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>GR</target>
       </trans-unit>
       <trans-unit id="3cb15a163b8ebe83004d3a7496bed1214d5c34ea" resname="HK">
         <source>HK</source>
-        <target state="new">HK</target>
-        <jms:reference-file line="191">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="287">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>HK</target>
       </trans-unit>
       <trans-unit id="0207d1c13eb89a33845aa72096dfebf3ba969624" resname="HKD">
         <source>HKD</source>
-        <target state="new">HKD</target>
-        <jms:reference-file line="253">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>HKD</target>
       </trans-unit>
       <trans-unit id="a56260db2f693f2d6557e45253a833431ae2ed71" resname="HU">
         <source>HU</source>
-        <target state="new">HU</target>
-        <jms:reference-file line="192">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="288">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>HU</target>
       </trans-unit>
       <trans-unit id="9ff31bb53dfc2bff233e882d367714fba682d7dc" resname="IE">
         <source>IE</source>
-        <target state="new">IE</target>
-        <jms:reference-file line="193">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="289">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>IE</target>
       </trans-unit>
       <trans-unit id="84fb2bf50d4f0ebafded06dd7c33a49b11d0b098" resname="IL">
         <source>IL</source>
-        <target state="new">IL</target>
-        <jms:reference-file line="194">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="290">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>IL</target>
       </trans-unit>
       <trans-unit id="b3bc8ac7a9ed52b93410d1237496f613fd413eeb" resname="ILS">
         <source>ILS</source>
-        <target state="new">ILS</target>
-        <jms:reference-file line="254">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>ILS</target>
       </trans-unit>
       <trans-unit id="5422031a52353002aae49d9ae744930b031742b1" resname="IT">
         <source>IT</source>
-        <target state="new">IT</target>
-        <jms:reference-file line="195">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="291">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>IT</target>
       </trans-unit>
       <trans-unit id="1920a56593b125b12813085d0845ffcdd31e1349" resname="JP">
         <source>JP</source>
-        <target state="new">JP</target>
-        <jms:reference-file line="196">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="292">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>JP</target>
       </trans-unit>
       <trans-unit id="ad548e15d400c7947db4db7fa00d98cdafc596e4" resname="JPY">
         <source>JPY</source>
-        <target state="new">JPY</target>
-        <jms:reference-file line="255">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>JPY</target>
       </trans-unit>
       <trans-unit id="6e046e1d0d404dc728e5a8b370344c5aff901212" resname="KR">
         <source>KR</source>
-        <target state="new">KR</target>
-        <jms:reference-file line="197">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="293">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>KR</target>
       </trans-unit>
       <trans-unit id="3fd24a9ebefae0c0a8c9524a401fa749c1e0cd3e" resname="KRW">
         <source>KRW</source>
-        <target state="new">KRW</target>
-        <jms:reference-file line="256">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>KRW</target>
       </trans-unit>
       <trans-unit id="6c62fb7313eb9d28efbca3e61ff13801b5b45a0a" resname="LT">
         <source>LT</source>
-        <target state="new">LT</target>
-        <jms:reference-file line="198">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="294">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>LT</target>
       </trans-unit>
       <trans-unit id="29ccc316ff75c97e08d94a13c573ebe7438c1a51" resname="LU">
         <source>LU</source>
-        <target state="new">LU</target>
-        <jms:reference-file line="199">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="295">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>LU</target>
       </trans-unit>
       <trans-unit id="a09b13dff976fe20f239fab7a59a35bde98835e6" resname="LV">
         <source>LV</source>
-        <target state="new">LV</target>
-        <jms:reference-file line="200">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="296">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>LV</target>
       </trans-unit>
       <trans-unit id="02da8ad445d583aa0b15e477bf78ce77640c028f" resname="MX">
         <source>MX</source>
-        <target state="new">MX</target>
-        <jms:reference-file line="201">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="297">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>MX</target>
       </trans-unit>
       <trans-unit id="a59ba24d63e9c67fe81bbc277e1424777efe1eda" resname="NL">
         <source>NL</source>
-        <target state="new">NL</target>
-        <jms:reference-file line="202">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="298">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>NL</target>
       </trans-unit>
       <trans-unit id="a0509b7780628bd9d9abc7eb8a2163477341053a" resname="NO">
         <source>NO</source>
-        <target state="new">NO</target>
-        <jms:reference-file line="203">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="299">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>NO</target>
       </trans-unit>
       <trans-unit id="e881c357a62a3432f57920a17157c6ffa9b57d75" resname="NOK">
         <source>NOK</source>
-        <target state="new">NOK</target>
-        <jms:reference-file line="257">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>NOK</target>
       </trans-unit>
       <trans-unit id="3d9d95f399884f0e0330ec4e43797a52ef45fae5" resname="NZ">
         <source>NZ</source>
-        <target state="new">NZ</target>
-        <jms:reference-file line="204">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="300">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>NZ</target>
       </trans-unit>
       <trans-unit id="2f760d1357f56d1e94a96b364aafa3d207483cb9" resname="NZD">
         <source>NZD</source>
-        <target state="new">NZD</target>
-        <jms:reference-file line="258">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>NZD</target>
       </trans-unit>
       <trans-unit id="3238a2c23ec52b54d1a9d62034bcdec3628b7db6" resname="PL">
         <source>PL</source>
-        <target state="new">PL</target>
-        <jms:reference-file line="205">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="301">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>PL</target>
       </trans-unit>
       <trans-unit id="7c4c910b08dc857dcb4cf5da2372858fb614226b" resname="PT">
         <source>PT</source>
-        <target state="new">PT</target>
-        <jms:reference-file line="206">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="302">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>PT</target>
       </trans-unit>
       <trans-unit id="5dce41c3c1fccd0c04d39f21a0cbde80a6071e2b" resname="SE">
         <source>SE</source>
-        <target state="new">SE</target>
-        <jms:reference-file line="207">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="303">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>SE</target>
       </trans-unit>
       <trans-unit id="1d15e9aad5482e0e636fd8552c084711e891f53d" resname="SEK">
         <source>SEK</source>
-        <target state="new">SEK</target>
-        <jms:reference-file line="259">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>SEK</target>
       </trans-unit>
       <trans-unit id="9832b282b4c3133a0368d04a6445a37041bce7da" resname="SG">
         <source>SG</source>
-        <target state="new">SG</target>
-        <jms:reference-file line="208">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="304">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>SG</target>
       </trans-unit>
       <trans-unit id="fa6f908de5396ba02e7de5fc3e6ada045f4ec3d6" resname="SGD">
         <source>SGD</source>
-        <target state="new">SGD</target>
-        <jms:reference-file line="260">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>SGD</target>
       </trans-unit>
       <trans-unit id="8f15af5eb518056ac0712bb85c82227a0075d1c9" resname="SK">
         <source>SK</source>
-        <target state="new">SK</target>
-        <jms:reference-file line="209">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="305">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>SK</target>
       </trans-unit>
       <trans-unit id="47299a86ea209d1f795a215e58c20667cf39985c" resname="TW">
         <source>TW</source>
-        <target state="new">TW</target>
-        <jms:reference-file line="210">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="306">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>TW</target>
       </trans-unit>
       <trans-unit id="c9564e5946077edc880694536fced502f448d5c2" resname="TWD">
         <source>TWD</source>
-        <target state="new">TWD</target>
-        <jms:reference-file line="261">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>TWD</target>
       </trans-unit>
       <trans-unit id="aa3093554472fd113135bed5b63e12f84c2e9fe8" resname="US">
         <source>US</source>
-        <target state="new">US</target>
-        <jms:reference-file line="211">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="307">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>US</target>
       </trans-unit>
       <trans-unit id="57814cfbae5c6d00f5cab49e34b9aa2ce8269eb9" resname="USD">
         <source>USD</source>
-        <target state="new">USD</target>
-        <jms:reference-file line="262">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>USD</target>
       </trans-unit>
       <trans-unit id="a755b928ea6322e87aed1807daa8aac260540124" resname="console.actions">
         <source>console.actions</source>
         <target>Actions</target>
-        <jms:reference-file line="17">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a34fdabee709514169f172923e6da9061d67305a" resname="console.parameters">
         <source>console.parameters</source>
         <target>Current parameters</target>
-        <jms:reference-file line="8">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6e958aad6ae7a4334d7a88535dc0cb8233709a39" resname="console.simulation.answer">
         <source>console.simulation.answer</source>
         <target>Answer</target>
-        <jms:reference-file line="46">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e4eea5352dfd897618b17815b0c34e8b436a03d8" resname="console.simulation.form">
         <source>console.simulation.form</source>
         <target>Request form</target>
-        <jms:reference-file line="39">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5bae3f76695973f4e86461ecdadf70d2af466a10" resname="console.simulation.response">
+        <source>console.simulation.response</source>
+        <target>Response</target>
+      </trans-unit>
+      <trans-unit id="5cd8281bcecc846110d3fe9490993469433426d5" resname="console.simulation.transaction_details">
+        <source>console.simulation.transaction_details</source>
+        <target>Transaction details</target>
       </trans-unit>
       <trans-unit id="63e36395e4b3a7676a78e7788c45773f062b2b1f" resname="console.title">
         <source>console.title</source>
         <target>Console</target>
-        <jms:reference-file line="4">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="600ccd1b71569232d01d110bc63e906beab04d8c" resname="de">
         <source>de</source>
-        <target state="new">de</target>
-        <jms:reference-file line="220">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>de</target>
       </trans-unit>
       <trans-unit id="034f65a2381df11939d27ba2f9da882c97367388" resname="digikey.button.code">
         <source>digikey.button.code</source>
         <target>Code</target>
-        <jms:reference-file line="23">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="40befee1a0bcadcb8bef0808a359e1cb41c443a7" resname="digikey.button.code.description">
         <source>digikey.button.code.description</source>
         <target>Generate an authentification code</target>
-        <jms:reference-file line="24">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8bb13cc65baf99261fdd7620d87fc3c2da8cb124" resname="digikey.button.refresh">
         <source>digikey.button.refresh</source>
         <target>Refresh</target>
-        <jms:reference-file line="31">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8b6fb89f5dae0afa6197e9d789b1d6e87de570af" resname="digikey.button.refresh.description">
         <source>digikey.button.refresh.description</source>
         <target>Refresh the token</target>
-        <jms:reference-file line="32">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d8f9aa7f3f9e6e40439707af658036f5b84908e1" resname="digikey.button.revoke">
         <source>digikey.button.revoke</source>
         <target>Revoke</target>
-        <jms:reference-file line="19">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c53870b659812f87dfaec2c84fae931413844bb9" resname="digikey.button.revoke.description">
         <source>digikey.button.revoke.description</source>
         <target>Revoke the current token</target>
-        <jms:reference-file line="20">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f18207f5fd40aa4e69cdf4f768e20eecda5d095e" resname="digikey.button.token">
         <source>digikey.button.token</source>
         <target>Token</target>
-        <jms:reference-file line="27">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="228bff400e3f3f077c907d3ab994ce7f67317ce9" resname="digikey.button.token.description">
         <source>digikey.button.token.description</source>
         <target>Generate a token</target>
-        <jms:reference-file line="28">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6ad4e288b9dd04064f4a1077d6983ea75bb40011" resname="digikey.label.code">
         <source>digikey.label.code</source>
         <target>Code</target>
-        <jms:reference-file line="10">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eabbbdada2d00c1ee1b160ca59736cc537d69a11" resname="digikey.label.customer_id">
         <source>digikey.label.customer_id</source>
         <target>Customer ID (optional)</target>
-        <jms:reference-file line="167">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="fd79a3fb1a4eef3de31c4dd945a3993d505eef59" resname="digikey.label.expiration">
         <source>digikey.label.expiration</source>
         <target>Expiration</target>
-        <jms:reference-file line="12">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9f7edb63105a6024efa446050ab2fdad9382dea2" resname="digikey.label.local_currency">
         <source>digikey.label.local_currency</source>
         <target>Currency</target>
-        <jms:reference-file line="244">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6ddadae0f5e50d6b9e0548c9b95808faf29ac640" resname="digikey.label.local_language">
         <source>digikey.label.local_language</source>
         <target>Language</target>
-        <jms:reference-file line="217">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="71e30746dab766b5a99b539bf9a2f2e6d3747a5f" resname="digikey.label.local_ship_to_country">
         <source>digikey.label.local_ship_to_country</source>
         <target>Ship to country</target>
-        <jms:reference-file line="268">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ea30369e894802beaa84a4adbb4ffcf7280b82d0" resname="digikey.label.local_site">
         <source>digikey.label.local_site</source>
         <target>Website</target>
-        <jms:reference-file line="172">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b997da7b10909d1fc990e12ea72113fc1321d572" resname="digikey.label.partner_id">
         <source>digikey.label.partner_id</source>
         <target>Partner ID</target>
-        <jms:reference-file line="313">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c3d38db183eeb0d03537256b7d8c306a987d9ba9" resname="digikey.label.refresh_token">
         <source>digikey.label.refresh_token</source>
         <target>Refresh token</target>
-        <jms:reference-file line="13">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9bc7b604b4c15c259a1e44ea5db4c42ad1a6222c" resname="digikey.label.token">
         <source>digikey.label.token</source>
         <target>Token</target>
-        <jms:reference-file line="11">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="dcb8247be3174faf68bdce4d68409bad34d93b8f" resname="edit.title">
         <source>edit.title</source>
         <target>Edit parameters</target>
-        <jms:reference-file line="4">/Resources/views/interface/digikey/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4f1ea4f09db2aaafb0a92c0b9e57751121ed6647" resname="el">
         <source>el</source>
-        <target state="new">el</target>
-        <jms:reference-file line="221">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>el</target>
       </trans-unit>
       <trans-unit id="094b0fe0e302854af1311afab85b5203ba457a3b" resname="en">
         <source>en</source>
-        <target state="new">en</target>
-        <jms:reference-file line="222">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>en</target>
       </trans-unit>
       <trans-unit id="7c160cc2fef98468e3da062a0ccf3b3d7fcba526" resname="error.bad_code">
         <source>error.bad_code</source>
         <target>The code received is invalid</target>
-        <jms:reference-file line="30">/../src/APIDigikeyBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="92e3b44515bf7f0d2c47a8c173c99ab641936751" resname="error.bad_id">
         <source>error.bad_id</source>
         <target>The ID provided is not existing</target>
-        <jms:reference-file line="24">/../src/APIDigikeyBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="09cd68a2a77b22a312dded612dd0d9988685189f" resname="es">
         <source>es</source>
-        <target state="new">es</target>
-        <jms:reference-file line="223">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>es</target>
       </trans-unit>
       <trans-unit id="3f8d8e5920cd00bdbfbf0567d27cfcf65e335d2c" resname="flash.console.empty_config">
         <source>flash.console.empty_config</source>
         <target>The config of the supplier %supplier% is empty. Please enter parameters before to retry</target>
-        <jms:reference-file line="51">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4f804b49d71304a7f6df779d9b61796eb6dddef2" resname="flash.edit.success">
         <source>flash.edit.success</source>
         <target>Parameters has been updated</target>
-        <jms:reference-file line="34">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0b36841a4fa1ba3e3dafd0e974eec188b538da06" resname="flash.revoke.success">
         <source>flash.revoke.success</source>
         <target>The token has been revoked</target>
-        <jms:reference-file line="89">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="f918890f691caf6b755e80f0adb2e8eafdd54e64" resname="flash.token.error">
         <source>flash.token.error</source>
         <target xml:space="preserve">Error when generating the token of: %supplier%.
 Message: %error%</target>
-        <jms:reference-file line="123">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="139">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="624e0192c07f306f2611c9d2c9379a886a3ae852" resname="flash.token.success">
         <source>flash.token.success</source>
         <target>A new token has been received</target>
-        <jms:reference-file line="121">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
-        <jms:reference-file line="137">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4f8c0431b6f93893d74d2c06c769e919c15f1f2c" resname="form.button.send">
         <source>form.button.send</source>
         <target>Send</target>
-        <jms:reference-file line="42">/Resources/views/interface/digikey/console.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="55016e5829dd2e0f248c37f55a060782c7c11fff" resname="form.keywordsearch.label">
         <source>form.keywordsearch.label</source>
         <target>Keyword search</target>
-        <jms:reference-file line="328">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c935c0b847dd3f1cc5f5aec9e1d3d4726b10b6c2" resname="form.packagebyquantity.label">
+        <source>form.packagebyquantity.label</source>
+        <target>Package by quantity</target>
+      </trans-unit>
+      <trans-unit id="ca6f3dff30cf634ae9b5f72138645065d9905fd3" resname="form.packaging.ct">
+        <source>form.packaging.ct</source>
+        <target>Cut Tape</target>
+      </trans-unit>
+      <trans-unit id="63bd7e8f6b1ffbc226f369d60e5887cb5f89b8eb" resname="form.packaging.dkr">
+        <source>form.packaging.dkr</source>
+        <target>Digi-Reel</target>
+      </trans-unit>
+      <trans-unit id="7551ec154c45c08e17919856d774c87db1d1b2b9" resname="form.packaging.label">
+        <source>form.packaging.label</source>
+        <target>Packaging</target>
       </trans-unit>
       <trans-unit id="bfb1420a2bfa1f57a25d73754eef64375eb8dc80" resname="form.partdetails.label">
         <source>form.partdetails.label</source>
         <target>Part details</target>
-        <jms:reference-file line="329">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="f71d80fa070adb79a4153b47e61be88cf26cdd0f" resname="form.path.label">
         <source>form.path.label</source>
         <target>Type of request</target>
-        <jms:reference-file line="324">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ef55112d628473399b80e8c329464f1d1a2c69b8" resname="form.quantity.label">
+        <source>form.quantity.label</source>
+        <target>Quantity</target>
       </trans-unit>
       <trans-unit id="35bc599df1344e58e1e5868f8a135f3eb8bf654f" resname="form.search.label">
         <source>form.search.label</source>
         <target>Keyword</target>
-        <jms:reference-file line="336">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b858a87c07b04c4568f51b0dce655f78d73c02b3" resname="fr">
         <source>fr</source>
-        <target state="new">fr</target>
-        <jms:reference-file line="224">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>fr</target>
       </trans-unit>
       <trans-unit id="30f088ea6673877c2e2c1edbe7513ff90eda9a6f" resname="he">
         <source>he</source>
-        <target state="new">he</target>
-        <jms:reference-file line="225">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>he</target>
       </trans-unit>
       <trans-unit id="06b08b32563194c5d89d83b119a25c21b9ce4cd7" resname="hu">
         <source>hu</source>
-        <target state="new">hu</target>
-        <jms:reference-file line="226">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>hu</target>
       </trans-unit>
       <trans-unit id="6c5522ca8af86fc5069b737bb8892b3ea61002c2" resname="it">
         <source>it</source>
-        <target state="new">it</target>
-        <jms:reference-file line="227">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>it</target>
       </trans-unit>
       <trans-unit id="84572ef2253ef81e2d8cd8c65849f4d9a3881f47" resname="ja">
         <source>ja</source>
-        <target state="new">ja</target>
-        <jms:reference-file line="228">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>ja</target>
       </trans-unit>
       <trans-unit id="65a7da8f45e5a2f3931f4d650cb1ecb17b805231" resname="ko">
         <source>ko</source>
-        <target state="new">ko</target>
-        <jms:reference-file line="229">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>ko</target>
       </trans-unit>
       <trans-unit id="595477bd43c386b66363f3cbda218df80e9512da" resname="nl">
         <source>nl</source>
-        <target state="new">nl</target>
-        <jms:reference-file line="230">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>nl</target>
       </trans-unit>
       <trans-unit id="fd1286353570c5703799ba76999323b7c7447b06" resname="no">
         <source>no</source>
-        <target state="new">no</target>
-        <jms:reference-file line="231">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>no</target>
       </trans-unit>
       <trans-unit id="f437cb078acc7c6d79873462334a355eddeb9459" resname="pl">
         <source>pl</source>
-        <target state="new">pl</target>
-        <jms:reference-file line="232">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>pl</target>
       </trans-unit>
       <trans-unit id="bc811258ae9f9fcb0494bb2785a876a59993024e" resname="pt">
         <source>pt</source>
-        <target state="new">pt</target>
-        <jms:reference-file line="233">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>pt</target>
       </trans-unit>
       <trans-unit id="67b8b1c4fedb2e38e2eb26f403b9c2b2642b0a2c" resname="ru">
         <source>ru</source>
-        <target state="new">ru</target>
-        <jms:reference-file line="234">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>ru</target>
       </trans-unit>
       <trans-unit id="766a6e8998aefe2117d62c2d48411e43161ffa11" resname="sk">
         <source>sk</source>
-        <target state="new">sk</target>
-        <jms:reference-file line="235">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>sk</target>
       </trans-unit>
       <trans-unit id="2b002dcf5ebaf365d031276a8f5e55d923723c20" resname="sl">
         <source>sl</source>
-        <target state="new">sl</target>
-        <jms:reference-file line="236">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>sl</target>
       </trans-unit>
       <trans-unit id="0a6190df9675de3c18b12fd3fc97648581780661" resname="sv">
         <source>sv</source>
-        <target state="new">sv</target>
-        <jms:reference-file line="237">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>sv</target>
       </trans-unit>
       <trans-unit id="68a5d7a179f27b047cf588c7cf817eabe6480c78" resname="zh">
         <source>zh</source>
-        <target state="new">zh</target>
-        <jms:reference-file line="238">/../src/AppBundle/Controller/InterfaceDigikeyController.php</jms:reference-file>
+        <target>zh</target>
       </trans-unit>
     </body>
   </file>

@@ -2,6 +2,7 @@
 
 namespace APIDigikeyBundle\Service;
 
+use APIDigikeyBundle\Entity\Transaction;
 use AppBundle\AppBundle;
 use AppBundle\Entity\Article;
 use Doctrine\ORM\EntityManager;
@@ -158,6 +159,7 @@ class InterfaceDigikey
 
         $response = $this->api->keywordSearch($userAgent, $keyword);
 
+        $this->storeTransactionDetails();
         $this->updateSupplier();
 
         return $response;
@@ -171,6 +173,7 @@ class InterfaceDigikey
 
         $response = $this->api->partDetails($userAgent, $keyword);
 
+        $this->storeTransactionDetails();
         $this->updateSupplier();
 
         return $response;
@@ -184,6 +187,7 @@ class InterfaceDigikey
 
         $response = $this->api->packageTypeByQuantity($userAgent, $keyword, $packagingPreference, $quantity);
 
+        $this->storeTransactionDetails();
         $this->updateSupplier();
 
         return $response;
@@ -309,6 +313,25 @@ class InterfaceDigikey
         $this->em->flush();
 
         return $article;
+    }
+
+    public function storeTransactionDetails()
+    {
+        $details = $this->api->getTransactionDetails();
+
+        $transaction = new Transaction();
+        $transaction->setSupplier($this->supplier);
+        $transaction->setRequestHeaders($details['requestHeaders']);
+        $transaction->setRequestUri($details['requestUri']);
+        $transaction->setRequestBody($details['requestBody']);
+        $transaction->setResponseTime($details['responseTime']);
+        $transaction->setResponseStatusCode($details['responseStatusCode']);
+        $transaction->setResponseReasonPhrase($details['responseReasonPhrase']);
+        $transaction->setResponseHeaders($details['responseHeaders']);
+        $transaction->setResponseBody($details['responseBody']);
+
+        $this->em->persist($transaction);
+        $this->em->flush();
     }
 
     public function getClassName(){
