@@ -15,7 +15,7 @@ class TransactionRepository extends \Doctrine\ORM\EntityRepository
             ->select("transaction.responseStatusCode AS name, COUNT(transaction.id) AS y")
             ->groupBy('transaction.responseStatusCode')
             ->where("transaction.created > :from")
-            ->setParameter("from", new \DateTime("now - 7 days"))
+            ->setParameter("from", new \DateTime("now - 1 month"))
             ->orderBy("y", "desc")
             ->getQuery()
             ->getResult();
@@ -31,7 +31,7 @@ class TransactionRepository extends \Doctrine\ORM\EntityRepository
 
         $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
 
-        $from = new \DateTime("now - 7 days");
+        $from = new \DateTime("now - 1 month");
 
         $stmt->execute(array(
             "from" => $from->format("Y-m-d H:i:s"),
@@ -47,7 +47,7 @@ class TransactionRepository extends \Doctrine\ORM\EntityRepository
             ->select("user.username AS name, supplier.name AS drilldown, COUNT(transaction.id) AS y")
             ->groupBy("user.username, supplier.name")
             ->where("transaction.created > :from")
-            ->setParameter("from", new \DateTime("now - 7 days"))
+            ->setParameter("from", new \DateTime("now - 1 month"))
             ->orderBy("user.username", "ASC")
             ->addOrderBy("supplier.name", "ASC")
             ->getQuery()
@@ -64,7 +64,7 @@ class TransactionRepository extends \Doctrine\ORM\EntityRepository
 
         $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
 
-        $from = new \DateTime("now - 7 days");
+        $from = new \DateTime("now - 1 month");
 
         $stmt->execute(array(
             "from" => $from->format("Y-m-d H:i:s"),
