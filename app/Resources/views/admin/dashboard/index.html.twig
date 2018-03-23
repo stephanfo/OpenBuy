@@ -1,0 +1,24 @@
+{% extends '::layout.admin.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'admin.dashboard.home.title' | trans }}</h1>
+    <h2>{{ 'admin.dashboard.api_digikey.title' | trans }}</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>{{ 'admin.dashboard.api_digikey_requests.title' | trans }}</h3>
+            {{ render(controller('APIDigikeyBundle:Graph:graphRequests')) }}
+        </div>
+        <div class="col-sm-6">
+            <h3>{{ 'admin.dashboard.api_digikey_status.title' | trans }}</h3>
+            {{ render(controller('APIDigikeyBundle:Graph:graphStatus')) }}
+        </div>
+        <div class="col-sm-6">
+            <h3>{{ 'admin.dashboard.api_digikey_users.title' | trans }}</h3>
+            {{ render(controller('APIDigikeyBundle:Graph:graphUsers')) }}
+        </div>
+        <div class="col-sm-6">
+            <h3>{{ 'admin.dashboard.api_digikey_time.title' | trans }}</h3>
+            {{ render(controller('APIDigikeyBundle:Graph:graphTiming')) }}
+        </div>
+    </div>
+{% endblock %}
