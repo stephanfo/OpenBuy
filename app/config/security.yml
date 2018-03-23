@@ -9,7 +9,7 @@ security:
         ROLE_SRM:             ROLE_USER
         ROLE_CRM:             ROLE_USER
         ROLE_BOM:             ROLE_SRM, ROLE_CRM
-        ROLE_ADMIN:           ROLE_USER
+        ROLE_ADMIN:           ROLE_USER, ROLE_STATS
         ROLE_SUPER_ADMIN:     ROLE_ADMIN
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded

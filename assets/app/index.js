@@ -7,3 +7,8 @@ const $ = require('jquery');
 
 // create global $ and jQuery variables
 global.$ = global.jQuery = $;
+
+const Highcharts = require('highcharts/highcharts.js');
+require('highcharts/modules/drilldown')(Highcharts)
+
+global.Highcharts = Highcharts;

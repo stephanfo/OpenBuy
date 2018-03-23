@@ -1,6 +1,6 @@
 {
   "build/app.css": "/build/app.c172de6f.css",
-  "build/app.js": "/build/app.bba68803.js",
+  "build/app.js": "/build/app.3a373591.js",
   "build/fonts/fontawesome-webfont.eot": "/build/fonts/fontawesome-webfont.674f50d2.eot",
   "build/fonts/fontawesome-webfont.ttf": "/build/fonts/fontawesome-webfont.b06871f2.ttf",
   "build/fonts/fontawesome-webfont.woff": "/build/fonts/fontawesome-webfont.fee66e71.woff",
@@ -10,5 +10,5 @@
   "build/login.js": "/build/login.d14da38a.js",
   "build/manifest.js": "/build/manifest.d41d8cd9.js",
   "build/vendor.css": "/build/vendor.ce5a2789.css",
-  "build/vendor.js": "/build/vendor.5fa002bd.js"
+  "build/vendor.js": "/build/vendor.db9f36e1.js"
 }

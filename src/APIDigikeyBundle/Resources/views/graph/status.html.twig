@@ -1,0 +1,49 @@
+<div id="statusContainer" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var options = {
+            chart: {
+                renderTo: 'statusContainer',
+                type: 'pie'
+            },
+            title: {
+                text: 'Response status codes (last 7 days)'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            credits:{
+                enabled: false
+            },
+            series: [{
+                name: 'Status Code',
+                data: []
+            }]
+        };
+
+        $.getJSON("{{ path('api_digikey_datagraph_status') }}", function(data) {
+            options.series[0].data = $.map(data, function (value, i) {
+                return {
+                    "name": value.name,
+                    "y": parseInt(value.y)
+                };
+            });
+            var chart = new Highcharts.Chart(options);
+        });
+
+    }, false);
+</script>

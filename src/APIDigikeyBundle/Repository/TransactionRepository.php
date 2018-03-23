@@ -10,4 +10,66 @@ namespace APIDigikeyBundle\Repository;
  */
 class TransactionRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLastCode() {
+        return $this->createQueryBuilder("transaction")
+            ->select("transaction.responseStatusCode AS name, COUNT(transaction.id) AS y")
+            ->groupBy('transaction.responseStatusCode')
+            ->where("transaction.created > :from")
+            ->setParameter("from", new \DateTime("now - 7 days"))
+            ->orderBy("y", "desc")
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getRequests() {
+        $rawSql =
+            "SELECT DATE(transaction.created) AS name, COUNT(transaction.id) AS y " .
+            "FROM transaction " .
+            "WHERE transaction.created > :from " .
+            "GROUP BY DATE(transaction.created) " .
+            "ORDER BY name ASC";
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
+
+        $from = new \DateTime("now - 7 days");
+
+        $stmt->execute(array(
+            "from" => $from->format("Y-m-d H:i:s"),
+        ));
+
+        return $stmt->fetchAll();
+    }
+
+    public function getUsersSuppliers() {
+        return $this->createQueryBuilder('transaction')
+            ->join("transaction.supplier", "supplier")
+            ->join("supplier.user", "user")
+            ->select("user.username AS name, supplier.name AS drilldown, COUNT(transaction.id) AS y")
+            ->groupBy("user.username, supplier.name")
+            ->where("transaction.created > :from")
+            ->setParameter("from", new \DateTime("now - 7 days"))
+            ->orderBy("user.username", "ASC")
+            ->addOrderBy("supplier.name", "ASC")
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getTiming() {
+        $rawSql =
+            "SELECT (ROUND(transaction.responseTime / 100) / 10) AS name, COUNT(transaction.id) AS y " .
+            "FROM transaction " .
+            "WHERE transaction.created > :from " .
+            "GROUP BY ROUND(transaction.responseTime / 100) " .
+            "ORDER BY name ASC";
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
+
+        $from = new \DateTime("now - 7 days");
+
+        $stmt->execute(array(
+            "from" => $from->format("Y-m-d H:i:s"),
+        ));
+
+        return $stmt->fetchAll();
+    }
 }

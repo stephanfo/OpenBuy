@@ -1,0 +1,49 @@
+<div id="timingContainer" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var options = {
+            chart: {
+                renderTo: 'timingContainer'
+            },
+            title: {
+                text: 'Response time (second) (last 7 days)'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}</b>'
+            },
+            credits:{
+                enabled: false
+            },
+            xAxis: {
+                title: {
+                    text: 'Response time (s)'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of requests'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            series: [{
+                name: 'Requests count',
+                data: []
+            }]
+        };
+
+        $.getJSON("{{ path('api_digikey_datagraph_timing') }}", function(data) {
+            options.series[0].data = $.map(data, function (value, i) {
+                return [[
+                    parseFloat(value.name),
+                    parseInt(value.y)
+                ]];
+            });
+            var chart = new Highcharts.Chart(options);
+        });
+
+    }, false);
+</script>

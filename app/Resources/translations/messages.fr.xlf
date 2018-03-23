@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2018-03-21T22:01:56Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+  <file date="2018-03-23T15:37:21Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -9,1268 +9,980 @@
       <trans-unit id="9f34263150ef69c4e0340d5140e32838893559f0" resname="admin.configs.edit.title">
         <source>admin.configs.edit.title</source>
         <target>Editer la configuration</target>
-        <jms:reference-file line="4">/Resources/views/admin/config/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2856ea133d9b1a1700de0fd95310d723ac458309" resname="admin.configs.index.title">
         <source>admin.configs.index.title</source>
         <target>Liste des configurations</target>
-        <jms:reference-file line="4">/Resources/views/admin/config/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4d4d63405ec70120b5589bb3281430f983544d7a" resname="admin.configs.label.name">
         <source>admin.configs.label.name</source>
         <target>Nom</target>
-        <jms:reference-file line="8">/Resources/views/admin/config/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0e2d4d0eff617ce5b1dba4fe21c9c3f15b88cc6a" resname="admin.configs.label.updated">
         <source>admin.configs.label.updated</source>
         <target>Dernière mise à jour</target>
-        <jms:reference-file line="9">/Resources/views/admin/config/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4df2b454201d7093c512b04098f2cff6fdcd6a94" resname="admin.dashboard.api_digikey.title">
+        <source>admin.dashboard.api_digikey.title</source>
+        <target>Statistiques d'utilisation de l'API Digi-Key</target>
+      </trans-unit>
+      <trans-unit id="1ec9633adb751431876fe71e4612a2d69cee8427" resname="admin.dashboard.api_digikey_requests.title">
+        <source>admin.dashboard.api_digikey_requests.title</source>
+        <target>Nombre de requêtes lancées</target>
+      </trans-unit>
+      <trans-unit id="5a16a873c2da28e59362701f93463d5bfe86053f" resname="admin.dashboard.api_digikey_status.title">
+        <source>admin.dashboard.api_digikey_status.title</source>
+        <target>Status des réponses</target>
+      </trans-unit>
+      <trans-unit id="00cc03e580dc0987656fbbc448762a31206e0021" resname="admin.dashboard.api_digikey_time.title">
+        <source>admin.dashboard.api_digikey_time.title</source>
+        <target>Temps de réponse</target>
+      </trans-unit>
+      <trans-unit id="ee74d35b869a3cd4137a4832a8fcbf93bdf2fdb8" resname="admin.dashboard.api_digikey_users.title">
+        <source>admin.dashboard.api_digikey_users.title</source>
+        <target>Utilisation par les utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="d63f47805f2ec1fc86570c0d7c66ce14616ac3d2" resname="admin.dashboard.home.title">
+        <source>admin.dashboard.home.title</source>
+        <target>Tableau de bord</target>
       </trans-unit>
       <trans-unit id="9ad413c950aefe803cfc7d0ca7efb0ecde54ec74" resname="admin.users.edit.title">
         <source>admin.users.edit.title</source>
         <target>Editer l'utilisateur</target>
-        <jms:reference-file line="4">/Resources/views/admin/user/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3a54a3987f28915ff1a7ecdd55941a12a848963f" resname="admin.users.index.title">
         <source>admin.users.index.title</source>
         <target>Liste des utilisateurs</target>
-        <jms:reference-file line="4">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f8b7fa3d790529b202a1a7feb9fe90e7150125ec" resname="admin.users.label.address">
         <source>admin.users.label.address</source>
         <target>Adresse de l'utilisateur</target>
-        <jms:reference-file line="99">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8af015fe78ce3f6d8e936366cc56d55f97603a72" resname="admin.users.label.auths">
         <source>admin.users.label.auths</source>
         <target>Autorisations</target>
-        <jms:reference-file line="10">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1bcb80125f24968f96dcfeb7a070be4f11542067" resname="admin.users.label.jobrole">
         <source>admin.users.label.jobrole</source>
         <target>Fonction</target>
-        <jms:reference-file line="91">/Resources/views/admin/user/index.html.twig</jms:reference-file>
-        <jms:reference-file line="97">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a9468069e3fc5bcb0eef558f82f7763ed3766e19" resname="admin.users.label.last_login">
         <source>admin.users.label.last_login</source>
         <target>Dernière connection</target>
-        <jms:reference-file line="9">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4c297f3a21eff70c1270c05c42e9686e21e83bee" resname="admin.users.label.mobile">
         <source>admin.users.label.mobile</source>
         <target>Portable</target>
-        <jms:reference-file line="95">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6202ecc5870ec03467e6aa295add91900629a41d" resname="admin.users.label.name">
         <source>admin.users.label.name</source>
         <target>Nom</target>
-        <jms:reference-file line="8">/Resources/views/admin/user/index.html.twig</jms:reference-file>
-        <jms:reference-file line="89">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c63253b315b7ae9681c408eb68ffbdbd10854b6f" resname="admin.users.label.phone">
         <source>admin.users.label.phone</source>
         <target>Téléphone</target>
-        <jms:reference-file line="93">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4cd3fc20886517f1db82b26855115beae0ce30a0" resname="admin.users.new.title">
         <source>admin.users.new.title</source>
         <target>Nouvel utilisateur</target>
-        <jms:reference-file line="4">/Resources/views/admin/user/add.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8750cbaeb7d1f56f89fc59b4a3c673ee908787f2" resname="alternative.placeholder.mfrName1">
         <source>alternative.placeholder.mfrName1</source>
         <target>Entrez le nom du fabricant (facultatif)</target>
-        <jms:reference-file line="117">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ba2f387bd9c15c23a22a460c90dd6ca315b399e0" resname="alternative.placeholder.mfrName2">
         <source>alternative.placeholder.mfrName2</source>
         <target>Entrez le nom du fabricant (facultatif)</target>
-        <jms:reference-file line="133">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="75120ad5a4f5539643b62deec4017d0d43783dec" resname="alternative.placeholder.mfrName3">
         <source>alternative.placeholder.mfrName3</source>
         <target>Entrez le nom du fabricant (facultatif)</target>
-        <jms:reference-file line="149">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="386ff6a27b617b4b17591dfa49f3af3129fe4a3c" resname="alternative.placeholder.mfrName4">
         <source>alternative.placeholder.mfrName4</source>
         <target>Entrez le nom du fabricant (facultatif)</target>
-        <jms:reference-file line="165">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="eeb5b7a763df47ff64036f3aa4d42dc267d515ce" resname="alternative.placeholder.mfrPn1">
         <source>alternative.placeholder.mfrPn1</source>
         <target>Entrez la référence fabricant (facultatif)</target>
-        <jms:reference-file line="125">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="3aa5c6f2e2c22908e0c583c0ed712afd4c940669" resname="alternative.placeholder.mfrPn2">
         <source>alternative.placeholder.mfrPn2</source>
         <target>Entrez la référence fabricant (facultatif)</target>
-        <jms:reference-file line="141">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="1138391586fcce3593302175e14681b4375cb14a" resname="alternative.placeholder.mfrPn3">
         <source>alternative.placeholder.mfrPn3</source>
         <target>Entrez la référence fabricant (facultatif)</target>
-        <jms:reference-file line="157">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="fdebc8bf3e816bb2e25c801bb6fa76b3565ec4f4" resname="alternative.placeholder.mfrPn4">
         <source>alternative.placeholder.mfrPn4</source>
         <target>Entrez la référence fabricant (facultatif)</target>
-        <jms:reference-file line="173">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b81db93ae658298a99273bd02974f8b0381608a9" resname="app.title">
         <source>app.title</source>
         <target>OpenBuy</target>
-        <jms:reference-file line="18">/Resources/views/master.html.twig</jms:reference-file>
-        <jms:reference-file line="6">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="371f724874c601f5130dd45348db8b34c704b1cc" resname="article.label.leadtime">
         <source>article.label.leadtime</source>
         <target>Lead time</target>
-        <jms:reference-file line="251">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bf8303c9cdcab5f0a0ebf67c99540b60c8f70f88" resname="article.label.mfrName">
         <source>article.label.mfrName</source>
         <target>Fabricant</target>
-        <jms:reference-file line="248">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c92977aa890b8fcf2e73df8679b9667a1fa2cd01" resname="article.label.mfrPn">
         <source>article.label.mfrPn</source>
         <target>Référence fabricant</target>
-        <jms:reference-file line="247">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="171e08aab8e205ff8fdfb70a242a78856146852f" resname="article.label.package">
         <source>article.label.package</source>
         <target>Conditionnement</target>
-        <jms:reference-file line="249">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7d1e0459ecd248b331923324e3f26d18c2a764e3" resname="article.label.sku">
         <source>article.label.sku</source>
         <target>Référence fournisseur</target>
-        <jms:reference-file line="246">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="093d49c02b559e7f79a4368fa3dfcd41ba798bbb" resname="article.label.stock">
         <source>article.label.stock</source>
         <target>Stock disponible</target>
-        <jms:reference-file line="250">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="61098f9df2b7574253d1c841e9abaeb550ab739c" resname="article.label.validity">
         <source>article.label.validity</source>
         <target>Validité tarifaire</target>
-        <jms:reference-file line="252">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4933d9eb0cc0ca1b5a48fc89520e4cf16fe1721c" resname="bom.add">
         <source>bom.add</source>
         <target>Ajouter une BOM</target>
-        <jms:reference-file line="54">/Resources/views/bom/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3f41afe9546849668da38a35f84479b8261909c0" resname="bom.edit.title">
         <source>bom.edit.title</source>
         <target>Edition de la nomenclature</target>
-        <jms:reference-file line="4">/Resources/views/bom/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="44959cd0b65038c281cc3fbfaa8dd8f30628f27e" resname="bom.index.title">
         <source>bom.index.title</source>
         <target>Liste des nomenclatures</target>
-        <jms:reference-file line="4">/Resources/views/bom/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="598102df3f212cb2d50e22766e21c8f980f8cf8e" resname="bom.label.createdAt">
         <source>bom.label.createdAt</source>
         <target>Créée le </target>
-        <jms:reference-file line="10">/Resources/views/bom/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="638299e656c718cb555fdb91823873986a3745c7" resname="bom.label.ecu">
         <source>bom.label.ecu</source>
         <target>Client</target>
-        <jms:reference-file line="9">/Resources/views/bom/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="99ee04469229fc474ae6ab4db48ebb6929570541" resname="bom.label.name">
         <source>bom.label.name</source>
         <target>Nom de la nomenclature </target>
-        <jms:reference-file line="68">/Resources/views/bom/index.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/bom/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ae7f56698ac8792870589b70c308e499ad11edfc" resname="bom.manage.alternative.add.title">
         <source>bom.manage.alternative.add.title</source>
         <target>Ajouter une nouvelle alternative</target>
-        <jms:reference-file line="169">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="07c1b92ca2f664e9ba7f944b40843ebccf05ab2f" resname="bom.manage.alternative.edit.title">
         <source>bom.manage.alternative.edit.title</source>
         <target>Editer une alternative</target>
-        <jms:reference-file line="154">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="86e9298f130c06712e173ff00b0b9131a3d9c9e9" resname="bom.manage.button.addLineExcel">
         <source>bom.manage.button.addLineExcel</source>
         <target>Charger un fichier Excel</target>
-        <jms:reference-file line="102">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1304620bfe85dfec9e92359ce702904101a6ae75" resname="bom.manage.button.addLineSingle">
         <source>bom.manage.button.addLineSingle</source>
         <target>Ajouter une ligne</target>
-        <jms:reference-file line="101">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0af849c3ffb6c27d62c2af0cd6b5cbb24e933287" resname="bom.manage.button.deleteAll">
         <source>bom.manage.button.deleteAll</source>
         <target>Supprimer toutes les lignes</target>
-        <jms:reference-file line="98">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="99b3e7933e4f8a54aa8778cebaa689f43306a6f2" resname="bom.manage.button.loadAllAPI">
         <source>bom.manage.button.loadAllAPI</source>
         <target>Charger tous les prix des APIs</target>
-        <jms:reference-file line="103">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="614414aadc4fe5369b2be2c62f143963871d4b92" resname="bom.manage.button.quantity.add">
         <source>bom.manage.button.quantity.add</source>
         <target>Ajouter une quantité</target>
-        <jms:reference-file line="43">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="55fb4b53ed9c0ae25970b9d704c666aa620a79ef" resname="bom.manage.created">
         <source>bom.manage.created</source>
         <target>Créée le </target>
-        <jms:reference-file line="12">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9177701ab582915bbcc480cfc697225ac6bb03ea" resname="bom.manage.each">
         <source>bom.manage.each</source>
         <target>par carte</target>
-        <jms:reference-file line="93">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="afed35e63aa855f288e8017c408cb6aa3457a2ef" resname="bom.manage.ecu">
         <source>bom.manage.ecu</source>
         <target>Nom du client </target>
-        <jms:reference-file line="10">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="82874e7207a5a9d6a69d61d248ab7b52fdbf5c18" resname="bom.manage.information.title">
         <source>bom.manage.information.title</source>
         <target>Détail de la nomenclature</target>
-        <jms:reference-file line="7">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d24de8a538e6820fe3112798c8747bc1bd4d0155" resname="bom.manage.line.add.title">
         <source>bom.manage.line.add.title</source>
         <target>Ajouter une nouvelle ligne et des alternatives</target>
-        <jms:reference-file line="109">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c5e189593c7d7984c02f9da98114cbb3f099cb9d" resname="bom.manage.line.edit.title">
         <source>bom.manage.line.edit.title</source>
         <target>Editer la ligne</target>
-        <jms:reference-file line="139">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f7d11c9838528a99f0a9c6e06578b9a7a34afeec" resname="bom.manage.line.excel.title">
         <source>bom.manage.line.excel.title</source>
         <target>Charger un fichier Excel</target>
-        <jms:reference-file line="124">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7922ffa49f86b679a59bf3f818a1ea3d90fef0cf" resname="bom.manage.lines">
         <source>bom.manage.lines</source>
         <target>Nombre de lignes </target>
-        <jms:reference-file line="11">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0b109a02193fbfcf640eb759bd69892e4f4d0423" resname="bom.manage.lines.title">
         <source>bom.manage.lines.title</source>
         <target>Lignes de la nomenclature</target>
-        <jms:reference-file line="47">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="feca1b42630ebf9c6e5f2e35f5d1dbdb11ddc95e" resname="bom.manage.name">
         <source>bom.manage.name</source>
         <target>Nom de la nomenclature </target>
-        <jms:reference-file line="9">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8b521b6cb9645260f13d8d47a8a4a33c09344efb" resname="bom.manage.quantity.add.title">
         <source>bom.manage.quantity.add.title</source>
         <target>Ajouter une quantité de cartes</target>
-        <jms:reference-file line="199">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3b31f1f1ed54117e57ea7c117223da66a1759ae9" resname="bom.manage.quantity.edit.title">
         <source>bom.manage.quantity.edit.title</source>
         <target>Editer la quantité de cartes</target>
-        <jms:reference-file line="184">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ce21269c19b7f8849d31133254a70f6479313acc" resname="bom.manage.quantity.title">
         <source>bom.manage.quantity.title</source>
         <target>Nombre de cartes</target>
-        <jms:reference-file line="17">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="291a58b5b9e6e9ba26e7accff3766559bc2b27cd" resname="bom.manage.title">
         <source>bom.manage.title</source>
         <target>Gestion de la nomenclature</target>
-        <jms:reference-file line="4">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="faa5b169f407bdfcdb06ef6d3b768d5e5dd9060f" resname="bom.manage.total">
         <source>bom.manage.total</source>
         <target>Total de la nomenclature</target>
-        <jms:reference-file line="92">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="30fbe009586a0d1b287cb7caa8e012e0623d7979" resname="bom.manage.updated">
         <source>bom.manage.updated</source>
         <target>Mise à jour le </target>
-        <jms:reference-file line="13">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="253">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="970034a1d8c3ff67bd1f6b93f7b02345358e9d1a" resname="bom.new.title">
         <source>bom.new.title</source>
         <target>Ajouter une nouvelle nomenclature</target>
-        <jms:reference-file line="4">/Resources/views/bom/new.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="028e5e8c8e8379ea85ca5b536bc3f87910c0f7e2" resname="controler.page.unknow">
         <source>controler.page.unknow</source>
         <target>La page %page% n'existe pas</target>
-        <jms:reference-file line="30">/../src/AppBundle/Controller/BomController.php</jms:reference-file>
-        <jms:reference-file line="26">/../src/AppBundle/Controller/ConfigController.php</jms:reference-file>
-        <jms:reference-file line="26">/../src/AppBundle/Controller/EcuController.php</jms:reference-file>
-        <jms:reference-file line="26">/../src/AppBundle/Controller/SupplierController.php</jms:reference-file>
-        <jms:reference-file line="30">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="1718a91039712cc95a986cd7e17fefaea74630f4" resname="ecu.add">
         <source>ecu.add</source>
         <target>Ajouter un client</target>
-        <jms:reference-file line="52">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8e9119dbdb9665464d1c18c1d07b6503032e0826" resname="ecu.edit.title">
         <source>ecu.edit.title</source>
         <target>Editer le client</target>
-        <jms:reference-file line="4">/Resources/views/crm/ecu/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9710cac264d994a80448323e0c09cc55f6d84ce5" resname="ecu.index.title">
         <source>ecu.index.title</source>
         <target>Liste des clients</target>
-        <jms:reference-file line="4">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="34dd3e90976ea537671815488f28285c814e1caa" resname="ecu.label.address">
         <source>ecu.label.address</source>
         <target>Adresse </target>
-        <jms:reference-file line="68">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="41a9422aa6a9d1591d257c09926403a4dac110ea" resname="ecu.label.country">
         <source>ecu.label.country</source>
         <target>Pays </target>
-        <jms:reference-file line="9">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="31998c290c272f24571e453d63973e72fbf0e10b" resname="ecu.label.name">
         <source>ecu.label.name</source>
         <target>Nom du client </target>
-        <jms:reference-file line="66">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="aba60cfab5e9de49f46322bf325def06fbda5b73" resname="ecu.new.title">
         <source>ecu.new.title</source>
         <target>Ajouter un nouveau client</target>
-        <jms:reference-file line="4">/Resources/views/crm/ecu/new.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d7ec0c4c0cdfba2245abf0581197f6d213e58d15" resname="flash.admin.users.allow.toggle.success">
         <source>flash.admin.users.allow.toggle.success</source>
         <target>L'accès à %auth% a été donné à %user%</target>
-        <jms:reference-file line="164">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="176">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="188">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="d40de93076e7df746b4fc83e71bf632d7f53dec9" resname="flash.admin.users.create.email_exist">
         <source>flash.admin.users.create.email_exist</source>
         <target>L'email existe déjà</target>
-        <jms:reference-file line="130">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="134">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0464a094f01d27aad7fdbb5b0b2e506b6a12717e" resname="flash.admin.users.disable.toggle.success">
         <source>flash.admin.users.disable.toggle.success</source>
         <target>L'utilisateur %user% a été désactivé</target>
-        <jms:reference-file line="85">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ab6bb1691324eaf1b0e12fec33c561b6e5c953e2" resname="flash.admin.users.disallow.toggle.success">
         <source>flash.admin.users.disallow.toggle.success</source>
         <target>L'accès à %auth% a été retiré de %user%</target>
-        <jms:reference-file line="159">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="171">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="183">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4e9f7f8626e5aa340ecb8464c56360b24d33a342" resname="flash.admin.users.edit.success">
         <source>flash.admin.users.edit.success</source>
         <target>L'utilisateur %user% a été mis à jour</target>
-        <jms:reference-file line="60">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c989692fdec5156951b3c5818086d71ba40e44c0" resname="flash.admin.users.enable.toggle.success">
         <source>flash.admin.users.enable.toggle.success</source>
         <target>L'utilisateur %user% a été activé</target>
-        <jms:reference-file line="90">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="7e63e9aefe8b896c0cfce4ace7eff4349dabc595" resname="flash.alternative.add.failed">
         <source>flash.alternative.add.failed</source>
         <target>Le part alternatif n'a pas été ajoutée</target>
-        <jms:reference-file line="234">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="2d51bb8466f59bed699a8dd1478deaadb3baa07a" resname="flash.alternative.add.success">
         <source>flash.alternative.add.success</source>
         <target>Le part alternatif %alternative% a été ajouté</target>
-        <jms:reference-file line="228">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="df5465515acd449b42dab12974d348586f339071" resname="flash.alternative.delete.success">
         <source>flash.alternative.delete.success</source>
         <target>Le part alternatif %alternative% a été supprimé</target>
-        <jms:reference-file line="21">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="a062d5e3901d4d1f30b2332019b9646dc24f4a4f" resname="flash.alternative.edit.failed">
         <source>flash.alternative.edit.failed</source>
         <target>Le part alternatif %alternative% n'a pas été mis à jour</target>
-        <jms:reference-file line="102">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
-        <jms:reference-file line="95">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="eff6d9fba6206c1e4c5a422243b346cff2571dd4" resname="flash.alternative.edit.success">
         <source>flash.alternative.edit.success</source>
         <target>Le part alternatif %alternative% a été mis à jour</target>
-        <jms:reference-file line="91">/../src/AppBundle/Controller/AlternativeController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="d0d295a23d8cc5d09a98e514d196f9d8dd22d6ae" resname="flash.bom.delete.success">
         <source>flash.bom.delete.success</source>
         <target>La nomenclature %bom% a été supprimée</target>
-        <jms:reference-file line="102">/../src/AppBundle/Controller/BomController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="7514d54607417c49bb52761a7724b3984ee900ee" resname="flash.bom.deleteAll.success">
         <source>flash.bom.deleteAll.success</source>
         <target>Toutes les lignes de la nomenclature %bom% ont été supprimées</target>
-        <jms:reference-file line="37">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6cdf650d3f5ec4cdb81a50c9cc75377fb7e7b72a" resname="flash.bom.edit.success">
         <source>flash.bom.edit.success</source>
         <target>La nomenclature %bom% a été mise à jour</target>
-        <jms:reference-file line="86">/../src/AppBundle/Controller/BomController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="984795043246f2abf7c1776135ecb38e710d6359" resname="flash.bom.excel.empty">
         <source>flash.bom.excel.empty</source>
         <target>Le fichier excel est vide</target>
-        <jms:reference-file line="256">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="7c83bc9e261a52801c411ab00f10345afc9ed5a5" resname="flash.bom.excel.wrong">
         <source>flash.bom.excel.wrong</source>
         <target>Le fichier envoyé n'est pas au format Excel</target>
-        <jms:reference-file line="246">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="9cc820ef3e4b4a72e6b34ca2d6f5a3ddff8fdf07" resname="flash.bom.new.success">
         <source>flash.bom.new.success</source>
         <target>La nomenclature %bom% a été créée</target>
-        <jms:reference-file line="63">/../src/AppBundle/Controller/BomController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="8a4559f7b18dd0665f1b9374127cca1eff5e5b3d" resname="flash.configs.edit.success">
         <source>flash.configs.edit.success</source>
         <target>La configuration %config% a été mise à jour</target>
-        <jms:reference-file line="56">/../src/AppBundle/Controller/ConfigController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="834247768ca9be7c7b6980b28008dd174f90967c" resname="flash.ecu.delete.success">
         <source>flash.ecu.delete.success</source>
         <target>Le client %ecu% a été supprimé</target>
-        <jms:reference-file line="93">/../src/AppBundle/Controller/EcuController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="79d4fa49c569d86c365d77e7cf25164b52db7771" resname="flash.ecu.edit.success">
         <source>flash.ecu.edit.success</source>
         <target>Le client %ecu% a été mis à jour</target>
-        <jms:reference-file line="77">/../src/AppBundle/Controller/EcuController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="d34ad05b4325527ab2c75b2dad5c1471da43ed66" resname="flash.ecu.new.success">
         <source>flash.ecu.new.success</source>
         <target>Le client %ecu% a été créé</target>
-        <jms:reference-file line="54">/../src/AppBundle/Controller/EcuController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e1903d504d8af46f470b1c7ca57dd861f70585ef" resname="flash.line.add.failed">
         <source>flash.line.add.failed</source>
         <target>La ligne n'a pas été ajoutée</target>
-        <jms:reference-file line="189">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
-        <jms:reference-file line="194">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="928f4b64a4920d2927f11a86e84b7be29a65220f" resname="flash.line.add.success">
         <source>flash.line.add.success</source>
         <target>La line %line% a été ajoutée</target>
-        <jms:reference-file line="185">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="91392202b38c0ba2e9b48a30e61abf2c3207ebdb" resname="flash.line.delete.success">
         <source>flash.line.delete.success</source>
         <target>La ligne %line% a été supprimée</target>
-        <jms:reference-file line="23">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="86aeaa1b4f736285a8eb18f68cb4a7adba753a70" resname="flash.line.edit.failed">
         <source>flash.line.edit.failed</source>
         <target>La ligne %line% n'a pas été mise à jour</target>
-        <jms:reference-file line="376">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
-        <jms:reference-file line="383">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6da8ad2338d998fc32b91ff1c17058968e69531f" resname="flash.line.edit.success">
         <source>flash.line.edit.success</source>
         <target>La ligne %line% a bien été mise à jour</target>
-        <jms:reference-file line="372">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b792d0c35436ef7d3f98fe0aa55e2baa84c37b24" resname="flash.quantity.add.failed">
         <source>flash.quantity.add.failed</source>
         <target>La quantité de cartes n'a pas été ajoutée</target>
-        <jms:reference-file line="185">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
-        <jms:reference-file line="190">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5e722aba718a29e9e8fdd14b86d6a8e6a6bf8ad8" resname="flash.quantity.add.success">
         <source>flash.quantity.add.success</source>
         <target>La quantité de cartes %quantity% a été ajoutée</target>
-        <jms:reference-file line="181">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0089d70f218ff09cee1d7e6be9112878095361cb" resname="flash.quantity.delete.success">
         <source>flash.quantity.delete.success</source>
         <target>La quantité de cartes %quantity% a été supprimée</target>
-        <jms:reference-file line="22">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b83c75480e5e325c78c4ddd09617c5e7cbffa9b2" resname="flash.quantity.edit.failed">
         <source>flash.quantity.edit.failed</source>
         <target>La quantité de cartes n'a pas été mise à jour</target>
-        <jms:reference-file line="101">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
-        <jms:reference-file line="106">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="f1cb2d3e0bfd1c967c9380c48dd3c44f99f65413" resname="flash.quantity.edit.success">
         <source>flash.quantity.edit.success</source>
         <target>La quantité de cartes %quantity% a été mise à jour</target>
-        <jms:reference-file line="97">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e78448975f7efc48922c6448e13d3e5c43885cb6" resname="flash.scanner.alternative.failed">
         <source>flash.scanner.alternative.failed</source>
         <target>Une erreur s'est produite pendant la récupération des informations des API. Erreur: %error%.</target>
-        <jms:reference-file line="27">/../src/AppBundle/Controller/ScannerController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="3312bf806ab42ed3b575742b66253b11e5155c37" resname="flash.scanner.alternative.success">
         <source>flash.scanner.alternative.success</source>
         <target>Les informations de %alternative% ont bien été récupérées</target>
-        <jms:reference-file line="31">/../src/AppBundle/Controller/ScannerController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="173791b01b9d5aab85511712cb0d951902035840" resname="flash.scanner.bom.failed">
         <source>flash.scanner.bom.failed</source>
         <target>Une erreur s'est produite pendant la récupération des informations des API. Erreur: %error%.</target>
-        <jms:reference-file line="98">/../src/AppBundle/Controller/ScannerController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6c3149a6c36995e3d87a58565e81860abe537b92" resname="flash.scanner.bom.success">
         <source>flash.scanner.bom.success</source>
         <target>Les informations de la nomenclature %bom% ont bien été récupérées</target>
-        <jms:reference-file line="107">/../src/AppBundle/Controller/ScannerController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="45e808ae9c9aeaa6372f68b6eb9b47adc01c98b1" resname="flash.scanner.line.failed">
         <source>flash.scanner.line.failed</source>
         <target>Une erreur s'est produite pendant la récupération des informations des API. Erreur: %error%</target>
-        <jms:reference-file line="57">/../src/AppBundle/Controller/ScannerController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="015bdd4d701dd7af2c3ef12f62658bdebc0d29c3" resname="flash.scanner.line.success">
         <source>flash.scanner.line.success</source>
         <target>Les informations de la ligne %line% ont bien été récupérées</target>
-        <jms:reference-file line="64">/../src/AppBundle/Controller/ScannerController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="922107cf37dca53fa0dfbe4fba6d2fed021d25e6" resname="flash.supplier.copy.success">
         <source>flash.supplier.copy.success</source>
         <target>Le fournisseur %supplier% a bien été dupliqué</target>
-        <jms:reference-file line="143">/../src/AppBundle/Controller/SupplierController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c5187738710660be4dfd6fd66cff620295c50475" resname="flash.supplier.delete.success">
         <source>flash.supplier.delete.success</source>
         <target>Le fournisseur %supplier% a bien été supprimé</target>
-        <jms:reference-file line="108">/../src/AppBundle/Controller/SupplierController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="262b68d3c50233cf562c217ffa3c82de670f5337" resname="flash.supplier.disable.success">
         <source>flash.supplier.disable.success</source>
         <target>Le fournisseur %supplier% a été désactivé</target>
-        <jms:reference-file line="125">/../src/AppBundle/Controller/SupplierController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="9f4877c8b583f22f12c42249c02eb440e5e23ec6" resname="flash.supplier.edit.success">
         <source>flash.supplier.edit.success</source>
         <target>Le fournisseur %supplier% a bien été mis à jour</target>
-        <jms:reference-file line="88">/../src/AppBundle/Controller/SupplierController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="fa953b6207b469b2cbb2ef7792e1108a1d3cf94a" resname="flash.supplier.enable.success">
         <source>flash.supplier.enable.success</source>
         <target>Le fournisseur %supplier% a été activé</target>
-        <jms:reference-file line="130">/../src/AppBundle/Controller/SupplierController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="297ea7545c869bfcd5f19747d10ebf32dac358bf" resname="flash.supplier.new.success">
         <source>flash.supplier.new.success</source>
         <target>Le fournisseur %supplier% a bien été ajouté</target>
-        <jms:reference-file line="57">/../src/AppBundle/Controller/SupplierController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="dfb9754136c2d861b215f8c2a597d4623d8f82ba" resname="flash.user.api.delete">
         <source>flash.user.api.delete</source>
         <target>Le token API a été supprimé</target>
-        <jms:reference-file line="46">/../src/AppBundle/Controller/ProfileController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4f384c74405cf5f7b44b21756af0747602ae0848" resname="flash.user.api.new">
         <source>flash.user.api.new</source>
         <target>Un nouveau token API a été généré</target>
-        <jms:reference-file line="32">/../src/AppBundle/Controller/ProfileController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5c4c5e675f71d8ac856cc41528aeaed3fe025106" resname="flash.users.new.success">
         <source>flash.users.new.success</source>
         <target>L'utilisateur %user% a été créé</target>
-        <jms:reference-file line="124">/../src/AppBundle/Controller/UserController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="1e0efb5170c36fe38e6522559e00c386d3b7789c" resname="form.button.add">
         <source>form.button.add</source>
         <target>Ajouter</target>
-        <jms:reference-file line="4">/Resources/views/bom/alternative/add.html.twig</jms:reference-file>
-        <jms:reference-file line="12">/Resources/views/bom/line/add.html.twig</jms:reference-file>
-        <jms:reference-file line="4">/Resources/views/bom/quantity/add.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5fbd61de9a62476869d8405303e97a5e0036ffac" resname="form.button.create">
         <source>form.button.create</source>
         <target>Créer</target>
-        <jms:reference-file line="8">/Resources/views/bom/new.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/crm/ecu/new.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/srm/supplier/new.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f9f51880f2da00159b54cecf6268bab2f834274e" resname="form.button.load">
         <source>form.button.load</source>
         <target>Charger</target>
-        <jms:reference-file line="4">/Resources/views/bom/line/excel.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="29eb00d55f6b31de1f4cca632b637d03b0b5d669" resname="form.button.save">
         <source>form.button.save</source>
         <target>Sauvegarder</target>
-        <jms:reference-file line="8">/Resources/views/admin/config/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/admin/user/add.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/admin/user/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="4">/Resources/views/bom/alternative/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/bom/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="4">/Resources/views/bom/line/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="4">/Resources/views/bom/quantity/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/crm/ecu/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/interface/digikey/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="8">/Resources/views/srm/supplier/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a5a23e1a031f4a8508a9444097bba7c15d4c5765" resname="home.title">
         <source>home.title</source>
         <target>Bienvenue sur OpenBuy</target>
-        <jms:reference-file line="4">/Resources/views/default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7fc15258a2d09374b1959ca4d0519cc6fdce6810" resname="home.welcome_text">
         <source>home.welcome_text</source>
         <target><![CDATA[Vous pouvez accéder aux différents modules de la plate-forme en cliquant sur les liens de la barre de menu, en fonction de vos droits et privilèges.<br/>
 <br/>
 Si vous rencontrez des difficultés à interagir avec la plateforme, ou remarquez un dysfonctionnement, je vous invite à contacter votre administrateur de platforme.<br/>]]></target>
-        <jms:reference-file line="6">/Resources/views/default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fff8c2de10b6d921fbf67dd3319fd9a01ba80fdf" resname="leftmenu.apis">
         <source>leftmenu.apis</source>
         <target>APIs</target>
-        <jms:reference-file line="31">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ed88e1cf6ee098cb9dba57dc1433bff79db5ef91" resname="leftmenu.boms">
         <source>leftmenu.boms</source>
         <target>Nomenclatures</target>
-        <jms:reference-file line="19">/Resources/views/layout.bom.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e7bd3b5685accf7d16e717becf80d199c477b599" resname="leftmenu.change_password">
         <source>leftmenu.change_password</source>
         <target>Changer mon mot de passe</target>
-        <jms:reference-file line="19">/Resources/views/layout.profile.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b61c3e7e2b8a5a35c86ffec362a0084c4d20b0cb" resname="leftmenu.configs.interface_digikey">
         <source>leftmenu.configs.interface_digikey</source>
         <target>Editer l'interface Digikey</target>
-        <jms:reference-file line="31">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6d7d7a3f51a4506c7a4a301dcf3241696ee59ca2" resname="leftmenu.configs.list">
         <source>leftmenu.configs.list</source>
         <target>Liste des configurations</target>
-        <jms:reference-file line="28">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e9927e90e7d266f832739faeac630d693d977abb" resname="leftmenu.contacts_list">
         <source>leftmenu.contacts_list</source>
         <target>Liste des contacts</target>
-        <jms:reference-file line="28">/Resources/views/layout.crm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="aa4e08a23077749a8bf53b86a09139a7b83eee38" resname="leftmenu.create_bom">
         <source>leftmenu.create_bom</source>
         <target>Créer une nomenclature</target>
-        <jms:reference-file line="13">/Resources/views/layout.bom.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4e5f5939f43703e51034039c62af4949e9778585" resname="leftmenu.create_contact">
         <source>leftmenu.create_contact</source>
         <target>Créer un contact</target>
-        <jms:reference-file line="16">/Resources/views/layout.crm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cf153446e4d152cff7f9430cad26436ba8b69a26" resname="leftmenu.create_customer">
         <source>leftmenu.create_customer</source>
         <target>Créer un client</target>
-        <jms:reference-file line="13">/Resources/views/layout.crm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="71f2fd746e2ebb9930d45d92c79b1dbd91265132" resname="leftmenu.create_project">
         <source>leftmenu.create_project</source>
         <target>Créer un projet</target>
-        <jms:reference-file line="19">/Resources/views/layout.crm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="71fc17d122e0edcb8766ed8a67a8d2a7b62b3c59" resname="leftmenu.create_supplier">
         <source>leftmenu.create_supplier</source>
         <target>Créer un fournisseur</target>
-        <jms:reference-file line="13">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="af560894144d89bad37cd51efa1b1345fae78ffc" resname="leftmenu.customers_list">
         <source>leftmenu.customers_list</source>
         <target>Liste des clients</target>
-        <jms:reference-file line="25">/Resources/views/layout.crm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d24ad3eae686635021b4b08127125fe03946f42a" resname="leftmenu.dev.translations">
         <source>leftmenu.dev.translations</source>
         <target>Gestion des traductions</target>
-        <jms:reference-file line="59">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7d2166d0b679a9504f75d0cc68f9eef6aea9064e" resname="leftmenu.parts_list">
         <source>leftmenu.parts_list</source>
         <target>Liste des pièces</target>
-        <jms:reference-file line="25">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="894fe034f49988e083e2ccb2b138678807ae18a3" resname="leftmenu.profile_edit">
         <source>leftmenu.profile_edit</source>
         <target>Editer mon profil</target>
-        <jms:reference-file line="16">/Resources/views/layout.profile.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d998db154f978944530a142991a954567118d958" resname="leftmenu.profile_view">
         <source>leftmenu.profile_view</source>
         <target>Voir mon profil</target>
-        <jms:reference-file line="13">/Resources/views/layout.profile.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="019573ba526e1a9229e6932455d21c7d69b23b30" resname="leftmenu.projects_list">
         <source>leftmenu.projects_list</source>
         <target>Liste des projets</target>
-        <jms:reference-file line="31">/Resources/views/layout.crm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2e504b62fb2d81c48f82f26c61df4bc1653b0af2" resname="leftmenu.search_part">
         <source>leftmenu.search_part</source>
         <target>Recherche de pièce</target>
-        <jms:reference-file line="16">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="837a23fcad117436a3dc55b738780fd84c669b90" resname="leftmenu.stats">
         <source>leftmenu.stats</source>
         <target>Statistiques</target>
-        <jms:reference-file line="28">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="835b790d10a545d00e8d0cf6542bdf3efe465fb0" resname="leftmenu.stats.dashboard">
         <source>leftmenu.stats.dashboard</source>
         <target>Tableau de bord</target>
-        <jms:reference-file line="13">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a1e48dc62756afe0ee4650fee1261b0e4572430d" resname="leftmenu.suppliers_list">
         <source>leftmenu.suppliers_list</source>
         <target>Liste des fournisseurs</target>
-        <jms:reference-file line="22">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="706af4ba90efcb2c9c79df826a9e9e3dadba8fb4" resname="leftmenu.title.api">
         <source>leftmenu.title.api</source>
         <target>Gestion de l'API</target>
-        <jms:reference-file line="22">/Resources/views/layout.profile.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4e87143ed6b925dce19a4ba0e8cba18d1544539f" resname="leftmenu.title.boms">
         <source>leftmenu.title.boms</source>
         <target>Nomenclatures</target>
-        <jms:reference-file line="16">/Resources/views/layout.bom.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e75a74fc5ed1c311126c636d8dc06b3e48102b67" resname="leftmenu.title.config">
         <source>leftmenu.title.config</source>
         <target>Configurations</target>
-        <jms:reference-file line="25">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b1a28d9c0582d0019c92fd94e31e07ea11005f11" resname="leftmenu.title.customers">
         <source>leftmenu.title.customers</source>
         <target>Clients</target>
-        <jms:reference-file line="22">/Resources/views/layout.crm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="935416651e6717e4f054e018c9a5ee1981cf6d60" resname="leftmenu.title.profile">
         <source>leftmenu.title.profile</source>
         <target>Mon profil</target>
-        <jms:reference-file line="10">/Resources/views/layout.profile.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f7e77d6e784ac66d2053447f7d175fcabb55927c" resname="leftmenu.title.quick_links">
         <source>leftmenu.title.quick_links</source>
         <target>Raccourcis</target>
-        <jms:reference-file line="10">/Resources/views/layout.bom.html.twig</jms:reference-file>
-        <jms:reference-file line="10">/Resources/views/layout.crm.html.twig</jms:reference-file>
-        <jms:reference-file line="10">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1ec44ba8e52a85251869f76c8c1fe19ade069ba0" resname="leftmenu.title.stats">
         <source>leftmenu.title.stats</source>
         <target>Statistiques</target>
-        <jms:reference-file line="10">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b46098a05b9bf4a74808eae8b67af2812a8d299f" resname="leftmenu.title.suppliers">
         <source>leftmenu.title.suppliers</source>
         <target>Fournisseurs</target>
-        <jms:reference-file line="19">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="df736d657be3f4cb1ad9d68f768073d525970633" resname="leftmenu.title.users">
         <source>leftmenu.title.users</source>
         <target>Utilisateurs</target>
-        <jms:reference-file line="16">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="34459c56a441337786584d1b24cda6d891465635" resname="leftmenu.token">
         <source>leftmenu.token</source>
         <target>Mon token</target>
-        <jms:reference-file line="25">/Resources/views/layout.profile.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3bba943c9aa7241c78304e686d2e6a776c950451" resname="leftmenu.users.create">
         <source>leftmenu.users.create</source>
         <target>Créer un utilisateur</target>
-        <jms:reference-file line="22">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3cf4b29b43a4eafc64b5f7aa464f724b7cf4770d" resname="leftmenu.users.list">
         <source>leftmenu.users.list</source>
         <target>Liste des utilisateurs</target>
-        <jms:reference-file line="19">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="dfd00e03a66a14fa9c9be22aff4ef010198edf43" resname="line.add.alternatives.title">
         <source>line.add.alternatives.title</source>
         <target>Alternatives</target>
-        <jms:reference-file line="7">/Resources/views/bom/line/add.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="98a82e37156d48ae6938fd3028046276b3f9daab" resname="line.add.detail.title">
         <source>line.add.detail.title</source>
         <target>Détail de la ligne</target>
-        <jms:reference-file line="2">/Resources/views/bom/line/add.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1052f7f556709d956c33a0e5026543f5aee4692d" resname="line.label.alternatives">
         <source>line.label.alternatives</source>
         <target>Liste des alternatives</target>
-        <jms:reference-file line="75">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e420a1ffc05434d162d3b0a39fbea58e62c3dcad" resname="line.label.bestPrice">
         <source>line.label.bestPrice</source>
         <target>Meilleur tarif</target>
-        <jms:reference-file line="54">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a1dcffe242684a0f9c9b7e62ac79dc12e6822c7c" resname="line.label.ecuPn">
         <source>line.label.ecuPn</source>
         <target>Code client</target>
-        <jms:reference-file line="52">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="54005f0d0621bba2e1790c550864b9af48d97afc" resname="line.label.index">
         <source>line.label.index</source>
         <target>#</target>
-        <jms:reference-file line="51">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cf4b999cd1245453537c202d8564136b2e71cafe" resname="line.label.multiplier">
         <source>line.label.multiplier</source>
         <target>Coefficient multiplicateur</target>
-        <jms:reference-file line="53">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8f80ba3f5202e7223b12a5ee5ecd12ba6568e2db" resname="line.placeholder.ecuPn">
         <source>line.placeholder.ecuPn</source>
         <target>Entrez le code client</target>
-        <jms:reference-file line="58">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0f20084e8a857b582f53d054ba62a209713655f2" resname="line.placeholder.mfrName1">
         <source>line.placeholder.mfrName1</source>
         <target>Entrez le nom du fabricant</target>
-        <jms:reference-file line="74">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="61e7a742bba368a9e52af160993be4dcf0d763f8" resname="line.placeholder.mfrName2">
         <source>line.placeholder.mfrName2</source>
         <target>Entrez le nom du fabricant</target>
-        <jms:reference-file line="90">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b781c9b590ca0dc564ebcc4829b5594ec7451025" resname="line.placeholder.mfrName3">
         <source>line.placeholder.mfrName3</source>
         <target>Entrez le nom du fabricant</target>
-        <jms:reference-file line="106">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="356a6f129809788ac92b3d76af6c2a3a1a1eda09" resname="line.placeholder.mfrName4">
         <source>line.placeholder.mfrName4</source>
         <target>Entrez le nom du fabricant</target>
-        <jms:reference-file line="122">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6b83d34136b753548c97cb3dbfa23c1fb16b1d88" resname="line.placeholder.mfrPn1">
         <source>line.placeholder.mfrPn1</source>
         <target>Entrez le code du fabricant</target>
-        <jms:reference-file line="82">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b5a543e75a8980a3e5642fddfacdef0736410676" resname="line.placeholder.mfrPn2">
         <source>line.placeholder.mfrPn2</source>
         <target>Entrez le code du fabricant</target>
-        <jms:reference-file line="98">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0869401bde82a8eac2296c3ca52491ef9a060f4f" resname="line.placeholder.mfrPn3">
         <source>line.placeholder.mfrPn3</source>
         <target>Entrez le code du fabricant</target>
-        <jms:reference-file line="114">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="a92ed5d19434ac3965eaca49654bbd8cbeb1bee2" resname="line.placeholder.mfrPn4">
         <source>line.placeholder.mfrPn4</source>
         <target>Entrez le code du fabricant</target>
-        <jms:reference-file line="130">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="3118737d28353c842726fb7b267b55b2744d7793" resname="line.placeholder.multiplier">
         <source>line.placeholder.multiplier</source>
         <target>Entrez le coefficient multiplicateur</target>
-        <jms:reference-file line="66">/../src/AppBundle/Controller/LineController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="9c6d51b72da01a6f73c4493275e770f739a2aec6" resname="modal.button.close">
         <source>modal.button.close</source>
         <target>Fermer</target>
-        <jms:reference-file line="68">/Resources/views/admin/config/index.html.twig</jms:reference-file>
-        <jms:reference-file line="108">/Resources/views/admin/user/index.html.twig</jms:reference-file>
-        <jms:reference-file line="5">/Resources/views/bom/alternative/add.html.twig</jms:reference-file>
-        <jms:reference-file line="5">/Resources/views/bom/alternative/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="73">/Resources/views/bom/index.html.twig</jms:reference-file>
-        <jms:reference-file line="13">/Resources/views/bom/line/add.html.twig</jms:reference-file>
-        <jms:reference-file line="5">/Resources/views/bom/line/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="5">/Resources/views/bom/line/excel.html.twig</jms:reference-file>
-        <jms:reference-file line="5">/Resources/views/bom/quantity/add.html.twig</jms:reference-file>
-        <jms:reference-file line="5">/Resources/views/bom/quantity/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="75">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
-        <jms:reference-file line="106">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="13527f5d456907bb728baca0cc6e6e3b97e54f3b" resname="price.label.price">
         <source>price.label.price</source>
         <target>Prix unitaire</target>
-        <jms:reference-file line="262">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="563a2a49a21c9b91593ec46c164d596545b004ce" resname="price.label.quantity">
         <source>price.label.quantity</source>
         <target>Quantité</target>
-        <jms:reference-file line="261">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7d3eca06fbba5569580210421107d137a20e6f6d" resname="profile.api.token.button.delete">
         <source>profile.api.token.button.delete</source>
         <target>Supprimer le token</target>
-        <jms:reference-file line="15">/Resources/views/profile/api/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ec6b349545efb3a02d71400dc0c61b223911df32" resname="profile.api.token.button.new">
         <source>profile.api.token.button.new</source>
         <target>Generer un nouveau token</target>
-        <jms:reference-file line="13">/Resources/views/profile/api/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4804287795e13d1bbf7d72706777049f6db933d6" resname="profile.api.token.empty">
         <source>profile.api.token.empty</source>
         <target>Il n'y a pas de token disponible</target>
-        <jms:reference-file line="10">/Resources/views/profile/api/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1170be77e09276795bc30434c6f62ff43eb7e4b5" resname="profile.api.token.introduction">
         <source>profile.api.token.introduction</source>
         <target>Le token est utilisé pour permettre la connexion à distance sans saisie du login et mot de passe. Il est important de garde de token confidentiel. Vous pouvez le mettre à jour à n'importe quel moment ou même le supprimer.</target>
-        <jms:reference-file line="5">/Resources/views/profile/api/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fea664c2a34978b75e43b4dfad16e1f82398f5a6" resname="profile.api.token.label">
         <source>profile.api.token.label</source>
         <target>Token</target>
-        <jms:reference-file line="8">/Resources/views/profile/api/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0566cf58ae49df2f31b1141401e53505950ce531" resname="profile.api.token.title">
         <source>profile.api.token.title</source>
         <target>Gérer mon token</target>
-        <jms:reference-file line="4">/Resources/views/profile/api/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="39797f8111f6801053dee1fac86e813dcc22e78e" resname="quantity.label.action">
         <source>quantity.label.action</source>
         <target>Actions</target>
-        <jms:reference-file line="24">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bfa1d83fbd48346333c41622934a4fc51bbfc321" resname="quantity.label.date">
         <source>quantity.label.date</source>
         <target>Date</target>
-        <jms:reference-file line="23">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="85e47f75282b1aebd13a86ca00cb83cce4036cba" resname="quantity.label.name">
         <source>quantity.label.name</source>
         <target>Nom</target>
-        <jms:reference-file line="22">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1996b6abbf63b601127b8ac3ecae036971703000" resname="quantity.label.quantity">
         <source>quantity.label.quantity</source>
         <target>Quantité</target>
-        <jms:reference-file line="21">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="178c801deabcbb5a3b3d67286e36525afd0ec9c0" resname="quantity.placeholder.date">
         <source>quantity.placeholder.date</source>
         <target>Entrez la date au format AAAA-MM-JJ</target>
-        <jms:reference-file line="137">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0613319c668d183828c7bec8ea8ae21e3f0ed220" resname="quantity.placeholder.name">
         <source>quantity.placeholder.name</source>
         <target>Entrez le nom</target>
-        <jms:reference-file line="120">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="95093ef59a4941ae6df3bf029aea378d90382a30" resname="quantity.placeholder.quantity">
         <source>quantity.placeholder.quantity</source>
         <target>Entrez la quantité</target>
-        <jms:reference-file line="128">/../src/AppBundle/Controller/QuantityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="f67e024a53ee538d1848db7e173825b67e83fe08" resname="security.login.title">
         <source>security.login.title</source>
         <target>Authentification</target>
-        <jms:reference-file line="6">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3f6058fa53b25e85062ca89bab3e801035d970a6" resname="supplier.add">
         <source>supplier.add</source>
         <target>Ajouter un fournisseur</target>
-        <jms:reference-file line="71">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="397bf0ed0ba0a9d7c954942b63b91ea85343e2e6" resname="supplier.label.address">
         <source>supplier.label.address</source>
         <target>Adresse</target>
-        <jms:reference-file line="87">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e8aa5f5400364e8c5e544398b43e6d23c7bdf362" resname="supplier.label.country">
         <source>supplier.label.country</source>
         <target>Pays</target>
-        <jms:reference-file line="9">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b3d9242a790a30845104e940a30e57e56dd78afc" resname="supplier.label.currency">
         <source>supplier.label.currency</source>
         <target>Devise</target>
-        <jms:reference-file line="10">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
-        <jms:reference-file line="99">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5bae7a87bf6495655fe83b303b515304e4f36919" resname="supplier.label.exchange_rate">
         <source>supplier.label.exchange_rate</source>
         <target>Taux de change</target>
-        <jms:reference-file line="101">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e2d9ffa2aaeb6aa50c64ef06afab1e1f3b2eeb04" resname="supplier.label.interface">
         <source>supplier.label.interface</source>
         <target>Interface</target>
-        <jms:reference-file line="97">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="62427f0d78c54bdff55b676e4daccf3de9157bb4" resname="supplier.label.name">
         <source>supplier.label.name</source>
         <target>Nom</target>
-        <jms:reference-file line="8">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
-        <jms:reference-file line="85">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="16ebedb3f4ff65776023d485f7e41455de156d1a" resname="suppliers.edit.title">
         <source>suppliers.edit.title</source>
         <target>Editer</target>
-        <jms:reference-file line="4">/Resources/views/srm/supplier/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a84f6fff51f7c3b0cd8ee228c23ccace27f46876" resname="suppliers.index.title">
         <source>suppliers.index.title</source>
         <target>Liste des fournisseurs</target>
-        <jms:reference-file line="4">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="94a6c031b1097f0052dbe7a980c03e81a696f70f" resname="suppliers.new.title">
         <source>suppliers.new.title</source>
         <target>Ajouter un fournisseur</target>
-        <jms:reference-file line="4">/Resources/views/srm/supplier/new.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9716879597390ffb422509d5e150539d32288e0d" resname="table.header.action">
         <source>table.header.action</source>
         <target>Actions</target>
-        <jms:reference-file line="10">/Resources/views/admin/config/index.html.twig</jms:reference-file>
-        <jms:reference-file line="11">/Resources/views/admin/user/index.html.twig</jms:reference-file>
-        <jms:reference-file line="11">/Resources/views/bom/index.html.twig</jms:reference-file>
-        <jms:reference-file line="55">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="10">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
-        <jms:reference-file line="13">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2e4c134fd01bad53bbe004325bdc81ba9565a584" resname="table.header.api">
         <source>table.header.api</source>
         <target>API</target>
-        <jms:reference-file line="12">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="95f42378cdff20a1fb04671ba20d33fc6a9e2b3c" resname="table.header.interface">
         <source>table.header.interface</source>
         <target>Interface</target>
-        <jms:reference-file line="11">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="09b22a643fc2e16421e4aa40d60be2594bede0cd" resname="title.admin">
         <source>title.admin</source>
         <target>Admin</target>
-        <jms:reference-file line="4">/Resources/views/layout.admin.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0282eb582b5003260b2b33d278fa83cd7b636ac0" resname="title.bom">
         <source>title.bom</source>
         <target>BOM</target>
-        <jms:reference-file line="4">/Resources/views/layout.bom.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="40dff9849107ccc203cdc47094087d038f1108fc" resname="title.crm">
         <source>title.crm</source>
         <target>CRM</target>
-        <jms:reference-file line="4">/Resources/views/layout.crm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ec6d7a6fa343c44fa7d3205c1e3c6bbffeb88ea3" resname="title.dashboard">
         <source>title.dashboard</source>
         <target>Tableau de bord</target>
-        <jms:reference-file line="4">/Resources/views/layout.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="22c6829739e2327c3edd44fc5dacb2f22c8c1aca" resname="title.profile">
         <source>title.profile</source>
         <target>Profil</target>
-        <jms:reference-file line="4">/Resources/views/layout.profile.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0669822b3ac84198165e6d8ebba7d5fc411a2eb6" resname="title.srm">
         <source>title.srm</source>
         <target>SRM</target>
-        <jms:reference-file line="4">/Resources/views/layout.srm.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9dc872a50b601e3dc4c601b79a87c571515c7501" resname="tooltip.add">
         <source>tooltip.add</source>
         <target>Ajouter</target>
-        <jms:reference-file line="66">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="20">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="600c7edba35c985fbad052eee99d198a57f558db" resname="tooltip.bom.allow">
         <source>tooltip.bom.allow</source>
         <target>Autoriser l'accès aux BOMs</target>
-        <jms:reference-file line="33">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c593c78409b56cbcf38701e6f285a3c493f98571" resname="tooltip.bom.disallow">
         <source>tooltip.bom.disallow</source>
         <target>Interdire l'accès aux BOMs</target>
-        <jms:reference-file line="31">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="027cd71320506bfaa5d868cc5e0d20eff83a07c9" resname="tooltip.copy">
         <source>tooltip.copy</source>
         <target>Dupliquer</target>
-        <jms:reference-file line="40">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d142ddeab6fc33b475362e5f5d08bc975f6a6d45" resname="tooltip.crm.allow">
         <source>tooltip.crm.allow</source>
         <target>Autoriser la CRM</target>
-        <jms:reference-file line="23">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9f863790852d6c6578a4d482d394726840388132" resname="tooltip.crm.disallow">
         <source>tooltip.crm.disallow</source>
         <target>Interdire la CRM</target>
-        <jms:reference-file line="21">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="39e33dfba3a23d8a3e27ce3edbc8ddbc978734f5" resname="tooltip.delete">
         <source>tooltip.delete</source>
         <target>Supprimer</target>
-        <jms:reference-file line="24">/Resources/views/bom/index.html.twig</jms:reference-file>
-        <jms:reference-file line="36">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="69">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="84">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="22">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
-        <jms:reference-file line="41">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4cef8654be4733391a1b8d05505508d5699300ba" resname="tooltip.disable">
         <source>tooltip.disable</source>
         <target>Désactiver</target>
-        <jms:reference-file line="40">/Resources/views/admin/user/index.html.twig</jms:reference-file>
-        <jms:reference-file line="35">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="479cfe747eb49fe35475d58482de131f58d46a81" resname="tooltip.download">
         <source>tooltip.download</source>
         <target>Télécharger la tarification</target>
-        <jms:reference-file line="67">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="82">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c1e1f545b976816e2afed17c6e7ad6dce110978d" resname="tooltip.edit">
         <source>tooltip.edit</source>
         <target>Editer</target>
-        <jms:reference-file line="20">/Resources/views/admin/config/index.html.twig</jms:reference-file>
-        <jms:reference-file line="44">/Resources/views/admin/user/index.html.twig</jms:reference-file>
-        <jms:reference-file line="23">/Resources/views/bom/index.html.twig</jms:reference-file>
-        <jms:reference-file line="35">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="68">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="83">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="21">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
-        <jms:reference-file line="39">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7a401a0089191361872b5c041e95b8dfaacf503c" resname="tooltip.edit.parameters">
         <source>tooltip.edit.parameters</source>
         <target>Paramètres de l'interface</target>
-        <jms:reference-file line="25">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6ef0c22d77c01d414d7e2a81d17930036c6986dd" resname="tooltip.edit.signin">
         <source>tooltip.edit.signin</source>
         <target>S'authentifier sur l'interface</target>
-        <jms:reference-file line="24">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e7c318f872d2e9cf7e86440037144b7a4ee14b5d" resname="tooltip.enable">
         <source>tooltip.enable</source>
         <target>Activer</target>
-        <jms:reference-file line="42">/Resources/views/admin/user/index.html.twig</jms:reference-file>
-        <jms:reference-file line="37">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1265cc14a147f02dfbb539ffb5978dd5734b7de4" resname="tooltip.manage">
         <source>tooltip.manage</source>
         <target>Gérer</target>
-        <jms:reference-file line="22">/Resources/views/bom/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3f52615328ab3bdb6d591804e6af7a38cc351b97" resname="tooltip.select">
         <source>tooltip.select</source>
         <target>Sélectionner</target>
-        <jms:reference-file line="34">/Resources/views/bom/manage.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b9890c2e9c504d942dfe6846d86ae2a642b4468c" resname="tooltip.srm.allow">
         <source>tooltip.srm.allow</source>
         <target>Autoriser la SRM</target>
-        <jms:reference-file line="28">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ebc4237abe902b8533e47fea4c5848fb1f6aea8a" resname="tooltip.srm.disallow">
         <source>tooltip.srm.disallow</source>
         <target>Interdire la SRM</target>
-        <jms:reference-file line="26">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5f5af10fc41acce92a1d4d45c21d1ecdbf262402" resname="tooltip.test">
         <source>tooltip.test</source>
         <target>Tester l'interface</target>
-        <jms:reference-file line="26">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7e7d65dc91011ae70bdb579209c14bfda67960bd" resname="tooltip.view">
         <source>tooltip.view</source>
         <target>Détails</target>
-        <jms:reference-file line="19">/Resources/views/admin/config/index.html.twig</jms:reference-file>
-        <jms:reference-file line="38">/Resources/views/admin/user/index.html.twig</jms:reference-file>
-        <jms:reference-file line="21">/Resources/views/bom/index.html.twig</jms:reference-file>
-        <jms:reference-file line="81">/Resources/views/bom/manage.html.twig</jms:reference-file>
-        <jms:reference-file line="19">/Resources/views/crm/ecu/index.html.twig</jms:reference-file>
-        <jms:reference-file line="33">/Resources/views/srm/supplier/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e8bb7491e5347cd8924bc0fbbb26cf7a661a6ee3" resname="topmenu.admin">
         <source>topmenu.admin</source>
         <target>Admin</target>
-        <jms:reference-file line="54">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d43a575d9f524e921c31232c548fd1c466b2132f" resname="topmenu.bom">
         <source>topmenu.bom</source>
         <target>EasyPricing</target>
-        <jms:reference-file line="46">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="11ff74826fb868a318ffdfbf973d55d2b1d4b435" resname="topmenu.change_password">
         <source>topmenu.change_password</source>
         <target>Changer mon mot de passe</target>
-        <jms:reference-file line="73">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0cb2195001c7d5a68ac1ad986055b099af589313" resname="topmenu.connected_as ">
         <source>topmenu.connected_as </source>
         <target>Connecté en tant que </target>
-        <jms:reference-file line="69">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2e239e8687ef822f5d2a8f26ef26317a0c794e9e" resname="topmenu.customers">
         <source>topmenu.customers</source>
         <target>CRM</target>
-        <jms:reference-file line="30">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6292d4d2b52a3addbbceef794798e12ee4c8e37b" resname="topmenu.home">
         <source>topmenu.home</source>
         <target>Accueil</target>
-        <jms:reference-file line="23">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1145d255adde3e3cf6ff932e5be3133f57acc573" resname="topmenu.logout">
         <source>topmenu.logout</source>
         <target>Déconnexion</target>
-        <jms:reference-file line="77">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7abc44b277e1c827b612bd734efdc593259b599e" resname="topmenu.my_account">
         <source>topmenu.my_account</source>
         <target>Mon compte</target>
-        <jms:reference-file line="66">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="32a7adf52bb4a4e56edce50a5b3138cc17de8103" resname="topmenu.profile_edit">
         <source>topmenu.profile_edit</source>
         <target>Editer mon profil</target>
-        <jms:reference-file line="72">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="135dfd50acc5948a3d9e9c3e94f96c7f07b337bf" resname="topmenu.profile_view">
         <source>topmenu.profile_view</source>
         <target>Voir mon profil</target>
-        <jms:reference-file line="71">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2ff777b37bc3ea6eae8672412e633e02a053fe7c" resname="topmenu.suppliers">
         <source>topmenu.suppliers</source>
         <target>SRM</target>
-        <jms:reference-file line="38">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="35e7da363a187cefb3bda1f1324bbf15f2ab29ca" resname="topmenu.token">
         <source>topmenu.token</source>
         <target>Gérer mon token</target>
-        <jms:reference-file line="75">/Resources/views/master.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="140e18ea96c4b37f14b4c9b9fa5b420e8454e614" resname="user.new">
         <source>user.new</source>
         <target>Ajouter un utilisateur</target>
-        <jms:reference-file line="75">/Resources/views/admin/user/index.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

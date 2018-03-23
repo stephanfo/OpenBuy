@@ -1,0 +1,71 @@
+<div id="usersContainer" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var options = {
+            chart: {
+                renderTo: 'usersContainer',
+                type: 'pie'
+            },
+            title: {
+                text: 'Request count by users/suppliers (last 7 days)'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            credits:{
+                enabled: false
+            },
+            series: [{
+                name: 'Users',
+                colorByPoint: true,
+                data: []
+            }],
+            drilldown: {
+                series: []
+            }
+        };
+
+        $.getJSON("{{ path('api_digikey_datagraph_users') }}", function(data) {
+            var dataL1 = {};
+            var dataL2 = {};
+
+            data.forEach(function (element) {
+                if(!(element.name in dataL1)) {
+                    dataL1[element.name] = {
+                        name: element.name,
+                        drilldown: element.name,
+                        y: 0
+                    };
+                    dataL2[element.name] = {
+                        name: element.name,
+                        id: element.name,
+                        data: []
+                    };
+                }
+
+                dataL1[element.name].y += parseInt(element.y);
+                dataL2[element.name].data.push([element.drilldown, parseInt(element.y)]);
+            });
+
+            options.series[0].data = Object.values(dataL1);
+            options.drilldown.series = Object.values(dataL2);
+
+            var chart = new Highcharts.Chart(options);
+        });
+
+    }, false);
+</script>
