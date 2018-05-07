@@ -266,6 +266,15 @@ class InterfaceDigikey
         $article->setLink($part["PartUrl"]);
         $article->setDescription($part["ProductDescription"]);
         $article->setPicture($part["PrimaryPhoto"]);
+
+        $attributes = array();
+        foreach ($part["Parameters"] as $parameter) {
+            $attributes[] = array(
+                "parameter" => $parameter["Parameter"],
+                "value" => $parameter["Value"]
+            );
+        }
+
         $article->setExtra(array(
             'families' => array(
                 'l1' => $part["Category"]["Text"] ? $part["Category"]["Text"] : null,
@@ -277,6 +286,7 @@ class InterfaceDigikey
             'obsolete' => $part["Obsolete"] ? $part["Obsolete"] : null,
             'nonStock' => $part["NonStock"] ? $part["NonStock"] : null,
             'datasheet' => $part["PrimaryDatasheet"] ? $part["PrimaryDatasheet"] : null,
+            'attributes' => count($attributes) > 0 ? array("attribute" => $attributes) : null,
         ));
 
         $pricingArray = array();
@@ -328,6 +338,8 @@ class InterfaceDigikey
         $transaction->setResponseStatusCode($details['responseStatusCode']);
         $transaction->setResponseReasonPhrase($details['responseReasonPhrase']);
         $transaction->setResponseHeaders($details['responseHeaders']);
+        $transaction->setResponseErrorMessage($details['responseErrorMessage']);
+        $transaction->setResponseErrorDetails($details['responseErrorDetails']);
         $transaction->setResponseBody($details['responseBody']);
 
         $this->em->persist($transaction);

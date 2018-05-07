@@ -59,6 +59,8 @@ class ApiDigikey
     private $responseHeaders;
     private $responseBody;
     private $responseReasonPhrase;
+    private $responseErrorMessage;
+    private $responseErrorDetails;
 
     // Constructor that load the config and parameters if they are sent
     function __construct($config = null, $parameters = null)
@@ -392,8 +394,11 @@ class ApiDigikey
                 $this->responseStatusCode = $e->getResponse()->getStatusCode();
                 $this->responseReasonPhrase = $e->getResponse()->getReasonPhrase();
                 $this->responseHeaders = $e->getResponse()->getHeaders();
-                $this->responseBody = Psr7\str($e->getResponse());
-                return Psr7\str($e->getResponse());
+                $this->responseBody = $e->getResponse()->getBody()->getContents();
+                $content = json_decode($this->responseBody, true);
+                $this->responseErrorMessage = array_key_exists("Message", $content) ? $content['Message'] : null;
+                $this->responseErrorDetails = array_key_exists("Details", $content) ? $content['Details'] : null;
+                return $this->responseErrorMessage;
             }
             return Psr7\str($e->getRequest());
         }
@@ -419,6 +424,8 @@ class ApiDigikey
             'responseStatusCode' => $this->responseStatusCode,
             'responseReasonPhrase' => $this->responseReasonPhrase,
             'responseHeaders' => $this->responseHeaders,
+            'responseErrorMessage' => $this->responseErrorMessage,
+            'responseErrorDetails' => $this->responseErrorDetails,
             'responseBody' => $this->responseBody,
         );
     }

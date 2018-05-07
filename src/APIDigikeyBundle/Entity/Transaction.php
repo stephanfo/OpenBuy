@@ -79,6 +79,20 @@ class Transaction
     private $responseBody;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="responseErrorMessage", type="string", length=255, nullable=true)
+     */
+    private $responseErrorMessage;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="responseErrorDetails", type="string", length=255, nullable=true)
+     */
+    private $responseErrorDetails;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Supplier")
      * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id", nullable=false)
      */
@@ -340,5 +354,53 @@ class Transaction
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Set responseErrorMessage.
+     *
+     * @param string|null $responseErrorMessage
+     *
+     * @return Transaction
+     */
+    public function setResponseErrorMessage($responseErrorMessage = null)
+    {
+        $this->responseErrorMessage = $responseErrorMessage;
+
+        return $this;
+    }
+
+    /**
+     * Get responseErrorMessage.
+     *
+     * @return string|null
+     */
+    public function getResponseErrorMessage()
+    {
+        return $this->responseErrorMessage;
+    }
+
+    /**
+     * Set responseErrorDetails.
+     *
+     * @param string|null $responseErrorDetails
+     *
+     * @return Transaction
+     */
+    public function setResponseErrorDetails($responseErrorDetails = null)
+    {
+        $this->responseErrorDetails = $responseErrorDetails;
+
+        return $this;
+    }
+
+    /**
+     * Get responseErrorDetails.
+     *
+     * @return string|null
+     */
+    public function getResponseErrorDetails()
+    {
+        return $this->responseErrorDetails;
     }
 }

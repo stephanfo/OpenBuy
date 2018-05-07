@@ -123,7 +123,7 @@ class PackageSearchController extends Controller
             }
             else
             {
-                $data['error'] = "No article returned";
+                $data['error'] = is_string($articleArray) ? $articleArray : "Oups, something wrong happened!";
             }
         }
         else
